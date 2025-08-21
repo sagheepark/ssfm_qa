@@ -1,14 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { EvaluationScores } from '@/lib/types';
 
 interface EvaluationFormProps {
   onSubmit: (scores: EvaluationScores, comment?: string) => void;
-  isSubmitting?: boolean;
+  initialScores?: EvaluationScores;
+  initialComment?: string;
 }
 
-export default function EvaluationForm({ onSubmit, isSubmitting = false }: EvaluationFormProps) {
+export default function EvaluationForm({ 
+  onSubmit, 
+  initialScores,
+  initialComment 
+}: EvaluationFormProps) {
   const [scores, setScores] = useState<EvaluationScores>({
     quality: 0,
     emotion: 0,
@@ -16,17 +21,38 @@ export default function EvaluationForm({ onSubmit, isSubmitting = false }: Evalu
   });
   const [comment, setComment] = useState('');
 
+  // Update form when initial values change (when navigating between samples)
+  useEffect(() => {
+    if (initialScores) {
+      setScores(initialScores);
+    } else {
+      setScores({ quality: 0, emotion: 0, similarity: 0 });
+    }
+    
+    if (initialComment) {
+      setComment(initialComment);
+    } else {
+      setComment('');
+    }
+  }, [initialScores, initialComment]);
+
   const handleScoreChange = (dimension: keyof EvaluationScores, value: number) => {
-    setScores(prev => ({
-      ...prev,
+    const newScores = {
+      ...scores,
       [dimension]: value
-    }));
+    };
+    setScores(newScores);
+    
+    // Automatically save when scores change
+    onSubmit(newScores, comment || undefined);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleCommentChange = (newComment: string) => {
+    setComment(newComment);
+    
+    // Automatically save when comment changes (if scores are complete)
     if (scores.quality > 0 && scores.emotion > 0 && scores.similarity > 0) {
-      onSubmit(scores, comment || undefined);
+      onSubmit(scores, newComment || undefined);
     }
   };
 
@@ -73,9 +99,14 @@ export default function EvaluationForm({ onSubmit, isSubmitting = false }: Evalu
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
-      <h2 className="text-xl font-bold text-gray-900 mb-6">Rate This Sample</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-bold text-gray-900">Rate This Sample</h2>
+        {isFormValid && (
+          <div className="text-sm font-medium text-green-600">✓ Completed</div>
+        )}
+      </div>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-6">
         <ScaleButtons
           dimension="quality"
           label="Quality"
@@ -101,32 +132,13 @@ export default function EvaluationForm({ onSubmit, isSubmitting = false }: Evalu
           <textarea
             id="comment"
             value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            onChange={(e) => handleCommentChange(e.target.value)}
             placeholder="Any additional observations..."
             rows={3}
             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
-
-        <button
-          type="submit"
-          disabled={!isFormValid || isSubmitting}
-          className={`w-full py-3 px-4 rounded-md text-white font-medium transition-colors ${
-            isFormValid && !isSubmitting
-              ? 'bg-blue-600 hover:bg-blue-700'
-              : 'bg-gray-400 cursor-not-allowed'
-          }`}
-        >
-          {isSubmitting ? (
-            <div className="flex items-center justify-center space-x-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span>Submitting...</span>
-            </div>
-          ) : (
-            'Submit Rating'
-          )}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

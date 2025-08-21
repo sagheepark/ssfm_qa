@@ -417,7 +417,7 @@ evaluation_axes = {
 }
 ```
 
-#### 2.2 웹 인터페이스 구조 (간소화)
+#### 2.2 웹 인터페이스 구조 (Updated with Editable Results)
 
 ```markdown
 ### 단일 페이지 테스트 인터페이스
@@ -426,7 +426,7 @@ evaluation_axes = {
    - "테스트 시작" 버튼
    - 예상 소요 시간 표시
 
-2. **평가 화면**
+2. **평가 화면 (Enhanced Navigation & UX)**
    - 진행률 표시 (현재/전체)
    - Reference 음성 재생
    - 레퍼런스 표시:
@@ -435,19 +435,27 @@ evaluation_axes = {
    - 테스트 음성 재생
    - 3축 평가 입력 (7점 척도)
    - 선택적 코멘트 입력
-   - 네비게이션:
-     * 이전 문제로
-     * 다음 문제로
-     * 처음부터 다시
+   - **Enhanced Navigation:**
+     * Previous button (always available)
+     * **Primary CTA Next button (prominent, only active when all 3 scores filled)**
+     * Separated control section:
+       - Reset Session button (destructive action)
+       - Stop & Submit button (saves all data to database)
    
 3. **종료 화면**
-   - 완료 메시지
+   - 완료 메시지 (after Stop & Submit or completing all samples)
+   - Session summary (number of samples evaluated)
    - "새 세션 시작" 버튼
 
-### 로컬 상태 관리
-- localStorage 활용한 진행 상황 저장
-- 브라우저 새로고침/탭 전환 시에도 유지
-- 명시적 리셋 버튼으로만 초기화
+### Enhanced State Management & Data Flow
+- **Local-only evaluation storage**: Results stored in localStorage only
+- **No per-sample database writes**: Individual evaluations NOT saved to database immediately
+- **Batch data submission**: All evaluations saved to database only when:
+  - User clicks "Stop & Submit" (partial completion)
+  - User completes all 25 samples (full completion)
+- **Editable results**: Users can navigate back/forth and modify previous answers
+- **Smart navigation**: Next button prominent and disabled until current sample is fully evaluated
+- **Session persistence**: localStorage maintains progress across browser sessions
 ```
 
 #### 2.3 평가 설계 (Dynamic Sampling)

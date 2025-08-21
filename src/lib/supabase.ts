@@ -116,12 +116,23 @@ export async function createSession(sessionData: Partial<QASession>) {
     throw new Error('Database connection not available. Please contact the administrator.')
   }
   
+  console.log('createSession: Attempting to upsert:', sessionData);
+  
   const { data, error } = await supabase
     .from('qa_sessions')
-    .insert([sessionData])
+    .upsert([sessionData], { 
+      onConflict: 'session_id',
+      ignoreDuplicates: false 
+    })
     .select()
   
-  if (error) throw error
+  console.log('createSession: Supabase response:', { data, error });
+  
+  if (error) {
+    console.error('createSession: Supabase error details:', error);
+    throw error;
+  }
+  
   return data[0]
 }
 

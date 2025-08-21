@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { EvaluationScores, QASession, EvaluationResult } from '@/lib/types';
 import { getRandomSamples, getSampleMetadata } from '@/lib/sampleData';
-import { saveEvaluation, createSession, updateSession, supabase } from '@/lib/supabase';
+import { saveEvaluation, createSession, supabase } from '@/lib/supabase';
 import AudioPlayer from '@/components/AudioPlayer';
 import EvaluationForm from '@/components/EvaluationForm';
 import DatabaseConnectionError from '@/components/DatabaseConnectionError';
@@ -72,11 +72,9 @@ export default function TTSQAApp() {
     }
   };
 
-  const submitEvaluation = async (scores: EvaluationScores, comment?: string) => {
+  const saveEvaluationLocally = (scores: EvaluationScores, comment?: string) => {
     if (!session) return;
 
-    setIsSubmitting(true);
-    
     const result: EvaluationResult = {
       session_id: session.session_id,
       sample_id: session.samples[session.current_index].id,
@@ -86,48 +84,74 @@ export default function TTSQAApp() {
       duration_ms: Date.now() - new Date(session.started_at).getTime()
     };
 
-    // Save evaluation to Supabase (remove fields not in database schema)
-    const evaluationData = {
-      session_id: result.session_id,
-      sample_id: result.sample_id,
-      scores: result.scores,
-      comment: result.comment,
-      timestamp: result.timestamp,
-      duration_ms: result.duration_ms
+    // Update or add the evaluation in the results array
+    const updatedResults = [...session.results];
+    const existingIndex = updatedResults.findIndex(r => r.sample_id === result.sample_id);
+    
+    if (existingIndex >= 0) {
+      // Update existing evaluation
+      updatedResults[existingIndex] = result;
+    } else {
+      // Add new evaluation
+      updatedResults.push(result);
+    }
+
+    const updatedSession = {
+      ...session,
+      results: updatedResults
     };
+
+    setSession(updatedSession);
+  };
+
+  const submitAllEvaluations = async () => {
+    if (!session || session.results.length === 0) {
+      alert('No evaluations to submit');
+      return;
+    }
+
+    setIsSubmitting(true);
     
     try {
-      await saveEvaluation(evaluationData);
-      console.log('Evaluation saved to Supabase successfully');
-
-      const updatedSession = {
-        ...session,
-        results: [...session.results, result],
-        current_index: session.current_index + 1
+      // First create/update session in database
+      const sessionData = {
+        session_id: session.session_id,
+        started_at: session.started_at,
+        completed_at: new Date().toISOString(),
+        samples_data: session.samples
       };
+      
+      await createSession(sessionData);
+      console.log('Session created in database');
 
-      // Mark session as completed if this was the last sample
-      if (updatedSession.current_index >= session.samples.length) {
-        updatedSession.completed_at = new Date().toISOString();
+      // Then save all evaluations to database
+      for (const evaluation of session.results) {
+        const evaluationData = {
+          session_id: evaluation.session_id,
+          sample_id: evaluation.sample_id,
+          scores: evaluation.scores,
+          comment: evaluation.comment,
+          timestamp: evaluation.timestamp,
+          duration_ms: evaluation.duration_ms
+        };
         
-        // Update session completion in Supabase
-        try {
-          await updateSession(session.session_id, {
-            completed_at: updatedSession.completed_at
-          });
-          console.log('Session marked as completed in Supabase');
-        } catch (error) {
-          console.error('Error updating session completion:', error);
-        }
+        await saveEvaluation(evaluationData);
       }
-
-      setSession(updatedSession);
+      
+      console.log(`Successfully submitted ${session.results.length} evaluations to database`);
+      
+      // Mark session as completed
+      const completedSession = {
+        ...session,
+        completed_at: new Date().toISOString()
+      };
+      
+      setSession(completedSession);
+      alert(`Successfully submitted ${session.results.length} evaluations!`);
       
     } catch (error) {
-      console.error('Error saving evaluation:', error);
-      console.error('Evaluation data that failed:', evaluationData);
+      console.error('Error submitting evaluations:', error);
       
-      // Better error handling to see the actual error
       let errorMessage = 'Unknown error';
       if (error instanceof Error) {
         errorMessage = error.message;
@@ -137,8 +161,7 @@ export default function TTSQAApp() {
         errorMessage = String(error);
       }
       
-      console.error('Formatted error message:', errorMessage);
-      alert(`Failed to save evaluation: ${errorMessage}`);
+      alert(`Failed to submit evaluations: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -153,11 +176,26 @@ export default function TTSQAApp() {
   };
 
   const goToNext = () => {
-    if (!session || session.current_index >= session.results.length) return;
+    if (!session || session.current_index >= session.samples.length - 1) return;
     setSession({
       ...session,
       current_index: session.current_index + 1
     });
+  };
+
+  // Helper function to check if current sample has been evaluated
+  const getCurrentEvaluation = () => {
+    if (!session) return null;
+    return session.results.find(r => r.sample_id === session.samples[session.current_index].id);
+  };
+
+  // Helper function to check if current sample is fully evaluated
+  const isCurrentSampleEvaluated = () => {
+    const evaluation = getCurrentEvaluation();
+    return evaluation && 
+           evaluation.scores.quality > 0 && 
+           evaluation.scores.emotion > 0 && 
+           evaluation.scores.similarity > 0;
   };
 
   const restartSession = () => {
@@ -215,7 +253,6 @@ export default function TTSQAApp() {
 
   const currentSample = session.samples[session.current_index];
   const isCompleted = session.completed_at !== undefined;
-  const hasResult = session.current_index < session.results.length;
 
   if (isCompleted) {
     return (
@@ -308,57 +345,74 @@ export default function TTSQAApp() {
 
           {/* Evaluation Form */}
           <div>
-            {hasResult ? (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-green-800 mb-4">✅ Sample Rated</h2>
-                <div className="space-y-2 text-sm">
-                  <p><strong>Quality:</strong> {session.results[session.current_index].scores.quality}/7</p>
-                  <p><strong>Emotion:</strong> {session.results[session.current_index].scores.emotion}/7</p>
-                  <p><strong>Similarity:</strong> {session.results[session.current_index].scores.similarity}/7</p>
-                  {session.results[session.current_index].comment && (
-                    <p><strong>Comment:</strong> {session.results[session.current_index].comment}</p>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <EvaluationForm 
-                onSubmit={submitEvaluation}
-                isSubmitting={isSubmitting}
-              />
-            )}
+            <EvaluationForm 
+              onSubmit={saveEvaluationLocally}
+              initialScores={getCurrentEvaluation()?.scores}
+              initialComment={getCurrentEvaluation()?.comment}
+            />
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="mt-6 flex justify-between">
-          <button
-            onClick={goToPrevious}
-            disabled={session.current_index === 0}
-            className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span>Previous</span>
-          </button>
+        {/* Enhanced Navigation */}
+        <div className="mt-6 space-y-4">
+          {/* Primary Navigation */}
+          <div className="flex justify-between items-center">
+            <button
+              onClick={goToPrevious}
+              disabled={session.current_index === 0}
+              className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span>Previous</span>
+            </button>
 
-          <button
-            onClick={restartSession}
-            className="text-red-600 hover:text-red-800 text-sm"
-          >
-            Restart Session
-          </button>
+            {/* Primary CTA Next Button */}
+            <button
+              onClick={goToNext}
+              disabled={!isCurrentSampleEvaluated() || session.current_index >= session.samples.length - 1}
+              className={`flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors ${
+                isCurrentSampleEvaluated() && session.current_index < session.samples.length - 1
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              <span>Next</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
 
-          <button
-            onClick={goToNext}
-            disabled={session.current_index >= session.results.length}
-            className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <span>Next</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+          {/* Separated Control Section */}
+          <div className="border-t pt-4">
+            <div className="flex justify-between items-center">
+              <div className="flex space-x-3">
+                <button
+                  onClick={restartSession}
+                  className="px-3 py-1 text-sm border border-red-300 text-red-600 hover:border-red-400 hover:text-red-700 rounded transition-colors"
+                >
+                  Reset Session
+                </button>
+                <button
+                  onClick={submitAllEvaluations}
+                  disabled={isSubmitting || session.results.length === 0}
+                  className={`px-3 py-1 text-sm border rounded transition-colors ${
+                    session.results.length > 0 && !isSubmitting
+                      ? 'border-gray-400 text-gray-600 hover:border-gray-500 hover:text-gray-700'
+                      : 'border-gray-300 text-gray-400 cursor-not-allowed'
+                  }`}
+                >
+                  {isSubmitting ? 'Submitting...' : `Stop & Submit (${session.results.length})`}
+                </button>
+              </div>
+
+              <div className="text-sm text-gray-600">
+                Evaluated: {session.results.length} / {session.samples.length}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -20,6 +20,21 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
     if (audioRef.current) {
       console.log('AudioPlayer: Loading audio file:', sample.filename);
       console.log('AudioPlayer: Full URL:', `/voices/${sample.filename}`);
+      console.log('AudioPlayer: Sample scale:', sample.scale, typeof sample.scale);
+      console.log('AudioPlayer: Sample ID:', sample.id);
+      
+      // Check if filename matches what it should be based on properties
+      if (sample.filename.includes('emo') && sample.filename.includes('scale')) {
+        const expectedFilename = `${sample.voice_id}_${sample.text_type}_emo_${sample.emotion_value}_scale_${Number(sample.scale).toFixed(1)}.wav`;
+        console.log('AudioPlayer: Expected filename:', expectedFilename);
+        console.log('AudioPlayer: Filename matches expected?', sample.filename === expectedFilename);
+        if (sample.filename !== expectedFilename) {
+          console.warn('🔴 FILENAME MISMATCH DETECTED!');
+          console.warn('Actual  :', sample.filename);
+          console.warn('Expected:', expectedFilename);
+        }
+      }
+      
       audioRef.current.load();
       setIsLoading(true);
       setHasError(false);
