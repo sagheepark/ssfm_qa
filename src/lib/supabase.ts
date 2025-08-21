@@ -11,7 +11,7 @@ export interface QASession {
   user_id?: string
   started_at: string
   completed_at?: string
-  samples_data?: any
+  samples_data?: unknown
   created_at: string
 }
 
