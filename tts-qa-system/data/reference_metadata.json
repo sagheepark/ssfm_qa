@@ -1,0 +1,28 @@
+{
+  "generation_date": "2025-08-21 19:38:26",
+  "type": "reference_samples",
+  "total_samples": 36,
+  "successful_samples": 36,
+  "failed_samples": [],
+  "configuration": {
+    "voices": {
+      "v001": "688b02990486383d463c9d1a",
+      "v002": "689c693264acbc0a5b9fb0e5"
+    },
+    "text_types": 3,
+    "emotions": [
+      "angry",
+      "sad",
+      "happy",
+      "whisper",
+      "toneup",
+      "tonedown"
+    ],
+    "style_label": "normal-1",
+    "emotion_label": null,
+    "emotion_vector_id": null,
+    "emotion_scale": 1.0
+  },
+  "naming_structure": "{voice_id}_{text_type}_reference_{emotion}.wav",
+  "purpose": "Baseline reference for similarity comparison"
+}
