@@ -42,3 +42,24 @@ next-env.d.ts
 
 # audio files backup (original location)
 public/voices-backup/
+
+# Private API scripts and tokens
+tts-qa-system/scripts/
+dev_ssfm30.ipynb
+
+# Configuration files with sensitive data
+tts-qa-system/config/config.yaml
+
+# Environment files with credentials
+.env.local
+.env.production
+.env.development
+
+# Data directories with generated content
+tts-qa-system/data/
+tts-qa-system/references/
+
+# Personal notebooks and temporary files
+*.ipynb
+temp/
+tmp/
