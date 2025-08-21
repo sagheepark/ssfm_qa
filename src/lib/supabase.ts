@@ -93,13 +93,22 @@ export async function saveEvaluation(evaluation: SampleEvaluation) {
     throw new Error('Database connection not available. Please contact the administrator.')
   }
   
+  console.log('saveEvaluation: Attempting to save:', evaluation);
+  
   const { data, error } = await supabase
     .from('sample_evaluations')
     .insert([evaluation])
     .select()
   
-  if (error) throw error
-  return data[0]
+  console.log('saveEvaluation: Supabase response:', { data, error });
+  
+  if (error) {
+    console.error('saveEvaluation: Supabase error details:', error);
+    throw error;
+  }
+  
+  console.log('saveEvaluation: Success, returning:', data[0]);
+  return data[0];
 }
 
 export async function createSession(sessionData: Partial<QASession>) {

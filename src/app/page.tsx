@@ -126,8 +126,19 @@ export default function TTSQAApp() {
     } catch (error) {
       console.error('Error saving evaluation:', error);
       console.error('Evaluation data that failed:', evaluationData);
-      console.error('Error details:', error instanceof Error ? error.message : String(error));
-      alert(`Failed to save evaluation: ${error instanceof Error ? error.message : String(error)}`);
+      
+      // Better error handling to see the actual error
+      let errorMessage = 'Unknown error';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'object' && error !== null) {
+        errorMessage = JSON.stringify(error, null, 2);
+      } else {
+        errorMessage = String(error);
+      }
+      
+      console.error('Formatted error message:', errorMessage);
+      alert(`Failed to save evaluation: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }
