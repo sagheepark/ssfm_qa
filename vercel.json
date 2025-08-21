@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd tts-qa-webapp && npm run build",
-  "outputDirectory": "tts-qa-webapp/.next",
-  "installCommand": "cd tts-qa-webapp && npm install",
-  "framework": "nextjs"
-}
