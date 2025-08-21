@@ -55,6 +55,8 @@ export default function TTSQAApp() {
       localStorage.removeItem('tts-qa-session'); // Clear any old session
     } catch (error) {
       console.error('Error creating session:', error);
+      console.error('Session data that failed:', sessionData);
+      console.error('Error details:', error instanceof Error ? error.message : String(error));
       // Fall back to local storage only
       setSession(newSession);
       localStorage.removeItem('tts-qa-session');
@@ -76,15 +78,14 @@ export default function TTSQAApp() {
         duration_ms: Date.now() - new Date(session.started_at).getTime()
       };
 
-      // Save evaluation to Supabase
+      // Save evaluation to Supabase (remove fields not in database schema)
       const evaluationData = {
         session_id: result.session_id,
         sample_id: result.sample_id,
         scores: result.scores,
         comment: result.comment,
         timestamp: result.timestamp,
-        duration_ms: result.duration_ms,
-        evaluation_order: session.current_index + 1
+        duration_ms: result.duration_ms
       };
       
       await saveEvaluation(evaluationData);
@@ -115,7 +116,9 @@ export default function TTSQAApp() {
       
     } catch (error) {
       console.error('Error saving evaluation:', error);
-      alert('Failed to save evaluation. Please try again.');
+      console.error('Evaluation data that failed:', evaluationData);
+      console.error('Error details:', error instanceof Error ? error.message : String(error));
+      alert(`Failed to save evaluation: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setIsSubmitting(false);
     }
