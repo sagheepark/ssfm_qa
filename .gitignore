@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# audio files - too large for git/vercel
-public/voices/*.wav
+# audio files backup (original location)
 public/voices-backup/
