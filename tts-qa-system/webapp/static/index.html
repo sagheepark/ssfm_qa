@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS Quality Evaluation System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen">
+            <div class="container">
+                <h1>TTS Quality Evaluation System</h1>
+                <div class="info-box">
+                    <h2>Welcome to the TTS Evaluation Platform</h2>
+                    <p>You will evaluate 25 audio samples across three dimensions:</p>
+                    <ul>
+                        <li><strong>Quality:</strong> Overall audio quality and technical completeness</li>
+                        <li><strong>Emotion Expression:</strong> How well the intended emotion is expressed</li>
+                        <li><strong>Speaker Similarity:</strong> How similar it is to the reference speaker</li>
+                    </ul>
+                    <p class="time-estimate">Estimated time: 15-20 minutes</p>
+                </div>
+                <button class="btn btn-primary" onclick="startEvaluation()">Start Evaluation</button>
+            </div>
+        </div>
+
+        <!-- Evaluation Screen -->
+        <div id="evaluationScreen" class="screen hidden">
+            <div class="container">
+                <div class="header">
+                    <h1>TTS Evaluation</h1>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar"></div>
+                        <span class="progress-text" id="progressText">1 / 25</span>
+                    </div>
+                </div>
+
+                <div class="evaluation-content">
+                    <!-- Sample Information -->
+                    <div class="sample-info" id="sampleInfo">
+                        <h3>Sample Information</h3>
+                        <p><strong>Text:</strong> <span id="sampleText"></span></p>
+                        <p><strong>Emotion Type:</strong> <span id="emotionType"></span></p>
+                        <p><strong>Match Type:</strong> <span id="matchType"></span></p>
+                    </div>
+
+                    <!-- Audio Players -->
+                    <div class="audio-section">
+                        <div class="audio-player">
+                            <h3>Reference Audio</h3>
+                            <audio id="referenceAudio" controls>
+                                Your browser does not support the audio element.
+                            </audio>
+                            <p class="audio-label">Listen to the reference voice first</p>
+                        </div>
+
+                        <div class="audio-player">
+                            <h3>Test Audio</h3>
+                            <audio id="testAudio" controls>
+                                Your browser does not support the audio element.
+                            </audio>
+                            <p class="audio-label">Evaluate this sample</p>
+                        </div>
+                    </div>
+
+                    <!-- Evaluation Form -->
+                    <div class="evaluation-form">
+                        <h3>Evaluation</h3>
+                        
+                        <!-- Quality Score -->
+                        <div class="score-group">
+                            <label>Quality (Overall audio quality)</label>
+                            <div class="score-buttons" data-score="quality">
+                                <button class="score-btn" data-value="1">1</button>
+                                <button class="score-btn" data-value="2">2</button>
+                                <button class="score-btn" data-value="3">3</button>
+                                <button class="score-btn" data-value="4">4</button>
+                                <button class="score-btn" data-value="5">5</button>
+                                <button class="score-btn" data-value="6">6</button>
+                                <button class="score-btn" data-value="7">7</button>
+                            </div>
+                            <div class="score-labels">
+                                <span>Poor</span>
+                                <span>Average</span>
+                                <span>Excellent</span>
+                            </div>
+                        </div>
+
+                        <!-- Emotion Expression Score -->
+                        <div class="score-group">
+                            <label>Emotion Expression (How well the emotion is expressed)</label>
+                            <div class="score-buttons" data-score="emotion">
+                                <button class="score-btn" data-value="1">1</button>
+                                <button class="score-btn" data-value="2">2</button>
+                                <button class="score-btn" data-value="3">3</button>
+                                <button class="score-btn" data-value="4">4</button>
+                                <button class="score-btn" data-value="5">5</button>
+                                <button class="score-btn" data-value="6">6</button>
+                                <button class="score-btn" data-value="7">7</button>
+                            </div>
+                            <div class="score-labels">
+                                <span>None</span>
+                                <span>Moderate</span>
+                                <span>Perfect</span>
+                            </div>
+                        </div>
+
+                        <!-- Speaker Similarity Score -->
+                        <div class="score-group">
+                            <label>Speaker Similarity (Compared to reference)</label>
+                            <div class="score-buttons" data-score="similarity">
+                                <button class="score-btn" data-value="1">1</button>
+                                <button class="score-btn" data-value="2">2</button>
+                                <button class="score-btn" data-value="3">3</button>
+                                <button class="score-btn" data-value="4">4</button>
+                                <button class="score-btn" data-value="5">5</button>
+                                <button class="score-btn" data-value="6">6</button>
+                                <button class="score-btn" data-value="7">7</button>
+                            </div>
+                            <div class="score-labels">
+                                <span>Different</span>
+                                <span>Similar</span>
+                                <span>Identical</span>
+                            </div>
+                        </div>
+
+                        <!-- Optional Comment -->
+                        <div class="comment-group">
+                            <label for="comment">Comments (Optional)</label>
+                            <textarea id="comment" rows="3" placeholder="Any specific observations or issues..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="navigation">
+                        <button class="btn btn-secondary" onclick="previousSample()" id="prevBtn">Previous</button>
+                        <button class="btn btn-primary" onclick="nextSample()" id="nextBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div id="completionScreen" class="screen hidden">
+            <div class="container">
+                <div class="completion-box">
+                    <h1>Evaluation Complete!</h1>
+                    <div class="success-icon">✓</div>
+                    <p>Thank you for completing the TTS evaluation session.</p>
+                    <p>Your responses have been successfully saved.</p>
+                    <div class="stats" id="sessionStats"></div>
+                    <button class="btn btn-primary" onclick="startNewSession()">Start New Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

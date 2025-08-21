@@ -1,0 +1,70 @@
+api:
+  endpoint: "YOUR_API_ENDPOINT"
+  rate_limit: 10  # requests per second
+  retry_attempts: 3
+  timeout: 30
+
+storage:
+  output_dir: "./data/voices"
+  metadata_db: "./data/metadata.json"
+  reference_dir: "./references"
+
+test_parameters:
+  voice_ids: 
+    - "voice_001"
+    - "voice_002"
+  
+  texts:
+    - "안녕하세요, 오늘 날씨가 정말 좋네요."
+    - "이 제품은 정말 훌륭한 성능을 보여줍니다."
+    - "내일 회의 시간을 변경해야 할 것 같습니다."
+  
+  emotion_vectors:
+    audio_based:
+      - name: "excited"
+        id: "68a6b0ca2edfc11a25045538"
+        reference: "references/audio/excited.wav"
+      - name: "furious"
+        id: "68a6b0d2b436060efdc6bc80"
+        reference: "references/audio/furious.wav"
+      - name: "terrified"
+        id: "68a6b0d9b436060efdc6bc82"
+        reference: "references/audio/terrified.wav"
+    
+    prompt_based:
+      - name: "두려움"
+        id: "68a6b0f7b436060efdc6bc83"
+        prompt: "두려움이 가득한 목소리"
+      - name: "놀람"
+        id: "68a6b10255e3b2836e609969"
+        prompt: "놀란 목소리"
+      - name: "흥분"
+        id: "68a6b1062edfc11a2504553b"
+        prompt: "흥분된 목소리"
+  
+  style_labels:
+    - "normal-1"
+    - "style-2"
+    - "style-3"
+    - "style-4"
+    - "style-5"
+    - "style-6"
+    - "style-7"
+  
+  emotion_scales:
+    - 0.5
+    - 1.0
+    - 1.5
+    - 2.0
+    - 2.5
+    - 3.0
+
+api_defaults:
+  tempo: 1
+  pitch: 0
+  lang: "kor"
+  mode: "one-vocoder"
+  bp_c_l: true
+  retake: true
+  adjust_lastword: 0
+  style_label_version: "v1"

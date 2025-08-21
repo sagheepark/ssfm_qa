@@ -1,0 +1,111 @@
+{
+  "emotions": {
+    "angry": {
+      "style_label": "style-2",
+      "sentences": {
+        "match": "I can't believe you broke your promise again after everything we discussed!",
+        "neutral": "The meeting is scheduled for three o'clock in the conference room.",
+        "opposite": "Your thoughtfulness and kindness truly made my day so much better."
+      }
+    },
+    "sad": {
+      "style_label": "style-3",
+      "sentences": {
+        "match": "I really miss the old days when everyone was still here together.",
+        "neutral": "The report needs to be submitted by Friday afternoon without fail.",
+        "opposite": "This is absolutely the best news I've heard all year long!"
+      }
+    },
+    "happy": {
+      "style_label": "style-4",
+      "sentences": {
+        "match": "I'm so thrilled about the wonderful surprise party you organized for me!",
+        "neutral": "Please remember to turn off the lights when you leave the office.",
+        "opposite": "Everything seems to be going wrong and nothing works out anymore."
+      }
+    },
+    "whisper": {
+      "style_label": "style-5",
+      "sentences": {
+        "match": "Don't make any noise, everyone is sleeping in the next room.",
+        "neutral": "The quarterly financial report shows steady growth in all departments.",
+        "opposite": "Everyone needs to hear this important announcement right now!"
+      }
+    },
+    "toneup": {
+      "style_label": "style-6",
+      "sentences": {
+        "match": "Did you really win the grand prize in the competition?",
+        "neutral": "The train arrives at platform seven every hour on weekdays.",
+        "opposite": "Everything is perfectly calm and there's nothing to worry about here."
+      }
+    },
+    "tonedown": {
+      "style_label": "style-7",
+      "sentences": {
+        "match": "Let me explain this matter in a very serious and professional manner.",
+        "neutral": "The document contains information about the new policy changes.",
+        "opposite": "This is so incredibly exciting and I can barely contain myself!"
+      }
+    },
+    "excited": {
+      "emotion_vector_id": "68a6b0ca2edfc11a25045538",
+      "type": "audio",
+      "sentences": {
+        "match": "We're going on the adventure of a lifetime starting tomorrow morning!",
+        "neutral": "The temperature today is expected to reach seventy-two degrees.",
+        "opposite": "I'm too exhausted and drained to do anything at all today."
+      }
+    },
+    "furious": {
+      "emotion_vector_id": "68a6b0d2b436060efdc6bc80",
+      "type": "audio",
+      "sentences": {
+        "match": "This is absolutely unacceptable and I demand an explanation immediately!",
+        "neutral": "The library closes at eight o'clock on weekday evenings.",
+        "opposite": "I completely understand your position and I'm not upset at all."
+      }
+    },
+    "terrified": {
+      "emotion_vector_id": "68a6b0d9b436060efdc6bc82",
+      "type": "audio",
+      "sentences": {
+        "match": "Something is moving in the shadows and I don't know what it is!",
+        "neutral": "The coffee machine is located on the third floor break room.",
+        "opposite": "I feel completely safe and protected in this wonderful place."
+      }
+    },
+    "fear": {
+      "emotion_vector_id": "68a6b0f7b436060efdc6bc83",
+      "type": "prompt",
+      "prompt": "두려움이 가득한 목소리",
+      "sentences": {
+        "match": "I'm really scared about what might happen if this goes wrong.",
+        "neutral": "The new software update will be installed next Tuesday morning.",
+        "opposite": "I have complete confidence that everything will work out perfectly."
+      }
+    },
+    "surprise": {
+      "emotion_vector_id": "68a6b10255e3b2836e609969",
+      "type": "prompt",
+      "prompt": "놀란 목소리",
+      "sentences": {
+        "match": "Oh my goodness, I never expected to see you here today!",
+        "neutral": "The parking lot is located behind the main building entrance.",
+        "opposite": "This is exactly what I predicted would happen all along."
+      }
+    },
+    "excitement": {
+      "emotion_vector_id": "68a6b1062edfc11a2504553b",
+      "type": "prompt",
+      "prompt": "흥분된 목소리",
+      "sentences": {
+        "match": "I can hardly wait to share this amazing news with everyone!",
+        "neutral": "Please fill out the form and return it to the front desk.",
+        "opposite": "This is rather boring and I'm not interested in it at all."
+      }
+    }
+  },
+  "emotion_scales": [0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
+  "voice_ids": ["voice_001", "voice_002"]
+}
