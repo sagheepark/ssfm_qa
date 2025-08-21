@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { EvaluationScores, QASession, EvaluationResult } from '@/lib/types';
 import { getRandomSamples, getSampleMetadata } from '@/lib/sampleData';
+import { saveEvaluation, createSession, updateSession } from '@/lib/supabase';
 import AudioPlayer from '@/components/AudioPlayer';
 import EvaluationForm from '@/components/EvaluationForm';
 
@@ -31,7 +32,7 @@ export default function TTSQAApp() {
     }
   }, [session]);
 
-  const startNewSession = () => {
+  const startNewSession = async () => {
     const samples = getRandomSamples(25);
     const newSession: QASession = {
       session_id: `session_${Date.now()}`,
@@ -40,8 +41,24 @@ export default function TTSQAApp() {
       results: [],
       started_at: new Date().toISOString()
     };
-    setSession(newSession);
-    localStorage.removeItem('tts-qa-session'); // Clear any old session
+    
+    try {
+      // Create session in Supabase
+      const sessionData = {
+        session_id: newSession.session_id,
+        started_at: newSession.started_at,
+        samples_data: samples
+      };
+      await createSession(sessionData);
+      
+      setSession(newSession);
+      localStorage.removeItem('tts-qa-session'); // Clear any old session
+    } catch (error) {
+      console.error('Error creating session:', error);
+      // Fall back to local storage only
+      setSession(newSession);
+      localStorage.removeItem('tts-qa-session');
+    }
   };
 
   const submitEvaluation = async (scores: EvaluationScores, comment?: string) => {
@@ -49,42 +66,59 @@ export default function TTSQAApp() {
 
     setIsSubmitting(true);
     
-    // Simulate API submission delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+    try {
+      const result: EvaluationResult = {
+        session_id: session.session_id,
+        sample_id: session.samples[session.current_index].id,
+        scores,
+        comment,
+        timestamp: new Date().toISOString(),
+        duration_ms: Date.now() - new Date(session.started_at).getTime()
+      };
 
-    const result: EvaluationResult = {
-      session_id: session.session_id,
-      sample_id: session.samples[session.current_index].id,
-      scores,
-      comment,
-      timestamp: new Date().toISOString(),
-      duration_ms: Date.now() - new Date(session.started_at).getTime()
-    };
+      // Save evaluation to Supabase
+      const evaluationData = {
+        session_id: result.session_id,
+        sample_id: result.sample_id,
+        scores: result.scores,
+        comment: result.comment,
+        timestamp: result.timestamp,
+        duration_ms: result.duration_ms,
+        evaluation_order: session.current_index + 1
+      };
+      
+      await saveEvaluation(evaluationData);
+      console.log('Evaluation saved to Supabase successfully');
 
-    const updatedSession = {
-      ...session,
-      results: [...session.results, result],
-      current_index: session.current_index + 1
-    };
+      const updatedSession = {
+        ...session,
+        results: [...session.results, result],
+        current_index: session.current_index + 1
+      };
 
-    // Mark session as completed if this was the last sample
-    if (updatedSession.current_index >= session.samples.length) {
-      updatedSession.completed_at = new Date().toISOString();
+      // Mark session as completed if this was the last sample
+      if (updatedSession.current_index >= session.samples.length) {
+        updatedSession.completed_at = new Date().toISOString();
+        
+        // Update session completion in Supabase
+        try {
+          await updateSession(session.session_id, {
+            completed_at: updatedSession.completed_at
+          });
+          console.log('Session marked as completed in Supabase');
+        } catch (error) {
+          console.error('Error updating session completion:', error);
+        }
+      }
+
+      setSession(updatedSession);
+      
+    } catch (error) {
+      console.error('Error saving evaluation:', error);
+      alert('Failed to save evaluation. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setSession(updatedSession);
-    setIsSubmitting(false);
-
-    // Save result to downloads (simulating data collection)
-    const blob = new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `evaluation_${result.sample_id}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   };
 
   const goToPrevious = () => {
