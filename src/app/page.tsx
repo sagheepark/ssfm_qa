@@ -42,13 +42,15 @@ export default function TTSQAApp() {
       started_at: new Date().toISOString()
     };
     
+    // Create session data outside try block for error logging
+    const sessionData = {
+      session_id: newSession.session_id,
+      started_at: newSession.started_at,
+      samples_data: samples
+    };
+    
     try {
       // Create session in Supabase
-      const sessionData = {
-        session_id: newSession.session_id,
-        started_at: newSession.started_at,
-        samples_data: samples
-      };
       await createSession(sessionData);
       
       setSession(newSession);
@@ -68,26 +70,26 @@ export default function TTSQAApp() {
 
     setIsSubmitting(true);
     
-    try {
-      const result: EvaluationResult = {
-        session_id: session.session_id,
-        sample_id: session.samples[session.current_index].id,
-        scores,
-        comment,
-        timestamp: new Date().toISOString(),
-        duration_ms: Date.now() - new Date(session.started_at).getTime()
-      };
+    const result: EvaluationResult = {
+      session_id: session.session_id,
+      sample_id: session.samples[session.current_index].id,
+      scores,
+      comment,
+      timestamp: new Date().toISOString(),
+      duration_ms: Date.now() - new Date(session.started_at).getTime()
+    };
 
-      // Save evaluation to Supabase (remove fields not in database schema)
-      const evaluationData = {
-        session_id: result.session_id,
-        sample_id: result.sample_id,
-        scores: result.scores,
-        comment: result.comment,
-        timestamp: result.timestamp,
-        duration_ms: result.duration_ms
-      };
-      
+    // Save evaluation to Supabase (remove fields not in database schema)
+    const evaluationData = {
+      session_id: result.session_id,
+      sample_id: result.sample_id,
+      scores: result.scores,
+      comment: result.comment,
+      timestamp: result.timestamp,
+      duration_ms: result.duration_ms
+    };
+    
+    try {
       await saveEvaluation(evaluationData);
       console.log('Evaluation saved to Supabase successfully');
 
