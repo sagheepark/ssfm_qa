@@ -1,5 +1,4 @@
 import { TTSSample } from './types';
-import { getAudioUrl } from './supabase';
 
 // Sample data with actual text content from generation
 export function generateSamplePool(): TTSSample[] {
