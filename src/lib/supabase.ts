@@ -3,6 +3,15 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+// Debug environment variables in development
+if (typeof window !== 'undefined') {
+  console.log('Supabase environment check:', {
+    url: supabaseUrl ? 'SET' : 'MISSING',
+    key: supabaseAnonKey ? 'SET' : 'MISSING',
+    urlValue: supabaseUrl?.substring(0, 20) + '...',
+  });
+}
+
 // Create supabase client only if environment variables are available
 export const supabase = supabaseUrl && supabaseAnonKey 
   ? createClient(supabaseUrl, supabaseAnonKey)
@@ -81,7 +90,7 @@ export async function getAudioUrl(filename: string): Promise<string> {
 
 export async function saveEvaluation(evaluation: SampleEvaluation) {
   if (!supabase) {
-    throw new Error('Supabase client not initialized. Check environment variables.')
+    throw new Error('Database connection not available. Please contact the administrator.')
   }
   
   const { data, error } = await supabase
@@ -95,7 +104,7 @@ export async function saveEvaluation(evaluation: SampleEvaluation) {
 
 export async function createSession(sessionData: Partial<QASession>) {
   if (!supabase) {
-    throw new Error('Supabase client not initialized. Check environment variables.')
+    throw new Error('Database connection not available. Please contact the administrator.')
   }
   
   const { data, error } = await supabase
