@@ -46,7 +46,7 @@ export function generateSamplePool(): TTSSample[] {
     textTypes.forEach(textType => {
       emotions.forEach(emotion => {
         scales.forEach(scale => {
-          const filename = `${voice}_${textType}_emo_${emotion}_scale_${scale}.wav`;
+          const filename = `${voice}_${textType}_emo_${emotion}_scale_${scale.toFixed(1)}.wav`;
           const sample: TTSSample = {
             id: filename.replace('.wav', ''),
             filename,
