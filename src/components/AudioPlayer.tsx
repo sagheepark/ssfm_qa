@@ -18,6 +18,8 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
 
   useEffect(() => {
     if (audioRef.current) {
+      console.log('AudioPlayer: Loading audio file:', sample.filename);
+      console.log('AudioPlayer: Full URL:', `/voices/${sample.filename}`);
       audioRef.current.load();
       setIsLoading(true);
       setHasError(false);
@@ -93,7 +95,11 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
         onEnded={() => setIsPlaying(false)}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
-        onError={() => setHasError(true)}
+        onError={(e) => {
+          console.error('AudioPlayer: Error loading audio:', sample.filename, e);
+          console.error('AudioPlayer: Audio element error:', audioRef.current?.error);
+          setHasError(true);
+        }}
         preload="metadata"
       >
         <source src={`/voices/${sample.filename}`} type="audio/wav" />
