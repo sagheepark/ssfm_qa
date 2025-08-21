@@ -3,13 +3,19 @@
 import { useState, useEffect } from 'react';
 import { EvaluationScores, QASession, EvaluationResult } from '@/lib/types';
 import { getRandomSamples, getSampleMetadata } from '@/lib/sampleData';
-import { saveEvaluation, createSession, updateSession } from '@/lib/supabase';
+import { saveEvaluation, createSession, updateSession, supabase } from '@/lib/supabase';
 import AudioPlayer from '@/components/AudioPlayer';
 import EvaluationForm from '@/components/EvaluationForm';
+import DatabaseConnectionError from '@/components/DatabaseConnectionError';
 
 export default function TTSQAApp() {
   const [session, setSession] = useState<QASession | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Check if database connection is available
+  if (!supabase) {
+    return <DatabaseConnectionError />;
+  }
 
   // Initialize or load session from localStorage
   useEffect(() => {
