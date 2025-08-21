@@ -12,11 +12,7 @@ export default function TTSQAApp() {
   const [session, setSession] = useState<QASession | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Check if database connection is available
-  if (!supabase) {
-    return <DatabaseConnectionError />;
-  }
-
+  // All hooks must be called unconditionally at the top
   // Initialize or load session from localStorage
   useEffect(() => {
     const savedSession = localStorage.getItem('tts-qa-session');
@@ -37,6 +33,11 @@ export default function TTSQAApp() {
       localStorage.setItem('tts-qa-session', JSON.stringify(session));
     }
   }, [session]);
+
+  // Check if database connection is available AFTER all hooks
+  if (!supabase) {
+    return <DatabaseConnectionError />;
+  }
 
   const startNewSession = async () => {
     const samples = getRandomSamples(25);
