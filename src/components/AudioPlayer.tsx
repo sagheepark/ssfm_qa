@@ -96,7 +96,7 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
         onError={() => setHasError(true)}
         preload="metadata"
       >
-        <source src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/tts-audio-samples/voices/${sample.filename}`} type="audio/wav" />
+        <source src={`/voices/${sample.filename}`} type="audio/wav" />
         Your browser does not support the audio element.
       </audio>
 
