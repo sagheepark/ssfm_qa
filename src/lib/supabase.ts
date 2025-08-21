@@ -1,9 +1,12 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Create supabase client only if environment variables are available
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null
 
 // Database types
 export interface QASession {
@@ -49,6 +52,10 @@ export interface SampleMetadata {
 
 // Helper functions
 export async function uploadAudioSample(file: File, filename: string) {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
   const { data, error } = await supabase.storage
     .from('tts-audio-samples')
     .upload(`voices/${filename}`, file, {
@@ -61,6 +68,10 @@ export async function uploadAudioSample(file: File, filename: string) {
 }
 
 export async function getAudioUrl(filename: string): Promise<string> {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
   const { data } = supabase.storage
     .from('tts-audio-samples')
     .getPublicUrl(`voices/${filename}`)
@@ -69,6 +80,10 @@ export async function getAudioUrl(filename: string): Promise<string> {
 }
 
 export async function saveEvaluation(evaluation: SampleEvaluation) {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
   const { data, error } = await supabase
     .from('sample_evaluations')
     .insert([evaluation])
@@ -79,6 +94,10 @@ export async function saveEvaluation(evaluation: SampleEvaluation) {
 }
 
 export async function createSession(sessionData: Partial<QASession>) {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
   const { data, error } = await supabase
     .from('qa_sessions')
     .insert([sessionData])
@@ -89,6 +108,10 @@ export async function createSession(sessionData: Partial<QASession>) {
 }
 
 export async function updateSession(sessionId: string, updates: Partial<QASession>) {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
   const { data, error } = await supabase
     .from('qa_sessions')
     .update(updates)
@@ -100,6 +123,10 @@ export async function updateSession(sessionId: string, updates: Partial<QASessio
 }
 
 export async function getSampleMetadata() {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
   const { data, error } = await supabase
     .from('sample_metadata')
     .select('*')
