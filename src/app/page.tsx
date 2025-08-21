@@ -119,14 +119,14 @@ export default function TTSQAApp() {
             
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
               <h2 className="text-lg font-semibold text-blue-900 mb-4">Session Overview</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-900">
+                <div className="space-y-1">
                   <p><strong>Samples per session:</strong> 25</p>
                   <p><strong>Total sample pool:</strong> {metadata.total_samples}</p>
                   <p><strong>Voices:</strong> {metadata.voices.join(', ')}</p>
                 </div>
-                <div>
-                  <p><strong>Emotions:</strong> {metadata.emotions.length}</p>
+                <div className="space-y-1">
+                  <p><strong>Emotions:</strong> {metadata.emotions.length} types</p>
                   <p><strong>Text types:</strong> {metadata.text_types.join(', ')}</p>
                   <p><strong>Estimated time:</strong> ~15 minutes</p>
                 </div>

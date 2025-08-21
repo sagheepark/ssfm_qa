@@ -27,6 +27,11 @@ export interface SampleEvaluation {
   comment?: string
   timestamp?: string
   duration_ms?: number
+  // Enhanced for analysis
+  evaluator_id?: string        // Track who evaluated (for mixed effects)
+  reference_sample_id?: string // Link to reference audio for comparison
+  playback_count?: number      // How many times audio was played
+  evaluation_order?: number    // Order within session (fatigue effects)
 }
 
 export interface SampleMetadata {
