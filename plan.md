@@ -320,27 +320,52 @@ reference_mapping = {
 
 ### Phase 2: QA 테스트 플랫폼 - Vercel 배포
 
-#### 2.0 배포 전략
+#### 2.0 배포 전략 (Updated with Supabase Integration)
 ```yaml
 deployment:
   platform: "Vercel"
-  repository: "Private GitHub repository"
+  repository: "https://github.com/sagheepark/ssfm_qa.git"
   framework: "Next.js 14 with App Router"
-  audio_hosting: "Vercel static files"
-  database: "JSON files (client-side)"
+  audio_hosting: "Supabase Storage"
+  database: "Supabase PostgreSQL"
+  realtime: "Supabase Real-time subscriptions"
   
 workflow:
-  1. "Create Next.js TTS QA application"
-  2. "Push to private GitHub repository" 
-  3. "Connect GitHub repo to Vercel"
-  4. "Deploy with automatic CD/CI"
+  1. "✅ Create Next.js TTS QA application" 
+  2. "✅ Push to GitHub repository (without large audio files)"
+  3. "✅ Deploy to Vercel with automatic CD/CI"
+  4. "🔄 Setup Supabase project for audio storage & database"
+  5. "🔄 Upload all 252 audio files (216 samples + 36 references) to Supabase Storage"
+  6. "🔄 Create evaluation response tables in Supabase"
+  7. "🔄 Update app to use Supabase URLs for audio files"
+
+supabase_integration:
+  storage:
+    bucket: "tts-audio-samples"
+    structure: "/voices/{filename}.wav"
+    cdn_delivery: "Global edge cache for fast audio loading"
+    
+  database_schema:
+    tables:
+      - "qa_sessions (session_id, user_id, started_at, completed_at)"
+      - "sample_evaluations (session_id, sample_id, quality, emotion, similarity, comment, timestamp)"
+      - "sample_metadata (sample_id, filename, voice_id, text_type, emotion_type, scale, text_content)"
+      
+  advantages:
+    - "Audio files served from CDN (faster loading)"
+    - "28MB+ audio files don't count against Vercel limits"
+    - "Database for response analysis and aggregation"
+    - "Real-time progress tracking across evaluators"
+    - "Scalable for multiple evaluation sessions"
 
 features:
-  - "Single Page Application (SPA)"
-  - "Dynamic random sampling (25 samples per session)"
-  - "Client-side progress tracking with localStorage"
-  - "Mobile-responsive design"
-  - "Audio preloading for smooth UX"
+  - "✅ Single Page Application (SPA)"
+  - "✅ Dynamic random sampling (25 samples per session)"
+  - "✅ Client-side progress tracking with localStorage"
+  - "✅ Mobile-responsive design"
+  - "🔄 Audio streaming from Supabase Storage CDN"
+  - "🔄 Real-time evaluation data collection"
+  - "🔄 Progress analytics dashboard"
 ```
 
 #### 2.1 평가 체계 (Vercel 최적화)
