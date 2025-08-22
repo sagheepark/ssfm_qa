@@ -19,10 +19,14 @@ export default function TTSQAApp() {
     if (savedSession) {
       try {
         const parsed = JSON.parse(savedSession);
+        // Handle legacy sessions without voice_set
+        if (!parsed.voice_set) {
+          parsed.voice_set = 'expressivity_none';
+        }
         setSession(parsed);
       } catch (error) {
         console.error('Error parsing saved session:', error);
-        startNewSession();
+        localStorage.removeItem('tts-qa-session');
       }
     }
   }, []);
@@ -39,14 +43,15 @@ export default function TTSQAApp() {
     return <DatabaseConnectionError />;
   }
 
-  const startNewSession = async () => {
-    const samples = getRandomSamples(25);
+  const startNewSession = async (voiceSet: 'expressivity_none' | 'expressivity_0.6') => {
+    const samples = getRandomSamples(25, voiceSet);
     const newSession: QASession = {
-      session_id: `session_${Date.now()}`,
+      session_id: `session_${Date.now()}_${voiceSet}`,
       samples,
       current_index: 0,
       results: [],
-      started_at: new Date().toISOString()
+      started_at: new Date().toISOString(),
+      voice_set: voiceSet
     };
     
     // Create session data outside try block for error logging
@@ -176,10 +181,22 @@ export default function TTSQAApp() {
   };
 
   const goToNext = () => {
-    if (!session || session.current_index >= session.samples.length - 1) return;
+    if (!session) return;
+    
+    const nextIndex = session.current_index + 1;
+    
+    // If this is the last sample, mark session as completed
+    if (nextIndex >= session.samples.length) {
+      setSession({
+        ...session,
+        completed_at: new Date().toISOString()
+      });
+      return;
+    }
+    
     setSession({
       ...session,
-      current_index: session.current_index + 1
+      current_index: nextIndex
     });
   };
 
@@ -200,7 +217,9 @@ export default function TTSQAApp() {
 
   const restartSession = () => {
     localStorage.removeItem('tts-qa-session');
-    startNewSession();
+    setSession(null);
+    // Force reload to ensure clean state
+    window.location.reload();
   };
 
   if (!session) {
@@ -221,7 +240,7 @@ export default function TTSQAApp() {
                   <p><strong>Voices:</strong> {metadata.voices.join(', ')}</p>
                 </div>
                 <div className="space-y-1">
-                  <p><strong>Emotions:</strong> {metadata.emotions.length} types</p>
+                  <p><strong>Emotions:</strong> {metadata.emotion_labels.length + metadata.emotion_vectors.length} types</p>
                   <p><strong>Text types:</strong> {metadata.text_types.join(', ')}</p>
                   <p><strong>Estimated time:</strong> ~15 minutes</p>
                 </div>
@@ -239,12 +258,36 @@ export default function TTSQAApp() {
               </ul>
             </div>
 
-            <button
-              onClick={startNewSession}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
-            >
-              Start New Session
-            </button>
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+              <h3 className="font-semibold text-amber-900 mb-3">Choose Voice Set for Testing:</h3>
+              <p className="text-sm text-amber-800 mb-4">
+                Select which voice dataset you want to evaluate. Each set contains identical samples with different expressivity processing.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="border border-amber-300 rounded-lg p-4 bg-white">
+                  <h4 className="font-medium text-gray-900 mb-2">Standard Voices</h4>
+                  <p className="text-sm text-gray-600 mb-3">Original TTS generation without expressivity enhancement</p>
+                  <button
+                    onClick={() => startNewSession('expressivity_none')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors"
+                  >
+                    Start with Standard Set
+                  </button>
+                </div>
+                
+                <div className="border border-amber-300 rounded-lg p-4 bg-white">
+                  <h4 className="font-medium text-gray-900 mb-2">Enhanced Voices (0.6)</h4>
+                  <p className="text-sm text-gray-600 mb-3">TTS generation with expressivity enhancement (|0.6 suffix)</p>
+                  <button
+                    onClick={() => startNewSession('expressivity_0.6')}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition-colors"
+                  >
+                    Start with Enhanced Set
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -271,6 +314,7 @@ export default function TTSQAApp() {
               <h2 className="text-lg font-semibold text-green-900 mb-4">Results Summary</h2>
               <div className="text-sm space-y-2">
                 <p><strong>Session ID:</strong> {session.session_id}</p>
+                <p><strong>Voice Set:</strong> {session.voice_set === 'expressivity_0.6' ? 'Enhanced Voices (0.6)' : 'Standard Voices'}</p>
                 <p><strong>Samples evaluated:</strong> {session.results.length}</p>
                 <p><strong>Duration:</strong> {session.completed_at ? new Date(session.completed_at).toLocaleString() : 'Unknown'}</p>
                 <p><strong>Results downloaded:</strong> {session.results.length} JSON files</p>
@@ -295,7 +339,18 @@ export default function TTSQAApp() {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">TTS Quality Assessment</h1>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">TTS Quality Assessment</h1>
+              <div className="mt-1">
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                  session.voice_set === 'expressivity_0.6' 
+                    ? 'bg-green-100 text-green-800' 
+                    : 'bg-blue-100 text-blue-800'
+                }`}>
+                  {session.voice_set === 'expressivity_0.6' ? 'Enhanced Voices (0.6)' : 'Standard Voices'}
+                </span>
+              </div>
+            </div>
             <div className="text-sm text-gray-600">
               Sample {session.current_index + 1} of {session.samples.length}
             </div>
@@ -319,19 +374,18 @@ export default function TTSQAApp() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Audio Players */}
           <div className="space-y-4">
-            {/* Reference Audio */}
+            {/* Reference Audio - Same text, minimal emotion */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">Reference Audio (No Emotion)</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">Reference Audio (Minimal Emotion)</h3>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <AudioPlayer 
                   sample={{
                     ...currentSample,
-                    filename: `${currentSample.voice_id}_${currentSample.text_type}_reference_${currentSample.emotion_value}.wav`,
-                    emotion_value: 'none',
-                    emotion_type: 'reference',
-                    scale: 1.0,
-                    id: `${currentSample.voice_id}_${currentSample.text_type}_reference_${currentSample.emotion_value}`
-                  }} 
+                    filename: `${currentSample.voice_id}_${currentSample.text_type}_${currentSample.emotion_type === 'emotion_label' ? 'emo' : 'vec'}_${currentSample.emotion_value}_scale_0.5.wav`,
+                    scale: 0.5,
+                    id: `${currentSample.voice_id}_${currentSample.text_type}_${currentSample.emotion_type === 'emotion_label' ? 'emo' : 'vec'}_${currentSample.emotion_value}_ref`
+                  }}
+                  voiceSet={session.voice_set}
                 />
               </div>
             </div>
@@ -339,7 +393,9 @@ export default function TTSQAApp() {
             {/* Test Sample Audio */}
             <div>
               <h3 className="text-sm font-semibold text-gray-700 mb-2">Test Sample (With Emotion)</h3>
-              <AudioPlayer sample={currentSample} />
+              <div className="bg-white border border-gray-200 rounded-lg p-4">
+                <AudioPlayer sample={currentSample} voiceSet={session.voice_set} />
+              </div>
             </div>
           </div>
 
@@ -371,14 +427,14 @@ export default function TTSQAApp() {
             {/* Primary CTA Next Button */}
             <button
               onClick={goToNext}
-              disabled={!isCurrentSampleEvaluated() || session.current_index >= session.samples.length - 1}
+              disabled={!isCurrentSampleEvaluated()}
               className={`flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors ${
-                isCurrentSampleEvaluated() && session.current_index < session.samples.length - 1
+                isCurrentSampleEvaluated()
                   ? 'bg-blue-600 hover:bg-blue-700 text-white'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             >
-              <span>Next</span>
+              <span>{session.current_index >= session.samples.length - 1 ? 'Complete Session' : 'Next'}</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

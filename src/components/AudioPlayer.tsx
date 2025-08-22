@@ -6,9 +6,10 @@ import { TTSSample } from '@/lib/types';
 interface AudioPlayerProps {
   sample: TTSSample;
   autoPlay?: boolean;
+  voiceSet?: 'expressivity_none' | 'expressivity_0.6';
 }
 
-export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerProps) {
+export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none' }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -18,28 +19,31 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
 
   useEffect(() => {
     if (audioRef.current) {
+      const folder = voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6';
+      const fullUrl = `/voices/${folder}/${sample.filename}`;
+      
       console.log('AudioPlayer: Loading audio file:', sample.filename);
-      console.log('AudioPlayer: Full URL:', `/voices/${sample.filename}`);
+      console.log('AudioPlayer: Voice set:', voiceSet);
+      console.log('AudioPlayer: Full URL:', fullUrl);
       console.log('AudioPlayer: Sample scale:', sample.scale, typeof sample.scale);
       console.log('AudioPlayer: Sample ID:', sample.id);
       
       // Check if filename matches what it should be based on properties
-      if (sample.filename.includes('emo') && sample.filename.includes('scale')) {
-        const expectedFilename = `${sample.voice_id}_${sample.text_type}_emo_${sample.emotion_value}_scale_${Number(sample.scale).toFixed(1)}.wav`;
-        console.log('AudioPlayer: Expected filename:', expectedFilename);
-        console.log('AudioPlayer: Filename matches expected?', sample.filename === expectedFilename);
-        if (sample.filename !== expectedFilename) {
-          console.warn('🔴 FILENAME MISMATCH DETECTED!');
-          console.warn('Actual  :', sample.filename);
-          console.warn('Expected:', expectedFilename);
-        }
+      const emotionPrefix = sample.emotion_type === 'emotion_label' ? 'emo' : 'vec';
+      const expectedFilename = `${sample.voice_id}_${sample.text_type}_${emotionPrefix}_${sample.emotion_value}_scale_${sample.scale}.wav`;
+      console.log('AudioPlayer: Expected filename:', expectedFilename);
+      console.log('AudioPlayer: Filename matches expected?', sample.filename === expectedFilename);
+      if (sample.filename !== expectedFilename) {
+        console.warn('🔴 FILENAME MISMATCH DETECTED!');
+        console.warn('Actual  :', sample.filename);
+        console.warn('Expected:', expectedFilename);
       }
       
       audioRef.current.load();
       setIsLoading(true);
       setHasError(false);
     }
-  }, [sample.filename]);
+  }, [sample.filename, voiceSet]);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
@@ -90,13 +94,14 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
     return (
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
         <p className="text-yellow-700 text-sm">
-          ⚠️ {sample.emotion_type === 'reference' ? 'Reference audio not available' : 'Error loading audio'}: {sample.filename}
+          ⚠️ Audio file not available: {sample.filename}
         </p>
-        {sample.emotion_type === 'reference' && (
-          <p className="text-yellow-600 text-xs mt-1">
-            Reference samples need to be generated with style_label: normal-1
-          </p>
-        )}
+        <p className="text-yellow-600 text-xs mt-1">
+          {sample.scale === 0.5 ? 'Reference audio (minimal emotion) not found' : 'Main audio file not found'}
+        </p>
+        <div className="mt-2 text-xs text-gray-500">
+          <p><strong>Voice:</strong> {sample.voice_id} | <strong>Emotion:</strong> {sample.emotion_value} | <strong>Scale:</strong> {sample.scale}</p>
+        </div>
       </div>
     );
   }
@@ -117,7 +122,7 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
         }}
         preload="metadata"
       >
-        <source src={`/voices/${sample.filename}`} type="audio/wav" />
+        <source src={`/voices/${voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6'}/${sample.filename}`} type="audio/wav" />
         Your browser does not support the audio element.
       </audio>
 
@@ -128,8 +133,9 @@ export default function AudioPlayer({ sample, autoPlay = false }: AudioPlayerPro
           <p>
             <strong>Voice:</strong> {sample.voice_id} | 
             <strong>Type:</strong> {sample.text_type} | 
-            <strong>Emotion:</strong> {sample.emotion_value === 'none' ? 'None (Reference)' : sample.emotion_value} 
-            {sample.emotion_value !== 'none' && <> | <strong>Scale:</strong> {sample.scale}</>}
+            <strong>Emotion:</strong> {sample.emotion_value} | 
+            <strong>Scale:</strong> {sample.scale} | 
+            <strong>Method:</strong> {sample.emotion_type === 'emotion_label' ? 'Label' : 'Vector'}
           </p>
         </div>
 

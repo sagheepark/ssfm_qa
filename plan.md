@@ -1,5 +1,51 @@
 # TTS QA 자동화 테스트 시스템 구축 계획서
 
+## 🎯 현재 진행 상황 (2025-08-22)
+
+### ✅ 완료된 작업
+1. **emotion_label 기반 음성 생성 완료**
+   - 258개 음성 파일 성공적으로 생성 (public/voices/)
+   - 6개 emotion_labels (angry, sad, happy, whisper, toneup, tonedown)
+   - v001, v002 voice별로 생성 완료
+
+2. **emotion_vector_id 설정 및 테스트**
+   - 새로운 emotion_vector_ids 생성 및 검증 완료
+   - API 연동 테스트 성공 (dev.icepeak.ai)
+   - 필수 파라미터 확인: bp_c_l=true, style_label="normal-1"
+   - emotion_vector 기반 88개 파일 생성 완료 (40% 진행)
+
+3. **보안 설정 완료**
+   - .gitignore 업데이트로 민감 정보 보호
+   - API 토큰 및 개인 정보 제외
+   - Vercel 배포 환경 유지
+
+### 🚀 새로운 목표: Expressivity 비교 테스트
+**목적**: expressivity 파라미터 효과 측정
+- **expressivity_none**: 기본 버전 (현재 생성 방식)
+- **expressivity_0.6**: 모든 텍스트에 "|0.6" 접미사 추가
+
+**확장된 테스트 매트릭스**:
+```
+총 테스트 샘플 = 1,728개
+- expressivity 버전: 2개 (none, 0.6)
+- voice_id: 2개 (v001, v002)  
+- emotion 타입: 12개 (6 emotion_labels + 6 emotion_vectors)
+- text 타입: 3개 (match, neutral, opposite)
+- emotion_scale: 6개 (0.5, 1.0, 1.5, 2.0, 2.5, 3.0)
+```
+
+### 🔧 진행 중인 작업
+- **Expressivity 테스트 시스템 구축**
+  - 폴더 구조 설계: expressivity_none/, expressivity_0.6/
+  - 완전한 데이터셋 생성 계획 수립
+
+### 📝 주요 변경사항
+- **Actor IDs 업데이트**: 
+  - v001: 688b02990486383d463c9d1a (male)
+  - v002: 689c69984c7990a1ddca2327 (female)
+- **emotion_vector_ids 전체 교체** (위 참조)
+- **API 파라미터 수정**: emotion_label 제거, bp_c_l 추가
+
 ## 📋 프로젝트 개요
 
 ### 목적
@@ -36,13 +82,13 @@ emotion_labels:
   - toneup   # "Did you really win the grand prize in the competition?"
   - tonedown # "Let me explain this matter in a very serious manner."
 
-emotion_vector_ids:
-  - 68a6b0ca2edfc11a25045538  # Excited: "We're going on the adventure of a lifetime!"
-  - 68a6b0d2b436060efdc6bc80  # Furious: "This is absolutely unacceptable and I demand an explanation!"
-  - 68a6b0d9b436060efdc6bc82  # Terrified: "Something is moving in the shadows and I don't know what!"
-  - 68a6b0f7b436060efdc6bc83  # 두려움: "I'm really scared about what might happen if this goes wrong."
-  - 68a6b10255e3b2836e609969  # 놀람: "Oh my goodness, I never expected to see you here today!"
-  - 68a6b1062edfc11a2504553b  # 흥분: "I can hardly wait to share this amazing news with everyone!"
+emotion_vector_ids (UPDATED 2025-08-22):
+  - 68a7b5995b2b44d11cede93c  # Excited: "We're going on the adventure of a lifetime!"
+  - 68a7b5a418fc7f54efec5b2f  # Furious: "This is absolutely unacceptable and I demand an explanation!"
+  - 68a7b5acb4a6c41c56a161e9  # Terrified: "Something is moving in the shadows and I don't know what!"
+  - 68a7b5beb4a6c41c56a161ea  # 두려움: "I'm really scared about what might happen if this goes wrong."
+  - 68a7b5c218fc7f54efec5b31  # 놀람: "Oh my goodness, I never expected to see you here today!"
+  - 68a7b5c5b4a6c41c56a161eb  # 흥분: "I can hardly wait to share this amazing news with everyone!"
 
 emotion_scales: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
 
