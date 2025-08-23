@@ -9,9 +9,11 @@ interface AudioPlayerProps {
   voiceSet?: 'expressivity_none' | 'expressivity_0.6';
   isReference?: boolean; // Flag to indicate if this is playing a reference file
   simplified?: boolean; // Flag to show simplified UI with only filename and controls
+  title?: string; // Optional title to display
+  colorScheme?: 'blue' | 'orange'; // Color scheme for buttons and controls
 }
 
-export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none', isReference = false, simplified = false }: AudioPlayerProps) {
+export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none', isReference = false, simplified = false, title, colorScheme = 'blue' }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -139,6 +141,14 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       <div className="space-y-3">
         {simplified ? (
           <>
+            {/* Title */}
+            {title && (
+              <h3 className={`text-lg font-bold mb-3 ${
+                colorScheme === 'blue' ? 'text-blue-800' : 'text-orange-800'
+              }`}>
+                {title}
+              </h3>
+            )}
             {/* Simplified - Only Filename */}
             <div className="text-sm text-gray-600">
               <p><strong>File:</strong> {isReference ? sample.reference_file : sample.filename}</p>
@@ -171,7 +181,11 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
           <button
             onClick={togglePlay}
             disabled={isLoading}
-            className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-full transition-colors"
+            className={`flex items-center justify-center w-10 h-10 disabled:bg-gray-400 text-white rounded-full transition-colors ${
+              colorScheme === 'blue' 
+                ? 'bg-blue-600 hover:bg-blue-700' 
+                : 'bg-orange-600 hover:bg-orange-700'
+            }`}
           >
             {isLoading ? (
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -212,7 +226,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
           height: 16px;
           width: 16px;
           border-radius: 50%;
-          background: #3b82f6;
+          background: ${colorScheme === 'blue' ? '#3b82f6' : '#ea580c'};
           cursor: pointer;
         }
         
@@ -220,7 +234,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
           height: 16px;
           width: 16px;
           border-radius: 50%;
-          background: #3b82f6;
+          background: ${colorScheme === 'blue' ? '#3b82f6' : '#ea580c'};
           cursor: pointer;
           border: none;
         }

@@ -376,9 +376,9 @@ export default function TTSQAApp() {
         </div>
 
         {/* Shared Text Content */}
-        <div className="bg-gray-50 rounded-lg p-4 mb-6">
-          <p className="text-sm font-medium text-gray-700 mb-1">Text:</p>
-          <p className="text-gray-900 italic">&ldquo;{currentSample.text}&rdquo;</p>
+        <div className="bg-gradient-to-r from-slate-50 to-gray-100 border-2 border-gray-300 rounded-lg p-6 mb-6 shadow-sm">
+          <p className="text-lg font-semibold text-gray-800 mb-2">Text:</p>
+          <p className="text-gray-900 text-lg font-medium">&ldquo;{currentSample.text}&rdquo;</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -386,34 +386,30 @@ export default function TTSQAApp() {
           <div className="space-y-4">
             {/* Reference Audio - Neutral baseline without emotion */}
             <div>
-              <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-blue-800 mb-3">Reference Audio (Neutral)</h3>
-                <AudioPlayer 
-                  sample={currentSample}
-                  voiceSet={session.voice_set}
-                  isReference={true}
-                  simplified={true}
-                />
-              </div>
+              <AudioPlayer 
+                sample={currentSample}
+                voiceSet={session.voice_set}
+                isReference={true}
+                simplified={true}
+                title="Reference Audio (Neutral)"
+                colorScheme="blue"
+              />
             </div>
             
             {/* Target Sample Audio */}
             <div>
-              <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-orange-800 mb-3">
-                  Target Sample (With {currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: {currentSample.emotion_value}, Scale: {currentSample.scale})
-                </h3>
-                <AudioPlayer 
-                  sample={currentSample} 
-                  voiceSet={session.voice_set}
-                  simplified={true}
-                />
-              </div>
+              <AudioPlayer 
+                sample={currentSample} 
+                voiceSet={session.voice_set}
+                simplified={true}
+                title={`Target Sample (With ${currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: ${currentSample.emotion_value}, Scale: ${currentSample.scale})`}
+                colorScheme="orange"
+              />
             </div>
           </div>
 
           {/* Evaluation Form */}
-          <div className="mt-8">
+          <div>
             <EvaluationForm 
               onSubmit={saveEvaluationLocally}
               initialScores={getCurrentEvaluation()?.scores}
