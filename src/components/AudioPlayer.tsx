@@ -104,7 +104,11 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
           {isReference ? 'Reference audio (neutral baseline) not found' : 'Target audio file not found'}
         </p>
         <div className="mt-2 text-xs text-gray-500">
-          <p><strong>Voice:</strong> {sample.voice_id} | <strong>Emotion:</strong> {sample.emotion_value} | <strong>Scale:</strong> {sample.scale}</p>
+          {isReference ? (
+            <p><strong>Voice:</strong> {sample.voice_id} | <strong>Text Type:</strong> {sample.text_type} | <strong>Emotion:</strong> {sample.emotion_value} | <strong>Reference (no scale)</strong></p>
+          ) : (
+            <p><strong>Voice:</strong> {sample.voice_id} | <strong>Emotion:</strong> {sample.emotion_value} | <strong>Scale:</strong> {sample.scale}</p>
+          )}
         </div>
       </div>
     );
