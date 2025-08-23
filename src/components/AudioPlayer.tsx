@@ -7,9 +7,10 @@ interface AudioPlayerProps {
   sample: TTSSample;
   autoPlay?: boolean;
   voiceSet?: 'expressivity_none' | 'expressivity_0.6';
+  isReference?: boolean; // Flag to indicate if this is playing a reference file
 }
 
-export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none' }: AudioPlayerProps) {
+export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none', isReference = false }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -20,9 +21,12 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
   useEffect(() => {
     if (audioRef.current) {
       const folder = voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6';
-      const fullUrl = `/voices/${folder}/${sample.filename}`;
+      // Use reference file if isReference flag is true
+      const filename = isReference ? sample.reference_file : sample.filename;
+      const fullUrl = `/voices/${folder}/${filename}`;
       
-      console.log('AudioPlayer: Loading audio file:', sample.filename);
+      console.log('AudioPlayer: Loading audio file:', filename);
+      console.log('AudioPlayer: Is reference?', isReference);
       console.log('AudioPlayer: Voice set:', voiceSet);
       console.log('AudioPlayer: Full URL:', fullUrl);
       console.log('AudioPlayer: Sample scale:', sample.scale, typeof sample.scale);
@@ -43,7 +47,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       setIsLoading(true);
       setHasError(false);
     }
-  }, [sample.filename, voiceSet]);
+  }, [sample.filename, sample.reference_file, voiceSet, isReference]);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;
@@ -94,10 +98,10 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
     return (
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
         <p className="text-yellow-700 text-sm">
-          ⚠️ Audio file not available: {sample.filename}
+          ⚠️ Audio file not available: {isReference ? sample.reference_file : sample.filename}
         </p>
         <p className="text-yellow-600 text-xs mt-1">
-          {sample.scale === 0.5 ? 'Reference audio (minimal emotion) not found' : 'Main audio file not found'}
+          {isReference ? 'Reference audio (neutral baseline) not found' : 'Target audio file not found'}
         </p>
         <div className="mt-2 text-xs text-gray-500">
           <p><strong>Voice:</strong> {sample.voice_id} | <strong>Emotion:</strong> {sample.emotion_value} | <strong>Scale:</strong> {sample.scale}</p>
@@ -116,13 +120,14 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onError={(e) => {
-          console.error('AudioPlayer: Error loading audio:', sample.filename, e);
+          const filename = isReference ? sample.reference_file : sample.filename;
+          console.error('AudioPlayer: Error loading audio:', filename, e);
           console.error('AudioPlayer: Audio element error:', audioRef.current?.error);
           setHasError(true);
         }}
         preload="metadata"
       >
-        <source src={`/voices/${voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6'}/${sample.filename}`} type="audio/wav" />
+        <source src={`/voices/${voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6'}/${isReference ? sample.reference_file : sample.filename}`} type="audio/wav" />
         Your browser does not support the audio element.
       </audio>
 

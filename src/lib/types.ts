@@ -9,6 +9,7 @@ export interface TTSSample {
   scale: number;
   text: string;
   category: string;
+  reference_file: string; // Reference audio file for comparison (neutral baseline)
 }
 
 export interface EvaluationScores {

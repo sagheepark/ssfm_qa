@@ -1,5 +1,12 @@
 import { TTSSample } from './types';
 
+// Helper function to get the reference filename for a given sample
+export function getReferenceFilename(sample: TTSSample): string {
+  // Reference files are named: {voice_id}_{text_type}_reference.wav
+  // They represent neutral baseline with no emotion (style_label="normal-1" only)
+  return `${sample.voice_id}_${sample.text_type}_reference.wav`;
+}
+
 // Sample data with actual text content from generation
 export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity_0.6' = 'expressivity_none'): TTSSample[] {
   const voices = ['v001', 'v002'];
@@ -90,7 +97,8 @@ export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity
             emotion_value: emotion,
             scale,
             text: emotionTexts[emotion as keyof typeof emotionTexts][textType as keyof typeof emotionTexts['angry']],
-            category: 'emotion_label'
+            category: 'emotion_label',
+            reference_file: `${voice}_${textType}_reference.wav`
           };
           samples.push(sample);
         });
@@ -113,7 +121,8 @@ export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity
             emotion_value: emotion,
             scale,
             text: emotionTexts[emotion as keyof typeof emotionTexts][textType as keyof typeof emotionTexts['angry']],
-            category: 'emotion_vector'
+            category: 'emotion_vector',
+            reference_file: `${voice}_${textType}_reference.wav`
           };
           samples.push(sample);
         });
@@ -133,6 +142,7 @@ export function getRandomSamples(count: number = 25, voiceSet: 'expressivity_non
 export function getSampleMetadata() {
   return {
     total_samples: 432, // 6 emotion_labels + 6 emotion_vectors = 12 emotions × 2 voices × 3 texts × 6 scales
+    total_references: 6, // 2 voices × 3 text_types (neutral baseline without emotion)
     emotion_label_samples: 216, // 6 × 2 × 3 × 6
     emotion_vector_samples: 216, // 6 × 2 × 3 × 6
     voices: ['v001', 'v002'],
@@ -141,6 +151,10 @@ export function getSampleMetadata() {
     text_types: ['match', 'neutral', 'opposite'],
     scales: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
     voice_sets: ['expressivity_none', 'expressivity_0.6'],
-    naming_structure: '{voice_id}_{text_type}_{emo|vec}_{emotion}_scale_{scale}.wav'
+    naming_structure: {
+      target: '{voice_id}_{text_type}_{emo|vec}_{emotion}_scale_{scale}.wav',
+      reference: '{voice_id}_{text_type}_reference.wav'
+    },
+    reference_description: 'Neutral baseline with style_label="normal-1" and no emotion'
   };
 }

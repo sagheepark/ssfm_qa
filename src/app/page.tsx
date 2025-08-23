@@ -374,25 +374,26 @@ export default function TTSQAApp() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Audio Players */}
           <div className="space-y-4">
-            {/* Reference Audio - Same text, minimal emotion */}
+            {/* Reference Audio - Neutral baseline without emotion */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">Reference Audio (Minimal Emotion)</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">Reference Audio (Neutral Baseline)</h3>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-xs text-gray-600 mb-2">
+                  This is the neutral version with no emotion applied (style_label="normal-1" only)
+                </p>
                 <AudioPlayer 
-                  sample={{
-                    ...currentSample,
-                    filename: `${currentSample.voice_id}_${currentSample.text_type}_${currentSample.emotion_type === 'emotion_label' ? 'emo' : 'vec'}_${currentSample.emotion_value}_scale_0.5.wav`,
-                    scale: 0.5,
-                    id: `${currentSample.voice_id}_${currentSample.text_type}_${currentSample.emotion_type === 'emotion_label' ? 'emo' : 'vec'}_${currentSample.emotion_value}_ref`
-                  }}
+                  sample={currentSample}
                   voiceSet={session.voice_set}
+                  isReference={true}
                 />
               </div>
             </div>
             
-            {/* Test Sample Audio */}
+            {/* Target Sample Audio */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">Test Sample (With Emotion)</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                Target Sample (With {currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: {currentSample.emotion_value}, Scale: {currentSample.scale})
+              </h3>
               <div className="bg-white border border-gray-200 rounded-lg p-4">
                 <AudioPlayer sample={currentSample} voiceSet={session.voice_set} />
               </div>

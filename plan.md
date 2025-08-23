@@ -1,6 +1,6 @@
 # TTS QA 자동화 테스트 시스템 구축 계획서
 
-## 🎯 현재 진행 상황 (2025-08-22)
+## 🎯 현재 진행 상황 (2025-08-23)
 
 ### ✅ 완료된 작업
 1. **emotion_label 기반 음성 생성 완료**
@@ -35,6 +35,11 @@
 ```
 
 ### 🔧 진행 중인 작업
+- **Reference 오디오 시스템 개선**
+  - Reference 오디오 생성: 각 voice_id × text_type 조합당 1개 (총 6개)
+  - Reference는 감정 없는 중립 baseline (style_label="normal-1" only)
+  - Target 오디오와 Reference 자동 매칭 시스템 구현
+  
 - **Expressivity 테스트 시스템 구축**
   - 폴더 구조 설계: expressivity_none/, expressivity_0.6/
   - 완전한 데이터셋 생성 계획 수립
@@ -101,32 +106,49 @@ text_types: [match, neutral, opposite]  # 감정 일치, 중립, 반대
 - `style_label ≠ "normal-1"` 시 → `emotion_vector_id` 제거
 - `emotion_scale`은 `emotion_vector_id` 사용 시에만 적용
 
-#### Reference 음성 정의
-각 `voice_id × text` 조합당 1개의 reference 음성:
-- `style_label: "normal-1"`
-- `emotion_vector_id: null`
-- `emotion_scale: 1.0`
+#### Reference 음성 정의 (CORRECTED 2025-08-23)
+**핵심 원칙**: Reference는 감정이 없는 중립적 baseline
+- 각 `voice_id × text` 조합당 1개의 reference 음성
+- 설정:
+  - `style_label: "normal-1"` (필수)
+  - `emotion_label: null` (감정 라벨 없음)
+  - `emotion_vector_id: null` (감정 벡터 없음)
+  - `emotion_scale: 1.0` (기본값)
+- **매칭 규칙**: 
+  - 하나의 reference는 동일한 voice_id와 text를 가진 6개 scale의 target 오디오와 비교
+  - 예: v001_match_reference.wav는 v001_match_emo_angry의 모든 scale (0.5~3.0)과 비교
 
-### 2. 파일명 규칙
+### 2. 파일명 규칙 (UPDATED with Reference)
 
 ```
-형식: {voice_id}_{text_type}_{emotion_type}_{emotion_value}_{scale}.wav
+Target 오디오 형식: {voice_id}_{text_type}_{emotion_type}_{emotion_value}_scale_{scale}.wav
+Reference 오디오 형식: {voice_id}_{text_type}_reference.wav
 
 예시:
 - emotion_label: v001_match_emo_angry_scale_1.5.wav
-- emotion_vector_id: v001_neutral_vec_excited_scale_2.0.wav
-- Reference (no emotion): v001_ref_neutral.wav
+- emotion_vector: v001_neutral_vec_excited_scale_2.0.wav
+- Reference: v001_match_reference.wav (감정 없음, normal-1 style)
 
 text_type: match, neutral, opposite
-emotion_type: emo (emotion_label), vec (emotion_vector_id), ref (reference)
+emotion_type: emo (emotion_label), vec (emotion_vector)
+
+Reference 파일 목록 (각 voice_id × text_type 조합):
+- v001_match_reference.wav
+- v001_neutral_reference.wav  
+- v001_opposite_reference.wav
+- v002_match_reference.wav
+- v002_neutral_reference.wav
+- v002_opposite_reference.wav
 ```
 
 ### 3. 샘플링 전략 (Dynamic Random Sampling)
 
 ```python
 sampling_strategy = {
-    "method": "dynamic_random",
-    "total_sample_pool": 432,  # 2 voice × 3 text × 12 emotion × 6 scale
+    "method": "dynamic_random_with_reference",
+    "total_target_samples": 432,  # 2 voice × 3 text × 12 emotion × 6 scale
+    "total_reference_samples": 6,  # 2 voice × 3 text (no emotion)
+    "total_sample_pool": 438,  # 432 targets + 6 references
     "samples_per_session": 25,  # 세션당 랜덤 선택
     "total_sessions": 56,  # 14명 × 4세션
     "total_evaluations": 1400,  # 56 × 25
@@ -138,9 +160,10 @@ sampling_strategy = {
     },
     
     "sampling_rules": {
-        "매 세션마다": "432개 중 25개 새로 랜덤 선택",
+        "매 세션마다": "438개 중 25개 새로 랜덤 선택",
         "중복 허용": "세션 간 중복 가능, 세션 내 중복 불가",
-        "reference 포함": "가능하면 각 세션에 1-2개 reference",
+        "reference 표시": "각 target 오디오와 함께 해당 reference 자동 표시",
+        "reference 매칭": "voice_id와 text_type이 같은 reference 자동 연결",
         "균형 유지": "완전 랜덤이지만 extreme bias 방지"
     },
     
