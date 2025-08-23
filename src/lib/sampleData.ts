@@ -9,7 +9,8 @@ export function getReferenceFilename(sample: TTSSample): string {
 }
 
 // Sample data with actual text content from generation
-export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity_0.6' = 'expressivity_none'): TTSSample[] {
+// Note: voiceSet parameter removed as it's handled at AudioPlayer level, not sample generation
+export function generateSamplePool(): TTSSample[] {
   const voices = ['v001', 'v002'];
   const textTypes = ['match', 'neutral', 'opposite'];
   const emotionLabels = ['angry', 'sad', 'happy', 'whisper', 'toneup', 'tonedown'];
@@ -134,8 +135,9 @@ export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity
   return samples;
 }
 
-export function getRandomSamples(count: number = 25, voiceSet: 'expressivity_none' | 'expressivity_0.6' = 'expressivity_none'): TTSSample[] {
-  const allSamples = generateSamplePool(voiceSet);
+export function getRandomSamples(count: number = 25): TTSSample[] {
+  // voiceSet is handled at AudioPlayer component level, not at sample generation level
+  const allSamples = generateSamplePool();
   const shuffled = [...allSamples].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 }

@@ -47,7 +47,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       setIsLoading(true);
       setHasError(false);
     }
-  }, [sample.filename, sample.reference_file, voiceSet, isReference]);
+  }, [sample.filename, sample.reference_file, sample.voice_id, sample.text_type, sample.emotion_type, sample.emotion_value, sample.scale, sample.id, voiceSet, isReference]);
 
   const togglePlay = async () => {
     if (!audioRef.current) return;

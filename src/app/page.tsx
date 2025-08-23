@@ -44,7 +44,7 @@ export default function TTSQAApp() {
   }
 
   const startNewSession = async (voiceSet: 'expressivity_none' | 'expressivity_0.6') => {
-    const samples = getRandomSamples(25, voiceSet);
+    const samples = getRandomSamples(25);
     const newSession: QASession = {
       session_id: `session_${Date.now()}_${voiceSet}`,
       samples,
@@ -379,7 +379,7 @@ export default function TTSQAApp() {
               <h3 className="text-sm font-semibold text-gray-700 mb-2">Reference Audio (Neutral Baseline)</h3>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-xs text-gray-600 mb-2">
-                  This is the neutral version with no emotion applied (style_label="normal-1" only)
+                  This is the neutral version with no emotion applied (style_label=&quot;normal-1&quot; only)
                 </p>
                 <AudioPlayer 
                   sample={currentSample}
