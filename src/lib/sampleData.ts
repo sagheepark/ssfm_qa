@@ -100,7 +100,11 @@ export function generateSamplePool(): TTSSample[] {
             scale,
             text: emotionTexts[emotion as keyof typeof emotionTexts][textType as keyof typeof emotionTexts['angry']],
             category: 'emotion_label',
-            reference_file: `${voice}_${textType}_reference_${emotion}.wav`
+            reference_file: getReferenceFilename({
+              voice_id: voice,
+              text_type: textType,
+              emotion_value: emotion
+            } as TTSSample)
           };
           samples.push(sample);
         });
@@ -124,7 +128,11 @@ export function generateSamplePool(): TTSSample[] {
             scale,
             text: emotionTexts[emotion as keyof typeof emotionTexts][textType as keyof typeof emotionTexts['angry']],
             category: 'emotion_vector',
-            reference_file: `${voice}_${textType}_reference_${emotion}.wav`
+            reference_file: getReferenceFilename({
+              voice_id: voice,
+              text_type: textType,
+              emotion_value: emotion
+            } as TTSSample)
           };
           samples.push(sample);
         });
