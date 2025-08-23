@@ -45,6 +45,28 @@
   - Reference audios: 144개 (72 × 2 expressivity)
   - 총 1,008개 오디오 파일
 
+### 🚨 Critical UI/UX Issues Identified (2025-08-23)
+
+**ISSUE 1: Scale Format Inconsistency**
+- Problem: Console shows scale format mismatch (1 vs 1.0, 2 vs 2.0)
+- Root cause: Number formatting inconsistency in filename generation
+- Expected: All scales should be formatted as 1.0, 2.0, etc.
+- Fix needed: Ensure consistent toFixed(1) usage throughout codebase
+
+**ISSUE 2: Reference Audio UI Shows Wrong Filename**  
+- Problem: Reference section displays target filename instead of reference filename
+- Example: Shows "v001_match_vec_furious_scale_2.0.wav" in Reference section
+- Expected: Should show "v001_match_reference_furious.wav"
+- Fix needed: AudioPlayer component UI display logic
+
+**ISSUE 3: Poor Reference vs Target Distinction**
+- Problem: Users cannot easily distinguish reference from target audio
+- Impact: Confusing evaluation experience
+- Fix needed: 
+  - Higher visibility design differentiation
+  - Clear subtext explaining evaluation purpose
+  - Better visual hierarchy between reference baseline and target evaluation
+
 ### 📊 핵심 차별점 (이번 실험 설계)
 1. **텍스트 고유성**: 각 emotion × text_type 조합이 고유한 텍스트 사용 (72개 고유 텍스트)
 2. **정확한 Reference 매칭**: voice_id + emotion + text_type으로 정확히 매칭

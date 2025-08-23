@@ -34,7 +34,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       
       // Check if filename matches what it should be based on properties
       const emotionPrefix = sample.emotion_type === 'emotion_label' ? 'emo' : 'vec';
-      const expectedFilename = `${sample.voice_id}_${sample.text_type}_${emotionPrefix}_${sample.emotion_value}_scale_${sample.scale}.wav`;
+      const expectedFilename = `${sample.voice_id}_${sample.text_type}_${emotionPrefix}_${sample.emotion_value}_scale_${Number(sample.scale).toFixed(1)}.wav`;
       console.log('AudioPlayer: Expected filename:', expectedFilename);
       console.log('AudioPlayer: Filename matches expected?', sample.filename === expectedFilename);
       if (sample.filename !== expectedFilename) {
@@ -138,7 +138,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       <div className="space-y-3">
         {/* Sample Info */}
         <div className="text-sm text-gray-600">
-          <p><strong>File:</strong> {sample.filename}</p>
+          <p><strong>File:</strong> {isReference ? sample.reference_file : sample.filename}</p>
           <p>
             <strong>Voice:</strong> {sample.voice_id} | 
             <strong>Type:</strong> {sample.text_type} | 
