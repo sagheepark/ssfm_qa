@@ -341,7 +341,11 @@ export default function TTSQAApp() {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">TTS Quality Assessment</h1>
-              <div className="mt-1">
+              <p className="text-sm text-gray-600 mt-1 max-w-lg">
+                Listen to both audio samples below. The Reference Audio is the neutral baseline. 
+                Evaluate how well the Target Audio expresses the intended emotion compared to this neutral baseline.
+              </p>
+              <div className="mt-2">
                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                   session.voice_set === 'expressivity_0.6' 
                     ? 'bg-green-100 text-green-800' 
@@ -372,57 +376,42 @@ export default function TTSQAApp() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Audio Evaluation Instructions */}
-          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-lg p-4 mb-6">
-            <div className="text-center">
-              <h2 className="text-lg font-bold text-indigo-800 mb-2">🎧 Audio Quality Evaluation</h2>
-              <p className="text-sm text-indigo-700 max-w-2xl mx-auto">
-                <strong>Instructions:</strong> Listen to both audio samples below. The <strong>Reference Audio</strong> is the neutral baseline. 
-                Evaluate how well the <strong>Target Audio</strong> expresses the intended emotion compared to this neutral baseline.
-              </p>
-            </div>
-          </div>
-
           {/* Audio Players */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
             {/* Reference Audio - Neutral baseline without emotion */}
-            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-5 relative">
-              <div className="absolute -top-3 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                📍 REFERENCE BASELINE
-              </div>
-              <div className="mt-2">
-                <h3 className="text-lg font-bold text-blue-800 mb-3">Reference Audio (Neutral)</h3>
-                <div className="bg-blue-100 rounded-lg p-3 mb-3">
-                  <p className="text-sm text-blue-700">
-                    <strong>Purpose:</strong> This is the neutral baseline with no emotion applied.<br/>
-                    <strong>Parameters:</strong> style_label=&quot;normal-1&quot; only, no emotion scaling
-                  </p>
+            <div>
+              <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4 relative">
+                <div className="absolute -top-3 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                  REFERENCE BASELINE
                 </div>
-                <AudioPlayer 
-                  sample={currentSample}
-                  voiceSet={session.voice_set}
-                  isReference={true}
-                />
+                <div className="mt-2">
+                  <h3 className="text-lg font-bold text-blue-800 mb-2">Reference Audio (Neutral)</h3>
+                  <div className="bg-blue-100 rounded-lg p-3 mb-3">
+                    <p className="text-xs text-blue-700">
+                      This is the neutral baseline with no emotion applied (style_label=&quot;normal-1&quot; only)
+                    </p>
+                  </div>
+                  <AudioPlayer 
+                    sample={currentSample}
+                    voiceSet={session.voice_set}
+                    isReference={true}
+                  />
+                </div>
               </div>
             </div>
             
             {/* Target Sample Audio */}
-            <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-5 relative">
-              <div className="absolute -top-3 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                🎯 TARGET FOR EVALUATION
-              </div>
-              <div className="mt-2">
-                <h3 className="text-lg font-bold text-orange-800 mb-3">
-                  Target Sample ({currentSample.emotion_type === 'emotion_label' ? 'Label' : 'Vector'}: {currentSample.emotion_value})
-                </h3>
-                <div className="bg-orange-100 rounded-lg p-3 mb-3">
-                  <p className="text-sm text-orange-700">
-                    <strong>Emotion Method:</strong> {currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}<br/>
-                    <strong>Emotion:</strong> {currentSample.emotion_value} | <strong>Scale:</strong> {currentSample.scale}<br/>
-                    <strong>Task:</strong> Rate how well this expresses the intended emotion vs. reference
-                  </p>
+            <div>
+              <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-4 relative">
+                <div className="absolute -top-3 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                  TARGET FOR EVALUATION
                 </div>
-                <AudioPlayer sample={currentSample} voiceSet={session.voice_set} />
+                <div className="mt-2">
+                  <h3 className="text-lg font-bold text-orange-800 mb-2">
+                    Target Sample (With {currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: {currentSample.emotion_value}, Scale: {currentSample.scale})
+                  </h3>
+                  <AudioPlayer sample={currentSample} voiceSet={session.voice_set} />
+                </div>
               </div>
             </div>
           </div>
