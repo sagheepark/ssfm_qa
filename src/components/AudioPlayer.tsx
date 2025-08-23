@@ -8,9 +8,10 @@ interface AudioPlayerProps {
   autoPlay?: boolean;
   voiceSet?: 'expressivity_none' | 'expressivity_0.6';
   isReference?: boolean; // Flag to indicate if this is playing a reference file
+  simplified?: boolean; // Flag to show simplified UI with only filename and controls
 }
 
-export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none', isReference = false }: AudioPlayerProps) {
+export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none', isReference = false, simplified = false }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -136,23 +137,34 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       </audio>
 
       <div className="space-y-3">
-        {/* Sample Info */}
-        <div className="text-sm text-gray-600">
-          <p><strong>File:</strong> {isReference ? sample.reference_file : sample.filename}</p>
-          <p>
-            <strong>Voice:</strong> {sample.voice_id} | 
-            <strong>Type:</strong> {sample.text_type} | 
-            <strong>Emotion:</strong> {sample.emotion_value} | 
-            <strong>Scale:</strong> {sample.scale} | 
-            <strong>Method:</strong> {sample.emotion_type === 'emotion_label' ? 'Label' : 'Vector'}
-          </p>
-        </div>
+        {simplified ? (
+          <>
+            {/* Simplified - Only Filename */}
+            <div className="text-sm text-gray-600">
+              <p><strong>File:</strong> {isReference ? sample.reference_file : sample.filename}</p>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Full Info Display */}
+            <div className="text-sm text-gray-600">
+              <p><strong>File:</strong> {isReference ? sample.reference_file : sample.filename}</p>
+              <p>
+                <strong>Voice:</strong> {sample.voice_id} | 
+                <strong>Type:</strong> {sample.text_type} | 
+                <strong>Emotion:</strong> {sample.emotion_value} | 
+                <strong>Scale:</strong> {sample.scale} | 
+                <strong>Method:</strong> {sample.emotion_type === 'emotion_label' ? 'Label' : 'Vector'}
+              </p>
+            </div>
 
-        {/* Text Content */}
-        <div className="bg-gray-50 rounded p-3">
-          <p className="text-sm font-medium text-gray-700">Text:</p>
-          <p className="text-gray-900">&ldquo;{sample.text}&rdquo;</p>
-        </div>
+            {/* Text Content */}
+            <div className="bg-gray-50 rounded p-3">
+              <p className="text-sm font-medium text-gray-700">Text:</p>
+              <p className="text-gray-900">&ldquo;{sample.text}&rdquo;</p>
+            </div>
+          </>
+        )}
 
         {/* Controls */}
         <div className="flex items-center space-x-3">

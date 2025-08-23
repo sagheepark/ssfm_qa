@@ -59,13 +59,33 @@
 - Expected: Should show "v001_match_reference_furious.wav"
 - Fix needed: AudioPlayer component UI display logic
 
-**ISSUE 3: Poor Reference vs Target Distinction**
-- Problem: Users cannot easily distinguish reference from target audio
-- Impact: Confusing evaluation experience
-- Fix needed: 
-  - Higher visibility design differentiation
-  - Clear subtext explaining evaluation purpose
-  - Better visual hierarchy between reference baseline and target evaluation
+**ISSUE 3: Poor Reference vs Target Distinction** ✅ FIXED
+
+**NEW ISSUE 4: UI Simplification Requirements (2025-08-23)**
+Based on user feedback, simplify the interface by removing redundant information:
+
+1. **Remove Duplicate Text**: Reference and target share same text - show only once above both boxes
+2. **Remove Neutral Description**: Remove "This is the neutral baseline..." explanatory text
+3. **Simplify Info Display**: Keep only filename, remove voice/type/emotion/scale details
+4. **Restructure Layout**: 
+   - Move shared text section outside and above audio boxes
+   - Remove "TARGET FOR EVALUATION" and "REFERENCE BASELINE" badges
+   - Simplify titles to just "Reference Audio (Neutral)" and "Target Sample (With Emotion Vector: X, Scale: Y)"
+   - Keep only: Title + Filename + Audio Player per box
+5. **Final Structure**:
+   ```
+   Text: "Shared text content here"
+   
+   [Reference Audio Box]
+   - Title: Reference Audio (Neutral)  
+   - File: reference_filename.wav
+   - Audio Player
+   
+   [Target Audio Box]
+   - Title: Target Sample (With Emotion Vector: X, Scale: Y)
+   - File: target_filename.wav  
+   - Audio Player
+   ```
 
 ### 📊 핵심 차별점 (이번 실험 설계)
 1. **텍스트 고유성**: 각 emotion × text_type 조합이 고유한 텍스트 사용 (72개 고유 텍스트)

@@ -375,43 +375,39 @@ export default function TTSQAApp() {
           </div>
         </div>
 
+        {/* Shared Text Content */}
+        <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <p className="text-sm font-medium text-gray-700 mb-1">Text:</p>
+          <p className="text-gray-900 italic">&ldquo;{currentSample.text}&rdquo;</p>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Audio Players */}
           <div className="space-y-4">
             {/* Reference Audio - Neutral baseline without emotion */}
             <div>
-              <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4 relative">
-                <div className="absolute -top-3 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                  REFERENCE BASELINE
-                </div>
-                <div className="mt-2">
-                  <h3 className="text-lg font-bold text-blue-800 mb-2">Reference Audio (Neutral)</h3>
-                  <div className="bg-blue-100 rounded-lg p-3 mb-3">
-                    <p className="text-xs text-blue-700">
-                      This is the neutral baseline with no emotion applied (style_label=&quot;normal-1&quot; only)
-                    </p>
-                  </div>
-                  <AudioPlayer 
-                    sample={currentSample}
-                    voiceSet={session.voice_set}
-                    isReference={true}
-                  />
-                </div>
+              <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                <h3 className="text-lg font-bold text-blue-800 mb-3">Reference Audio (Neutral)</h3>
+                <AudioPlayer 
+                  sample={currentSample}
+                  voiceSet={session.voice_set}
+                  isReference={true}
+                  simplified={true}
+                />
               </div>
             </div>
             
             {/* Target Sample Audio */}
             <div>
-              <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-4 relative">
-                <div className="absolute -top-3 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                  TARGET FOR EVALUATION
-                </div>
-                <div className="mt-2">
-                  <h3 className="text-lg font-bold text-orange-800 mb-2">
-                    Target Sample (With {currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: {currentSample.emotion_value}, Scale: {currentSample.scale})
-                  </h3>
-                  <AudioPlayer sample={currentSample} voiceSet={session.voice_set} />
-                </div>
+              <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
+                <h3 className="text-lg font-bold text-orange-800 mb-3">
+                  Target Sample (With {currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: {currentSample.emotion_value}, Scale: {currentSample.scale})
+                </h3>
+                <AudioPlayer 
+                  sample={currentSample} 
+                  voiceSet={session.voice_set}
+                  simplified={true}
+                />
               </div>
             </div>
           </div>
