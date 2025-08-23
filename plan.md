@@ -173,12 +173,51 @@ public/voices/
     ├── [432 target files]   # 감정 적용됨
     └── [72 reference files] # 감정 없음, normal-1
 
-Reference 매칭 규칙:
+Reference 매칭 규칙 (IMPLEMENTED):
 - v001_match_emo_angry_scale_*.wav → v001_match_reference_angry.wav
 - v002_neutral_vec_excited_scale_*.wav → v002_neutral_reference_excited.wav
+- v001_opposite_emo_happy_scale_*.wav → v001_opposite_reference_happy.wav
+
+자동 매칭 공식: {voice_id}_{text_type}_reference_{emotion}.wav
+- voice_id: 동일한 화자
+- text_type: 동일한 텍스트 유형 (match/neutral/opposite)  
+- emotion: 동일한 감정의 텍스트 내용 (감정은 제거됨)
 ```
 
-### 3. 샘플링 전략 (Dynamic Random Sampling)
+### 3. Reference Connection Implementation (ACTIVE)
+
+#### 3.1 자동 Reference 매칭 시스템
+```javascript
+// 실제 구현된 매칭 로직 (src/lib/sampleData.ts)
+function getReferenceFilename(sample: TTSSample): string {
+  return `${sample.voice_id}_${sample.text_type}_reference_${sample.emotion_value}.wav`;
+}
+
+// 예시 매칭
+Target:    "v001_match_emo_angry_scale_1.5.wav"
+Reference: "v001_match_reference_angry.wav"
+Text:      "I can't believe you broke your promise again!" (동일)
+Emotion:   Target(angry 적용) vs Reference(감정 없음, normal-1)
+```
+
+#### 3.2 UI에서의 Reference 표시
+```typescript
+// AudioPlayer 컴포넌트에서 자동으로 reference 표시
+<AudioPlayer sample={sample} isReference={true} />  // Reference audio
+<AudioPlayer sample={sample} isReference={false} /> // Target audio
+
+// 각 target sample마다 matching reference가 자동으로 함께 표시됨
+```
+
+#### 3.3 Reference 검증 완료
+```
+✓ 144개 reference 파일 생성 완료 (72 × 2 expressivity)
+✓ 자동 매칭 로직 구현 완료 (getReferenceFilename 함수)
+✓ UI 연결 완료 (AudioPlayer 컴포넌트)
+✓ 매칭 테스트 완료 (모든 voice × emotion × text_type 조합)
+```
+
+### 4. 샘플링 전략 (Dynamic Random Sampling)
 
 ```python
 sampling_strategy = {
@@ -199,10 +238,11 @@ sampling_strategy = {
     "sampling_rules": {
         "매 세션마다": "432개 target 중 25개 새로 랜덤 선택",
         "중복 허용": "세션 간 중복 가능, 세션 내 중복 불가",
-        "reference 자동 표시": "각 target과 매칭되는 reference 자동 표시",
-        "reference 매칭": "voice_id + emotion + text_type이 같은 reference 연결",
+        "reference 자동 표시": "각 target과 매칭되는 reference 자동 표시 (구현완료)",
+        "reference 매칭": "voice_id + emotion + text_type이 같은 reference 연결 (구현완료)",
         "균형 유지": "완전 랜덤이지만 extreme bias 방지",
-        "텍스트 고유성": "각 emotion × text_type 조합은 고유한 텍스트 사용"
+        "텍스트 고유성": "각 emotion × text_type 조합은 고유한 텍스트 사용 (72개 unique)",
+        "실시간 연결": "UI에서 target 선택시 matching reference 즉시 표시"
     },
     
     "expected_power": {
