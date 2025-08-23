@@ -1,6 +1,6 @@
 # TTS QA 자동화 테스트 시스템 구축 계획서
 
-## 🎯 현재 진행 상황 (2025-08-23)
+## 🎯 현재 진행 상황 (2025-08-23) - COMPLETE AUDIO REQUIREMENTS
 
 ### ✅ 완료된 작업
 1. **emotion_label 기반 음성 생성 완료**
@@ -34,15 +34,22 @@
 - emotion_scale: 6개 (0.5, 1.0, 1.5, 2.0, 2.5, 3.0)
 ```
 
-### 🔧 진행 중인 작업
-- **Reference 오디오 시스템 개선**
-  - Reference 오디오 생성: 각 voice_id × text_type 조합당 1개 (총 6개)
+### 🔧 진행 중인 작업 (2025-08-23)
+- **Complete Reference 오디오 생성**
+  - 144개 reference 오디오 생성 중 (72 × 2 expressivity)
+  - 각 emotion × text_type 조합의 고유 텍스트 사용
   - Reference는 감정 없는 중립 baseline (style_label="normal-1" only)
-  - Target 오디오와 Reference 자동 매칭 시스템 구현
   
-- **Expressivity 테스트 시스템 구축**
-  - 폴더 구조 설계: expressivity_none/, expressivity_0.6/
-  - 완전한 데이터셋 생성 계획 수립
+- **오디오 파일 최종 구성**
+  - Target audios: 864개 (432 × 2 expressivity) 
+  - Reference audios: 144개 (72 × 2 expressivity)
+  - 총 1,008개 오디오 파일
+
+### 📊 핵심 차별점 (이번 실험 설계)
+1. **텍스트 고유성**: 각 emotion × text_type 조합이 고유한 텍스트 사용 (72개 고유 텍스트)
+2. **정확한 Reference 매칭**: voice_id + emotion + text_type으로 정확히 매칭
+3. **Expressivity 비교**: 동일 텍스트로 none vs 0.6 효과 측정 가능
+4. **Scale 효과 분석**: 각 reference와 6개 scale 비교로 감정 강도 효과 측정
 
 ### 📝 주요 변경사항
 - **Actor IDs 업데이트**: 
@@ -63,16 +70,40 @@ Text-to-Speech 모델의 품질을 체계적으로 검증하기 위한 자동화
 
 ## 🏗️ 시스템 아키텍처
 
-### 1. 테스트 매트릭스
+### 1. 테스트 매트릭스 - COMPLETE AUDIO REQUIREMENTS
 
+#### 1.1 Target Audio Requirements (감정이 적용된 테스트 오디오)
 ```
-총 테스트 공간 = 432개 샘플
-- voice_id: 2개
-- text: 3개 (각 감정별로 match, neutral, opposite)
+총 Target 오디오 = 864개 (432개 × 2 expressivity types)
+- voice_id: 2개 (v001, v002)
 - emotions: 12개 (emotion_label 6개 + emotion_vector_id 6개)
+- text_types: 3개 (match, neutral, opposite) - 각 감정별로 다른 텍스트
 - emotion_scale: 6단계 (0.5, 1.0, 1.5, 2.0, 2.5, 3.0)
+- expressivity: 2개 (none, 0.6)
 
-실제 계산: 2 voices × 3 text_types × 12 emotions × 6 scales = 432개 샘플
+계산: 2 voices × 12 emotions × 3 text_types × 6 scales × 2 expressivity = 864개
+```
+
+#### 1.2 Reference Audio Requirements (중립 baseline 오디오)
+```
+총 Reference 오디오 = 144개 (72개 × 2 expressivity types)
+- voice_id: 2개 (v001, v002)
+- emotions: 12개 (각 감정의 고유 텍스트 사용)
+- text_types: 3개 (match, neutral, opposite) - 각각 다른 텍스트
+- expressivity: 2개 (none, 0.6)
+- 설정: style_label="normal-1" only (no emotion)
+
+계산: 2 voices × 12 emotions × 3 text_types × 2 expressivity = 144개
+
+중요: 각 reference는 동일한 voice_id, emotion, text_type을 가진 
+      6개의 다른 scale target 오디오와 비교됨
+```
+
+#### 1.3 총 오디오 파일 수
+```
+총 오디오 파일 = 1,008개
+- Target audios: 864개
+- Reference audios: 144개
 ```
 
 #### 파라미터 상세
@@ -118,38 +149,44 @@ text_types: [match, neutral, opposite]  # 감정 일치, 중립, 반대
   - 하나의 reference는 동일한 voice_id와 text를 가진 6개 scale의 target 오디오와 비교
   - 예: v001_match_reference.wav는 v001_match_emo_angry의 모든 scale (0.5~3.0)과 비교
 
-### 2. 파일명 규칙 (UPDATED with Reference)
+### 2. 파일명 규칙 (COMPLETE SPECIFICATION)
 
 ```
 Target 오디오 형식: {voice_id}_{text_type}_{emotion_type}_{emotion_value}_scale_{scale}.wav
-Reference 오디오 형식: {voice_id}_{text_type}_reference.wav
+Reference 오디오 형식: {voice_id}_{text_type}_reference_{emotion}.wav
 
-예시:
+예시 - Target 오디오:
 - emotion_label: v001_match_emo_angry_scale_1.5.wav
 - emotion_vector: v001_neutral_vec_excited_scale_2.0.wav
-- Reference: v001_match_reference.wav (감정 없음, normal-1 style)
 
-text_type: match, neutral, opposite
-emotion_type: emo (emotion_label), vec (emotion_vector)
+예시 - Reference 오디오:
+- v001_match_reference_angry.wav (angry의 match 텍스트, 감정 없음)
+- v001_neutral_reference_sad.wav (sad의 neutral 텍스트, 감정 없음)
+- v002_opposite_reference_happy.wav (happy의 opposite 텍스트, 감정 없음)
 
-Reference 파일 목록 (각 voice_id × text_type 조합):
-- v001_match_reference.wav
-- v001_neutral_reference.wav  
-- v001_opposite_reference.wav
-- v002_match_reference.wav
-- v002_neutral_reference.wav
-- v002_opposite_reference.wav
+폴더 구조:
+public/voices/
+├── expressivity_none/      # 기본 텍스트
+│   ├── [432 target files]  # 감정 적용됨
+│   └── [72 reference files] # 감정 없음, normal-1
+└── expressivity_0.6/        # 텍스트에 |0.6 추가
+    ├── [432 target files]   # 감정 적용됨
+    └── [72 reference files] # 감정 없음, normal-1
+
+Reference 매칭 규칙:
+- v001_match_emo_angry_scale_*.wav → v001_match_reference_angry.wav
+- v002_neutral_vec_excited_scale_*.wav → v002_neutral_reference_excited.wav
 ```
 
 ### 3. 샘플링 전략 (Dynamic Random Sampling)
 
 ```python
 sampling_strategy = {
-    "method": "dynamic_random_with_reference",
-    "total_target_samples": 432,  # 2 voice × 3 text × 12 emotion × 6 scale
-    "total_reference_samples": 6,  # 2 voice × 3 text (no emotion)
-    "total_sample_pool": 438,  # 432 targets + 6 references
-    "samples_per_session": 25,  # 세션당 랜덤 선택
+    "method": "dynamic_random_with_auto_reference",
+    "total_target_samples": 432,  # 2 voice × 12 emotion × 3 text × 6 scale (per expressivity)
+    "total_reference_samples": 72,  # 2 voice × 12 emotion × 3 text (no emotion, per expressivity)
+    "total_unique_texts": 72,  # Each emotion × text_type has unique content
+    "samples_per_session": 25,  # 세션당 랜덤 선택 (targets only)
     "total_sessions": 56,  # 14명 × 4세션
     "total_evaluations": 1400,  # 56 × 25
     
@@ -160,11 +197,12 @@ sampling_strategy = {
     },
     
     "sampling_rules": {
-        "매 세션마다": "438개 중 25개 새로 랜덤 선택",
+        "매 세션마다": "432개 target 중 25개 새로 랜덤 선택",
         "중복 허용": "세션 간 중복 가능, 세션 내 중복 불가",
-        "reference 표시": "각 target 오디오와 함께 해당 reference 자동 표시",
-        "reference 매칭": "voice_id와 text_type이 같은 reference 자동 연결",
-        "균형 유지": "완전 랜덤이지만 extreme bias 방지"
+        "reference 자동 표시": "각 target과 매칭되는 reference 자동 표시",
+        "reference 매칭": "voice_id + emotion + text_type이 같은 reference 연결",
+        "균형 유지": "완전 랜덤이지만 extreme bias 방지",
+        "텍스트 고유성": "각 emotion × text_type 조합은 고유한 텍스트 사용"
     },
     
     "expected_power": {

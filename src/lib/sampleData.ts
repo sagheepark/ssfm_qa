@@ -2,9 +2,10 @@ import { TTSSample } from './types';
 
 // Helper function to get the reference filename for a given sample
 export function getReferenceFilename(sample: TTSSample): string {
-  // Reference files are named: {voice_id}_{text_type}_reference.wav
+  // Reference files are named: {voice_id}_{text_type}_reference_{emotion}.wav
   // They represent neutral baseline with no emotion (style_label="normal-1" only)
-  return `${sample.voice_id}_${sample.text_type}_reference.wav`;
+  // but use the same text content as the emotion
+  return `${sample.voice_id}_${sample.text_type}_reference_${sample.emotion_value}.wav`;
 }
 
 // Sample data with actual text content from generation
@@ -98,7 +99,7 @@ export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity
             scale,
             text: emotionTexts[emotion as keyof typeof emotionTexts][textType as keyof typeof emotionTexts['angry']],
             category: 'emotion_label',
-            reference_file: `${voice}_${textType}_reference.wav`
+            reference_file: `${voice}_${textType}_reference_${emotion}.wav`
           };
           samples.push(sample);
         });
@@ -122,7 +123,7 @@ export function generateSamplePool(voiceSet: 'expressivity_none' | 'expressivity
             scale,
             text: emotionTexts[emotion as keyof typeof emotionTexts][textType as keyof typeof emotionTexts['angry']],
             category: 'emotion_vector',
-            reference_file: `${voice}_${textType}_reference.wav`
+            reference_file: `${voice}_${textType}_reference_${emotion}.wav`
           };
           samples.push(sample);
         });
