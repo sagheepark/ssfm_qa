@@ -88,7 +88,7 @@ export function generateSamplePool(): TTSSample[] {
     textTypes.forEach(textType => {
       emotionLabels.forEach(emotion => {
         scales.forEach(scale => {
-          const filename = `${voice}_${emotion}_${textType}_scale_${scale}.wav`;
+          const filename = `${voice}_${emotion}_${textType}_scale_${scale.toFixed(1)}.wav`;
           const sample: TTSSample = {
             id: filename.replace('.wav', ''),
             filename,
@@ -116,7 +116,7 @@ export function generateSamplePool(): TTSSample[] {
     textTypes.forEach(textType => {
       emotionVectors.forEach(emotion => {
         scales.forEach(scale => {
-          const filename = `${voice}_${emotion}_${textType}_scale_${scale}.wav`;
+          const filename = `${voice}_${emotion}_${textType}_scale_${scale.toFixed(1)}.wav`;
           const sample: TTSSample = {
             id: filename.replace('.wav', ''),
             filename,
