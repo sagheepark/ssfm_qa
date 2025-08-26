@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+st#!/usr/bin/env python3
 """
 Generate all TTS test samples with proper naming conventions
 Total: 438 samples (6 reference + 432 variations)
@@ -72,10 +72,10 @@ class TTSSampleGenerator:
         
         # Handle emotion vector-based emotions
         elif 'emotion_vector_id' in emotion_config:
-            request["style_label"] = "normal-1"  # Always use normal-1 with emotion vectors
+            request["style_label"] = "normal-1"
             request["emotion_vector_id"] = emotion_config['emotion_vector_id']
         
-        # Reference case or no emotion - use normal-1
+        # Reference case
         else:
             request["style_label"] = "normal-1"
         

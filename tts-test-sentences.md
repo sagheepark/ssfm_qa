@@ -8,8 +8,8 @@
 - **expressivity_0.6**: 모든 텍스트에 "|0.6" 접미사 추가하여 expressivity 효과 측정
 
 ### voice_id 리스트
-- **v001**: 688b02990486383d463c9d1a (male)
-- **v002**: 689c69984c7990a1ddca2327 (female)
+- **v001**: 688b031ae5aa62c50d6f3238 (male)
+- **v002**: 689c693264acbc0a5b9fb0e5 (female)
 
 ## 테스트 문장 구성
 각 감정당 3개 문장:

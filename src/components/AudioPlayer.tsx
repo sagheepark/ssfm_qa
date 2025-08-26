@@ -36,8 +36,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       console.log('AudioPlayer: Sample ID:', sample.id);
       
       // Check if filename matches what it should be based on properties
-      const emotionPrefix = sample.emotion_type === 'emotion_label' ? 'emo' : 'vec';
-      const expectedFilename = `${sample.voice_id}_${sample.text_type}_${emotionPrefix}_${sample.emotion_value}_scale_${Number(sample.scale).toFixed(1)}.wav`;
+      const expectedFilename = `${sample.voice_id}_${sample.emotion_value}_${sample.text_type}_scale_${sample.scale}.wav`;
       console.log('AudioPlayer: Expected filename:', expectedFilename);
       console.log('AudioPlayer: Filename matches expected?', sample.filename === expectedFilename);
       if (sample.filename !== expectedFilename) {

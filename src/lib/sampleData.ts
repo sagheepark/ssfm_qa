@@ -2,10 +2,9 @@ import { TTSSample } from './types';
 
 // Helper function to get the reference filename for a given sample
 export function getReferenceFilename(sample: TTSSample): string {
-  // Reference files are named: {voice_id}_{text_type}_reference_{emotion}.wav
-  // They represent neutral baseline with no emotion (style_label="normal-1" only)
-  // but use the same text content as the emotion
-  return `${sample.voice_id}_${sample.text_type}_reference_${sample.emotion_value}.wav`;
+  // Reference files would be neutral baseline samples with scale 1.0
+  // For now, we'll use the sample itself as reference since we don't have separate reference files
+  return `${sample.voice_id}_${sample.emotion_value}_${sample.text_type}_scale_1.0.wav`;
 }
 
 // Sample data with actual text content from generation
@@ -51,23 +50,23 @@ export function generateSamplePool(): TTSSample[] {
     },
     // Emotion Vectors
     excited: {
-      match: "We're going on the adventure of a lifetime!",
+      match: "We're going on the adventure of a lifetime starting tomorrow morning!",
       neutral: "The temperature today is expected to reach seventy-two degrees.",
       opposite: "I'm too exhausted and drained to do anything at all today."
     },
     furious: {
-      match: "This is absolutely unacceptable and I demand an explanation!",
+      match: "This is absolutely unacceptable and I demand an explanation immediately!",
       neutral: "The library closes at eight o'clock on weekday evenings.",
       opposite: "I completely understand your position and I'm not upset at all."
     },
     terrified: {
-      match: "Something is moving in the shadows and I don't know what!",
+      match: "Something is moving in the shadows and I don't know what it is!",
       neutral: "The coffee machine is located on the third floor break room.",
       opposite: "I feel completely safe and protected in this wonderful place."
     },
     fear: {
       match: "I'm really scared about what might happen if this goes wrong.",
-      neutral: "The new software update will be installed next Tuesday.",
+      neutral: "The new software update will be installed next Tuesday morning.",
       opposite: "I have complete confidence that everything will work out perfectly."
     },
     surprise: {
@@ -89,7 +88,7 @@ export function generateSamplePool(): TTSSample[] {
     textTypes.forEach(textType => {
       emotionLabels.forEach(emotion => {
         scales.forEach(scale => {
-          const filename = `${voice}_${textType}_emo_${emotion}_scale_${Number(scale).toFixed(1)}.wav`;
+          const filename = `${voice}_${emotion}_${textType}_scale_${scale}.wav`;
           const sample: TTSSample = {
             id: filename.replace('.wav', ''),
             filename,
@@ -117,7 +116,7 @@ export function generateSamplePool(): TTSSample[] {
     textTypes.forEach(textType => {
       emotionVectors.forEach(emotion => {
         scales.forEach(scale => {
-          const filename = `${voice}_${textType}_vec_${emotion}_scale_${Number(scale).toFixed(1)}.wav`;
+          const filename = `${voice}_${emotion}_${textType}_scale_${scale}.wav`;
           const sample: TTSSample = {
             id: filename.replace('.wav', ''),
             filename,
@@ -153,7 +152,7 @@ export function getRandomSamples(count: number = 25): TTSSample[] {
 export function getSampleMetadata() {
   return {
     total_samples: 432, // 6 emotion_labels + 6 emotion_vectors = 12 emotions × 2 voices × 3 texts × 6 scales
-    total_references: 6, // 2 voices × 3 text_types (neutral baseline without emotion)
+    total_references: 0, // No separate reference files in new generation
     emotion_label_samples: 216, // 6 × 2 × 3 × 6
     emotion_vector_samples: 216, // 6 × 2 × 3 × 6
     voices: ['v001', 'v002'],
@@ -163,9 +162,9 @@ export function getSampleMetadata() {
     scales: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
     voice_sets: ['expressivity_none', 'expressivity_0.6'],
     naming_structure: {
-      target: '{voice_id}_{text_type}_{emo|vec}_{emotion}_scale_{scale}.wav',
-      reference: '{voice_id}_{text_type}_reference.wav'
+      target: '{voice_id}_{emotion}_{text_type}_scale_{scale}.wav',
+      reference: 'No separate reference files'
     },
-    reference_description: 'Neutral baseline with style_label="normal-1" and no emotion'
+    reference_description: 'Reference functionality uses scale 1.0 samples as baseline'
   };
 }
