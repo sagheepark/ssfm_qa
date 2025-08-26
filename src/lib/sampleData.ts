@@ -2,9 +2,9 @@ import { TTSSample } from './types';
 
 // Helper function to get the reference filename for a given sample
 export function getReferenceFilename(sample: TTSSample): string {
-  // Reference files would be neutral baseline samples with scale 1.0
-  // For now, we'll use the sample itself as reference since we don't have separate reference files
-  return `${sample.voice_id}_${sample.emotion_value}_${sample.text_type}_scale_1.0.wav`;
+  // Reference files are neutral baseline samples with style_label: "normal-1"
+  // Same text content as target but with no emotion (neutral baseline)
+  return `${sample.voice_id}_${sample.emotion_value}_${sample.text_type}_reference.wav`;
 }
 
 // Sample data with actual text content from generation
@@ -152,7 +152,7 @@ export function getRandomSamples(count: number = 25): TTSSample[] {
 export function getSampleMetadata() {
   return {
     total_samples: 432, // 6 emotion_labels + 6 emotion_vectors = 12 emotions × 2 voices × 3 texts × 6 scales
-    total_references: 0, // No separate reference files in new generation
+    total_references: 144, // 2 expressivity × 2 voices × 12 emotions × 3 text_types = 144 reference files
     emotion_label_samples: 216, // 6 × 2 × 3 × 6
     emotion_vector_samples: 216, // 6 × 2 × 3 × 6
     voices: ['v001', 'v002'],
@@ -163,8 +163,8 @@ export function getSampleMetadata() {
     voice_sets: ['expressivity_none', 'expressivity_0.6'],
     naming_structure: {
       target: '{voice_id}_{emotion}_{text_type}_scale_{scale}.wav',
-      reference: 'No separate reference files'
+      reference: '{voice_id}_{emotion}_{text_type}_reference.wav'
     },
-    reference_description: 'Reference functionality uses scale 1.0 samples as baseline'
+    reference_description: 'Two sets: expressivity_none (original text) and expressivity_0.6 (text + "|0.6"), both use style_label: "normal-1"'
   };
 }

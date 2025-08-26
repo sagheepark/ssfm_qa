@@ -15,13 +15,16 @@ Text-to-Speech 모델의 품질을 체계적으로 검증하기 위한 자동화
 ### 1. 테스트 매트릭스
 
 ```
-총 테스트 공간 = 252개 샘플
+총 테스트 공간 = 864개 샘플 + 72개 Reference (Updated 2025-08-26)
 - voice_id: 2개
-- text: 3개
+- text_types: 3개 (match, neutral, opposite)
 - emotions: 12개 (emotion_label 6개 + emotion_vector 6개)
-- emotion_scale: 6단계 (emotion_vector에만 적용)
+- emotion_scale: 6단계 [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+- expressivity: 2개 (none, 0.6)
 
-실제 평가: 100개 샘플 (40% 랜덤 샘플링)
+Target samples: 864개 (432 × 2 expressivity)  
+Reference samples: 72개 (2 voices × 12 emotions × 3 text_types)
+실제 평가: 25개 샘플 per session (Dynamic Random Sampling)
 ```
 #### api 호출 security token
 attach below in the header section when you post the api
@@ -56,11 +59,32 @@ emotion_scales: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
 - `style_label ≠ "normal-1"` 시 → `emotion_vector_id` 제거
 - `emotion_scale`은 `emotion_vector_id` 사용 시에만 적용
 
-#### Reference 음성 정의
-각 `voice_id × text` 조합당 1개의 reference 음성:
-- `style_label: "normal-1"`
-- `emotion_vector_id: null`
+#### Reference 음성 정의 (Updated 2025-08-26)
+각 `voice_id × emotion × text_type` 조합당 1개의 reference 음성:
+- `style_label: "normal-1"` (neutral baseline)
+- NO `emotion_vector_id` or `emotion_label` (neutral)
 - `emotion_scale: 1.0`
+- Same text content as target sample (각 감정별 고유 텍스트 사용)
+
+총 Reference 파일 수: 72개 (2 voices × 12 emotions × 3 text_types)
+
+Reference 설정:
+```json
+{
+  "text": "[emotion-specific text]",
+  "actor_id": "689c693264acbc0a5b9fb0e5", 
+  "tempo": 1,
+  "pitch": 0,
+  "style_label": "normal-1",
+  "emotion_scale": 1,
+  "lang": "auto",
+  "mode": "one-vocoder",
+  "retake": true,
+  "adjust_lastword": 0,
+  "bp_c_l": true,
+  "style_label_version": "v1"
+}
+```
 
 ### 2. 파일명 규칙
 
