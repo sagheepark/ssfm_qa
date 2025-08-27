@@ -129,15 +129,20 @@ export default function TTSQAApp() {
       await createSession(sessionData);
       console.log('Session created in database');
 
-      // Then save all evaluations to database
+      // Then save all evaluations to database (only non-skipped ones)
       for (const evaluation of session.results) {
+        // Skip evaluations that were skipped by user
+        if (evaluation.action === 'skipped') {
+          continue;
+        }
+        
         const evaluationData = {
-          session_id: evaluation.session_id,
+          session_id: evaluation.session_id || session.session_id,
           sample_id: evaluation.sample_id,
-          scores: evaluation.scores,
+          scores: evaluation.scores!,
           comment: evaluation.comment,
           timestamp: evaluation.timestamp,
-          duration_ms: evaluation.duration_ms
+          duration_ms: evaluation.duration_ms || 0
         };
         
         await saveEvaluation(evaluationData);
@@ -200,6 +205,49 @@ export default function TTSQAApp() {
     });
   };
 
+  const skipCurrentSample = () => {
+    if (!session) return;
+    
+    const currentSample = session.samples[session.current_index];
+    
+    // Record the skip action
+    const skipResult: EvaluationResult = {
+      sample_id: currentSample.id,
+      timestamp: new Date().toISOString(),
+      action: 'skipped',
+      skip_reason: 'user_choice',
+      scores: null,
+      comment: undefined
+    };
+    
+    const updatedResults = [...session.results];
+    const existingIndex = updatedResults.findIndex(r => r.sample_id === currentSample.id);
+    
+    if (existingIndex >= 0) {
+      updatedResults[existingIndex] = skipResult;
+    } else {
+      updatedResults.push(skipResult);
+    }
+    
+    // Move to next sample
+    const nextIndex = session.current_index + 1;
+    
+    if (nextIndex >= session.samples.length) {
+      // If this is the last sample, mark session as completed
+      setSession({
+        ...session,
+        results: updatedResults,
+        completed_at: new Date().toISOString()
+      });
+    } else {
+      setSession({
+        ...session,
+        results: updatedResults,
+        current_index: nextIndex
+      });
+    }
+  };
+
   // Helper function to check if current sample has been evaluated
   const getCurrentEvaluation = () => {
     if (!session) return null;
@@ -210,6 +258,7 @@ export default function TTSQAApp() {
   const isCurrentSampleEvaluated = () => {
     const evaluation = getCurrentEvaluation();
     return evaluation && 
+           evaluation.scores &&
            evaluation.scores.quality > 0 && 
            evaluation.scores.emotion > 0 && 
            evaluation.scores.similarity > 0;
@@ -412,7 +461,7 @@ export default function TTSQAApp() {
           <div>
             <EvaluationForm 
               onSubmit={saveEvaluationLocally}
-              initialScores={getCurrentEvaluation()?.scores}
+              initialScores={getCurrentEvaluation()?.scores || undefined}
               initialComment={getCurrentEvaluation()?.comment}
             />
           </div>
@@ -433,21 +482,39 @@ export default function TTSQAApp() {
               <span>Previous</span>
             </button>
 
-            {/* Primary CTA Next Button */}
-            <button
-              onClick={goToNext}
-              disabled={!isCurrentSampleEvaluated()}
-              className={`flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors ${
-                isCurrentSampleEvaluated()
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
-            >
-              <span>{session.current_index >= session.samples.length - 1 ? 'Complete Session' : 'Next'}</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+            <div className="flex space-x-3">
+              {/* Skip Button */}
+              <button
+                onClick={skipCurrentSample}
+                disabled={session.current_index >= session.samples.length - 1}
+                className={`flex items-center space-x-2 px-4 py-2 font-medium rounded-lg border transition-colors ${
+                  session.current_index >= session.samples.length - 1
+                    ? 'border-gray-300 text-gray-400 cursor-not-allowed'
+                    : 'border-orange-300 text-orange-600 hover:border-orange-400 hover:text-orange-700 hover:bg-orange-50'
+                }`}
+              >
+                <span>Skip</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Primary CTA Next Button */}
+              <button
+                onClick={goToNext}
+                disabled={!isCurrentSampleEvaluated()}
+                className={`flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors ${
+                  isCurrentSampleEvaluated()
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                <span>{session.current_index >= session.samples.length - 1 ? 'Complete Session' : 'Next'}</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Separated Control Section */}

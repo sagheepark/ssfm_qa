@@ -346,16 +346,21 @@ evaluation_axes = {
 
 2. **평가 화면**
    - 진행률 표시 (현재/전체)
-   - Reference 음성 재생
+   - Reference 음성 재생 (neutral baseline)
    - 레퍼런스 표시:
      * Audio Reference: 원본 오디오 재생 버튼
      * Prompt Reference: 텍스트 프롬프트 표시
-   - 테스트 음성 재생
+   - 테스트 음성 재생 (target sample)
    - 3축 평가 입력 (7점 척도)
    - 선택적 코멘트 입력
    - 네비게이션:
      * 이전 문제로
-     * 다음 문제로
+     * 다음 문제로 
+     * **Skip 버튼 (Updated 2025-08-26)**:
+       - 항상 Next 버튼 옆에 표시
+       - 마지막 문제에서는 비활성화 
+       - 오디오 로딩 실패 시 사용자가 건너뛸 수 있음
+       - Skip된 샘플은 데이터 분석에서 별도 추적
      * 처음부터 다시
    
 3. **종료 화면**
@@ -395,12 +400,14 @@ evaluation_design = {
             "session_id": "unique per session",
             "timestamp": "datetime",
             "sample_id": "string",
+            "action": "evaluated | skipped",
             "scores": {
                 "quality": "1-7",
                 "emotion": "1-7",
                 "similarity": "1-7"
             },
-            "comment": "optional string"
+            "comment": "optional string",
+            "skip_reason": "optional - user_choice | audio_error"
         }
     }
 }

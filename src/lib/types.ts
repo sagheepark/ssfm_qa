@@ -19,12 +19,14 @@ export interface EvaluationScores {
 }
 
 export interface EvaluationResult {
-  session_id: string;
+  session_id?: string;
   sample_id: string;
-  scores: EvaluationScores;
+  scores: EvaluationScores | null;
   comment?: string;
   timestamp: string;
-  duration_ms: number;
+  duration_ms?: number;
+  action?: 'evaluated' | 'skipped';
+  skip_reason?: 'user_choice' | 'audio_error';
 }
 
 export interface QASession {
