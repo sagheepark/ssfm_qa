@@ -185,17 +185,65 @@ export default function TTSQAApp() {
     });
   };
 
-  const goToNext = () => {
+  const goToNext = async () => {
     if (!session) return;
     
     const nextIndex = session.current_index + 1;
     
-    // If this is the last sample, mark session as completed
+    // If this is the last sample, auto-submit and mark session as completed
     if (nextIndex >= session.samples.length) {
-      setSession({
-        ...session,
-        completed_at: new Date().toISOString()
-      });
+      // Auto-submit all evaluations before marking complete
+      console.log('Last sample reached - auto-submitting evaluations...');
+      
+      setIsSubmitting(true);
+      
+      try {
+        // First create/update session in database
+        const sessionData = {
+          session_id: session.session_id,
+          started_at: session.started_at,
+          completed_at: new Date().toISOString(),
+          samples_data: session.samples
+        };
+        
+        await createSession(sessionData);
+        console.log('Session created in database');
+
+        // Then save all evaluations to database (only non-skipped ones)
+        let submittedCount = 0;
+        for (const evaluation of session.results) {
+          // Skip evaluations that were skipped by user
+          if (evaluation.action === 'skipped') {
+            continue;
+          }
+          
+          const evaluationData = {
+            session_id: evaluation.session_id || session.session_id,
+            sample_id: evaluation.sample_id,
+            scores: evaluation.scores!,
+            comment: evaluation.comment,
+            timestamp: evaluation.timestamp,
+            duration_ms: evaluation.duration_ms || 0
+          };
+          
+          await saveEvaluation(evaluationData);
+          submittedCount++;
+        }
+        
+        console.log(`Successfully auto-submitted ${submittedCount} evaluations to database`);
+        
+        // Mark session as completed after successful submission
+        setSession({
+          ...session,
+          completed_at: new Date().toISOString()
+        });
+      } catch (error) {
+        console.error('Failed to auto-submit evaluations:', error);
+        alert('Failed to submit evaluations. Please use "Stop & Submit" button to retry.');
+      } finally {
+        setIsSubmitting(false);
+      }
+      
       return;
     }
     
@@ -502,17 +550,25 @@ export default function TTSQAApp() {
               {/* Primary CTA Next Button */}
               <button
                 onClick={goToNext}
-                disabled={!isCurrentSampleEvaluated()}
+                disabled={!isCurrentSampleEvaluated() || isSubmitting}
                 className={`flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors ${
-                  isCurrentSampleEvaluated()
+                  isCurrentSampleEvaluated() && !isSubmitting
                     ? 'bg-blue-600 hover:bg-blue-700 text-white'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
-                <span>{session.current_index >= session.samples.length - 1 ? 'Complete Session' : 'Next'}</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <span>
+                  {isSubmitting 
+                    ? 'Submitting...' 
+                    : session.current_index >= session.samples.length - 1 
+                      ? 'Complete & Submit' 
+                      : 'Next'}
+                </span>
+                {!isSubmitting && (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>

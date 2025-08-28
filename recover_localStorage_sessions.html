@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS QA Session Recovery Tool</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 10px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .warning { background: #fff3cd; color: #856404; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .session-box {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 4px solid #3b82f6;
+        }
+        .btn {
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover { background: #2563eb; }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-danger:hover { background: #c82333; }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-success:hover { background: #218838; }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 TTS QA Session Recovery Tool</h1>
+        
+        <div class="status info">
+            <strong>Instructions:</strong> Open this file in the same browser where you evaluated TTS samples. 
+            This tool will find and recover any sessions stored in localStorage.
+        </div>
+
+        <div id="results"></div>
+        
+        <div style="margin-top: 20px;">
+            <button class="btn" onclick="scanLocalStorage()">🔍 Scan for Sessions</button>
+            <button class="btn btn-success" onclick="exportAllData()">📥 Export All Data</button>
+            <button class="btn btn-danger" onclick="clearLocalStorage()">🗑️ Clear localStorage (After Export)</button>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        let recoveredData = null;
+        
+        function scanLocalStorage() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="status info">Scanning localStorage...</div>';
+            
+            try {
+                // Look for TTS QA session data
+                const sessionData = localStorage.getItem('tts-qa-session');
+                
+                if (!sessionData) {
+                    resultsDiv.innerHTML = '<div class="status warning">No TTS QA session found in localStorage</div>';
+                    return;
+                }
+                
+                const session = JSON.parse(sessionData);
+                recoveredData = session;
+                
+                // Display session information
+                let html = '<div class="status success">✅ Session found in localStorage!</div>';
+                
+                // Session details
+                html += '<div class="session-box">';
+                html += '<h3>Session Information</h3>';
+                html += `<p><strong>Session ID:</strong> ${session.session_id}</p>`;
+                html += `<p><strong>Started:</strong> ${new Date(session.started_at).toLocaleString()}</p>`;
+                html += `<p><strong>Voice Set:</strong> ${session.voice_set}</p>`;
+                html += `<p><strong>Current Progress:</strong> ${session.current_index + 1} / ${session.samples.length} samples</p>`;
+                html += `<p><strong>Evaluations Completed:</strong> ${session.results.length}</p>`;
+                
+                if (session.completed_at) {
+                    html += `<p><strong>Completed At:</strong> ${new Date(session.completed_at).toLocaleString()}</p>`;
+                    html += '<div class="status warning">⚠️ This session was marked complete but may not have been submitted!</div>';
+                }
+                
+                // Statistics
+                html += '<div class="stats">';
+                
+                // Count evaluated vs skipped
+                const evaluated = session.results.filter(r => r.action !== 'skipped').length;
+                const skipped = session.results.filter(r => r.action === 'skipped').length;
+                
+                html += '<div class="stat-card">';
+                html += `<div class="stat-value">${evaluated}</div>`;
+                html += '<div class="stat-label">Evaluated</div>';
+                html += '</div>';
+                
+                html += '<div class="stat-card">';
+                html += `<div class="stat-value">${skipped}</div>`;
+                html += '<div class="stat-label">Skipped</div>';
+                html += '</div>';
+                
+                html += '<div class="stat-card">';
+                html += `<div class="stat-value">${session.samples.length - session.results.length}</div>`;
+                html += '<div class="stat-label">Not Evaluated</div>';
+                html += '</div>';
+                
+                html += '</div>'; // stats
+                
+                // Show some sample evaluations
+                if (session.results.length > 0) {
+                    html += '<h4>Recent Evaluations:</h4>';
+                    html += '<ul>';
+                    const recentResults = session.results.slice(-5);
+                    recentResults.forEach(result => {
+                        if (result.action === 'skipped') {
+                            html += `<li>${result.sample_id}: <em>Skipped</em></li>`;
+                        } else if (result.scores) {
+                            html += `<li>${result.sample_id}: Quality=${result.scores.quality}, Emotion=${result.scores.emotion}, Similarity=${result.scores.similarity}</li>`;
+                        }
+                    });
+                    if (session.results.length > 5) {
+                        html += `<li><em>... and ${session.results.length - 5} more evaluations</em></li>`;
+                    }
+                    html += '</ul>';
+                }
+                
+                html += '</div>'; // session-box
+                
+                resultsDiv.innerHTML = html;
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="status error">Error scanning localStorage: ${error.message}</div>`;
+            }
+        }
+        
+        function exportAllData() {
+            if (!recoveredData) {
+                alert('Please scan for sessions first!');
+                return;
+            }
+            
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '';
+            
+            try {
+                // Create CSV format for evaluations
+                const evaluations = recoveredData.results.filter(r => r.action !== 'skipped');
+                
+                if (evaluations.length === 0) {
+                    outputDiv.innerHTML = '<div class="status warning">No evaluations to export (all were skipped)</div>';
+                    return;
+                }
+                
+                // Create CSV content
+                let csvContent = 'session_id,sample_id,quality,emotion,similarity,comment,timestamp,duration_ms\n';
+                
+                evaluations.forEach(eval => {
+                    const scores = eval.scores || {};
+                    csvContent += `${recoveredData.session_id},${eval.sample_id},${scores.quality || ''},${scores.emotion || ''},${scores.similarity || ''},"${eval.comment || ''}",${eval.timestamp || ''},${eval.duration_ms || ''}\n`;
+                });
+                
+                // Create downloadable files
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                
+                // 1. Full JSON backup
+                const jsonBlob = new Blob([JSON.stringify(recoveredData, null, 2)], {type: 'application/json'});
+                const jsonUrl = URL.createObjectURL(jsonBlob);
+                
+                // 2. CSV for database import
+                const csvBlob = new Blob([csvContent], {type: 'text/csv'});
+                const csvUrl = URL.createObjectURL(csvBlob);
+                
+                // 3. SQL insert statements
+                let sqlContent = '-- TTS QA Session Recovery SQL Inserts\\n';
+                sqlContent += `-- Session: ${recoveredData.session_id}\\n`;
+                sqlContent += `-- Generated: ${new Date().toISOString()}\\n\\n`;
+                
+                evaluations.forEach(eval => {
+                    const scores = eval.scores || {};
+                    const scoresJson = JSON.stringify(scores);
+                    const comment = eval.comment ? eval.comment.replace(/'/g, "''") : '';
+                    
+                    sqlContent += `INSERT INTO sample_evaluations (session_id, sample_id, scores, comment, timestamp, duration_ms) VALUES ('${recoveredData.session_id}', '${eval.sample_id}', '${scoresJson}', '${comment}', '${eval.timestamp || new Date().toISOString()}', ${eval.duration_ms || 0});\\n`;
+                });
+                
+                const sqlBlob = new Blob([sqlContent], {type: 'text/plain'});
+                const sqlUrl = URL.createObjectURL(sqlBlob);
+                
+                // Display download links
+                let html = '<div class="status success">✅ Data exported successfully!</div>';
+                html += '<h3>Download Recovery Files:</h3>';
+                html += '<div style="margin: 10px 0;">';
+                html += `<a href="${jsonUrl}" download="tts_qa_recovery_${timestamp}.json" class="btn">📄 Full JSON Backup</a>`;
+                html += `<a href="${csvUrl}" download="tts_qa_recovery_${timestamp}.csv" class="btn btn-success">📊 CSV for Analysis</a>`;
+                html += `<a href="${sqlUrl}" download="tts_qa_recovery_${timestamp}.sql" class="btn">🗄️ SQL Insert Statements</a>`;
+                html += '</div>';
+                
+                html += '<div class="status info">💡 Send these files to your data team for recovery</div>';
+                
+                // Show preview of data
+                html += '<h4>Data Preview:</h4>';
+                html += '<pre>' + JSON.stringify(recoveredData.results.slice(0, 3), null, 2) + '</pre>';
+                
+                outputDiv.innerHTML = html;
+                
+            } catch (error) {
+                outputDiv.innerHTML = `<div class="status error">Export failed: ${error.message}</div>`;
+            }
+        }
+        
+        function clearLocalStorage() {
+            if (!confirm('Are you sure you want to clear the localStorage session? Make sure you have exported the data first!')) {
+                return;
+            }
+            
+            localStorage.removeItem('tts-qa-session');
+            document.getElementById('results').innerHTML = '<div class="status success">✅ localStorage cleared</div>';
+            document.getElementById('output').innerHTML = '';
+            recoveredData = null;
+        }
+        
+        // Auto-scan on load
+        window.onload = function() {
+            scanLocalStorage();
+        };
+    </script>
+</body>
+</html>
