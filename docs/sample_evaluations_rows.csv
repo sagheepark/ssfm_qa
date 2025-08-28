@@ -1,0 +1,68 @@
+id,session_id,sample_id,scores,comment,timestamp,duration_ms
+45,session_1756229497710_expressivity_none,v002_fear_match_scale_1.0,"{""emotion"":4,""quality"":5,""similarity"":6}",target sample 목소리가 좀 리버브가 들어간듯한느낌,2025-08-26 17:32:51.526+00,73815
+46,session_1756229497710_expressivity_none,v002_angry_match_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":6}","reference audio 재생 처음에 소리 튐 현상. 
+Target's emotion: 높낮이만 심하고 화가난 느낌이 안사는듯",2025-08-26 17:34:07.313+00,149602
+47,session_1756229497710_expressivity_none,v002_surprise_neutral_scale_2.0,"{""emotion"":1,""quality"":6,""similarity"":7}",Reference audio quality 심각 | Target sample: 전혀 감정 안담김,2025-08-26 17:34:56.927+00,199216
+48,session_1756229497710_expressivity_none,v002_happy_match_scale_2.0,"{""emotion"":5,""quality"":5,""similarity"":6}",Reference audio가 더 해피하다,2025-08-26 17:36:11.029+00,273318
+49,session_1756229497710_expressivity_none,v002_furious_neutral_scale_3.0,"{""emotion"":2,""quality"":2,""similarity"":1}",,2025-08-26 17:39:21.483+00,463772
+50,session_1756229497710_expressivity_none,v002_happy_neutral_scale_1.5,"{""emotion"":3,""quality"":6,""similarity"":6}",레퍼런스 오디오가 단어 스킵했음 ('to' between remember and turn) 리서치에 리포트해야할듯,2025-08-26 17:40:37.244+00,539533
+51,session_1756229497710_expressivity_none,v002_sad_opposite_scale_3.0,"{""emotion"":5,""quality"":7,""similarity"":6}",,2025-08-26 17:41:16.455+00,578744
+52,session_1756229497710_expressivity_none,v002_toneup_match_scale_0.5,"{""emotion"":6,""quality"":7,""similarity"":7}",,2025-08-26 17:41:40.527+00,602816
+53,session_1756229497710_expressivity_none,v002_sad_match_scale_1.0,"{""emotion"":5,""quality"":6,""similarity"":5}",레퍼런스 오디오: 음성 처음이 짤림 (리서치 공유 필요),2025-08-26 17:42:39.479+00,661768
+54,session_1756229497710_expressivity_none,v001_surprise_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":7}",,2025-08-26 17:43:06.579+00,688868
+55,session_1756229497710_expressivity_none,v001_excitement_match_scale_0.5,"{""emotion"":5,""quality"":5,""similarity"":5}",타겟샘플: 발화가 너무 빨라서 부자연스러움,2025-08-26 17:45:23.51+00,825799
+56,session_1756229497710_expressivity_none,v002_sad_match_scale_3.0,"{""emotion"":5,""quality"":4,""similarity"":4}",,2025-08-26 17:45:49.339+00,851628
+57,session_1756229497710_expressivity_none,v002_furious_opposite_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-26 17:46:07.601+00,869890
+58,session_1756229497710_expressivity_none,v002_happy_match_scale_0.5,"{""emotion"":3,""quality"":5,""similarity"":5}",레퍼런스가 더 해피함,2025-08-26 17:47:00.801+00,923090
+59,session_1756229497710_expressivity_none,v002_tonedown_match_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":6}",레퍼런스 오디오 재생이 안됨,2025-08-26 17:47:50.632+00,972921
+60,session_1756250845761_expressivity_0.6,v001_toneup_match_scale_2.0,"{""emotion"":7,""quality"":4,""similarity"":6}",레퍼런스 음성 퀄리티 문제,2025-08-26 23:27:54.558+00,28797
+61,session_1756250845761_expressivity_0.6,v002_happy_neutral_scale_1.0,"{""emotion"":4,""quality"":4,""similarity"":7}",,2025-08-26 23:28:24.671+00,58910
+62,session_1756250845761_expressivity_0.6,v002_whisper_neutral_scale_1.0,"{""emotion"":7,""quality"":1,""similarity"":4}","레퍼런스 오디오 마지막에 음성 품질
+타겟 샘플 로봇음성되어버림",2025-08-26 23:29:16.327+00,110566
+63,session_1756250845761_expressivity_0.6,v002_excitement_opposite_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":6}","스크립트가 감정이랑 너무 상반되어서 좀 어렵네요.
+타겟 샘플 끊어읽는 것이 좀 부자연스러움. 음질의 퀄리티는 문제없음",2025-08-26 23:30:11.401+00,165640
+64,session_1756250845761_expressivity_0.6,v001_excited_match_scale_1.5,"{""emotion"":3,""quality"":3,""similarity"":6}",타겟샘플 앞부분 음성 끊김,2025-08-26 23:30:34.765+00,189004
+65,session_1756250845761_expressivity_0.6,v001_terrified_opposite_scale_2.0,"{""emotion"":5,""quality"":6,""similarity"":6}",,2025-08-26 23:30:55.625+00,209864
+66,session_1756250845761_expressivity_0.6,v001_surprise_neutral_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-26 23:31:14.003+00,228242
+67,session_1756250845761_expressivity_0.6,v001_fear_neutral_scale_2.0,"{""emotion"":5,""quality"":1,""similarity"":4}","레퍼런스 음성 맨 끝에 음성 갈라짐
+타겟샘플 문제 많음",2025-08-26 23:31:59.856+00,274095
+68,session_1756250845761_expressivity_0.6,v001_excited_opposite_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":6}",타겟음성 중간에 음성 튕김,2025-08-26 23:32:30.04+00,304279
+69,session_1756250845761_expressivity_0.6,v002_toneup_match_scale_2.0,"{""emotion"":3,""quality"":6,""similarity"":5}",오히려 레퍼런스보다 낮은 톤,2025-08-26 23:32:54.576+00,328815
+70,session_1756250845761_expressivity_0.6,v001_fear_match_scale_2.0,"{""emotion"":4,""quality"":4,""similarity"":5}","레퍼런스 오디오 첫부분 음성 깨짐
+타겟샘플 앞부분에 대본 씹음(?)",2025-08-26 23:33:38.051+00,372291
+71,session_1756250845761_expressivity_0.6,v002_whisper_opposite_scale_1.0,"{""emotion"":7,""quality"":5,""similarity"":5}",레퍼런스 음성 목소리 갈라짐,2025-08-26 23:34:09.41+00,403649
+72,session_1756250845761_expressivity_0.6,v001_excited_opposite_scale_3.0,"{""emotion"":7,""quality"":7,""similarity"":6}",,2025-08-26 23:43:21.36+00,955599
+73,session_1756250845761_expressivity_0.6,v001_tonedown_opposite_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":7}","레퍼런스 오디오가 자동감정인가요..? 좋기는 한데 음성이 아~주 작게 시작했다가 점점 커지네요. 
+타겟샘플: 전반적으로 음질이 안좋음, 다른 문제없음",2025-08-26 23:44:44.491+00,1038730
+74,session_1756250845761_expressivity_0.6,v001_whisper_neutral_scale_1.5,"{""emotion"":7,""quality"":4,""similarity"":6}",타겟샘플: 아주 약간의 기계음,2025-08-26 23:45:12.222+00,1066461
+75,session_1756251716061_expressivity_none,v001_sad_opposite_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":3}",,2025-08-26 23:42:35.381+00,39320
+76,session_1756251716061_expressivity_none,v002_sad_neutral_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":5}",,2025-08-26 23:43:03.965+00,67904
+77,session_1756251716061_expressivity_none,v002_angry_neutral_scale_1.0,"{""emotion"":2,""quality"":6,""similarity"":4}",,2025-08-26 23:43:48.199+00,112138
+78,session_1756251716061_expressivity_none,v002_excitement_neutral_scale_0.5,"{""emotion"":2,""quality"":6,""similarity"":5}",,2025-08-26 23:44:41.195+00,165134
+79,session_1756251716061_expressivity_none,v001_excited_opposite_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":3}",,2025-08-26 23:45:07.665+00,191604
+80,session_1756251716061_expressivity_none,v002_angry_match_scale_3.0,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-26 23:45:53.743+00,237682
+81,session_1756251716061_expressivity_none,v001_excited_match_scale_2.5,"{""emotion"":6,""quality"":5,""similarity"":2}",,2025-08-26 23:46:23.08+00,267019
+82,session_1756251716061_expressivity_none,v002_happy_match_scale_2.5,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-26 23:46:41.886+00,285825
+83,session_1756251716061_expressivity_none,v002_whisper_opposite_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-26 23:47:13.201+00,317140
+84,session_1756251716061_expressivity_none,v001_angry_match_scale_0.5,"{""emotion"":4,""quality"":6,""similarity"":4}",,2025-08-26 23:47:50.694+00,354633
+85,session_1756251716061_expressivity_none,v001_excitement_neutral_scale_2.5,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-26 23:48:20.753+00,384692
+86,session_1756251716061_expressivity_none,v002_furious_opposite_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-26 23:48:46.898+00,410837
+87,session_1756251716061_expressivity_none,v001_whisper_match_scale_3.0,"{""emotion"":7,""quality"":5,""similarity"":5}",,2025-08-26 23:49:05.236+00,429175
+88,session_1756251716061_expressivity_none,v001_excitement_opposite_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-26 23:49:31.283+00,455222
+89,session_1756251716061_expressivity_none,v002_whisper_match_scale_3.0,"{""emotion"":6,""quality"":2,""similarity"":2}",,2025-08-26 23:49:50.25+00,474189
+90,session_1756251716061_expressivity_none,v002_toneup_neutral_scale_2.5,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-26 23:50:11.676+00,495615
+91,session_1756251716061_expressivity_none,v002_tonedown_match_scale_2.5,"{""emotion"":6,""quality"":3,""similarity"":2}",,2025-08-26 23:50:29.522+00,513461
+92,session_1756251716061_expressivity_none,v001_fear_match_scale_1.0,"{""emotion"":4,""quality"":6,""similarity"":5}",,2025-08-26 23:50:57.071+00,541010
+93,session_1756266384281_expressivity_none,v002_excited_match_scale_3.0,"{""emotion"":7,""quality"":6,""similarity"":3}",,2025-08-27 03:46:59.769+00,35488
+94,session_1756266468362_expressivity_none,v002_happy_neutral_scale_1.0,"{""emotion"":6,""quality"":7,""similarity"":7}",,2025-08-27 03:48:03.467+00,15105
+95,session_1756266468362_expressivity_none,v001_tonedown_opposite_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":5}",,2025-08-27 03:48:22.671+00,34309
+96,session_1756266468362_expressivity_none,v001_tonedown_match_scale_2.5,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-27 03:48:35.225+00,46863
+97,session_1756266468362_expressivity_none,v002_toneup_match_scale_1.0,"{""emotion"":5,""quality"":4,""similarity"":7}",,2025-08-27 03:48:56.928+00,68566
+98,session_1756266468362_expressivity_none,v001_whisper_match_scale_2.5,"{""emotion"":6,""quality"":3,""similarity"":5}",,2025-08-27 03:49:19.357+00,90995
+99,session_1756266468362_expressivity_none,v002_toneup_neutral_scale_3.0,"{""emotion"":4,""quality"":7,""similarity"":7}",,2025-08-27 03:49:33.966+00,105604
+100,session_1756266468362_expressivity_none,v001_terrified_opposite_scale_3.0,"{""emotion"":7,""quality"":6,""similarity"":2}",,2025-08-27 03:49:46.701+00,118339
+101,session_1756266468362_expressivity_none,v002_fear_neutral_scale_1.5,"{""emotion"":4,""quality"":5,""similarity"":7}",,2025-08-27 03:49:58.985+00,130623
+102,session_1756266468362_expressivity_none,v002_excited_match_scale_1.5,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-27 03:50:11.211+00,142849
+103,session_1756266468362_expressivity_none,v002_surprise_match_scale_0.5,"{""emotion"":7,""quality"":5,""similarity"":7}",,2025-08-27 03:50:23.988+00,155626
+104,session_1756266468362_expressivity_none,v002_excitement_opposite_scale_3.0,"{""emotion"":4,""quality"":4,""similarity"":7}",,2025-08-27 03:50:42.832+00,174470
+105,session_1756266468362_expressivity_none,v001_sad_match_scale_2.5,"{""emotion"":7,""quality"":7,""similarity"":6}",,2025-08-27 03:50:54.785+00,186423
