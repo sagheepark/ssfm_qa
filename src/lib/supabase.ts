@@ -189,6 +189,104 @@ export async function getSampleMetadata() {
   return data
 }
 
+// ===== SMART MIGRATION FUNCTIONS =====
+
+// Helper function to detect if we should use v2 tables based on session data
+export function shouldUseV2Tables(sessionData?: any): boolean {
+  // Check if voice_set exists and contains voices_2 experiment data
+  if (sessionData?.voice_set) {
+    return true; // All sessions with voice_set should use v2
+  }
+  
+  // Check if session_id contains voices_2 indicators
+  if (sessionData?.session_id?.includes('expressivity_')) {
+    return true;
+  }
+  
+  // For new sessions starting now, use v2 by default
+  return true;
+}
+
+// Smart wrapper functions that route to v1 or v2 based on data
+export async function saveEvaluationSmart(evaluation: any, sessionData?: any) {
+  const useV2 = shouldUseV2Tables(sessionData);
+  
+  if (useV2) {
+    // Enhance evaluation data for v2
+    const enhancedEvaluation = {
+      ...evaluation,
+      experiment_version: 'voices_2',
+      voice_set: sessionData?.voice_set || 'expressivity_none',
+      // Parse sample_id to extract metadata: {voice}_{emotion}_{text_type}_scale_{scale}
+      ...parseSimpleSampleId(evaluation.sample_id)
+    };
+    
+    console.log('Using V2 tables for evaluation:', enhancedEvaluation);
+    return await saveEvaluationV2(enhancedEvaluation);
+  } else {
+    console.log('Using V1 tables for evaluation:', evaluation);
+    return await saveEvaluation(evaluation);
+  }
+}
+
+export async function createSessionSmart(sessionData: any) {
+  const useV2 = shouldUseV2Tables(sessionData);
+  
+  if (useV2) {
+    // Enhance session data for v2
+    const enhancedSession = {
+      ...sessionData,
+      experiment_version: 'voices_2',
+      voice_set: sessionData.voice_set || 'expressivity_none',
+      sample_count: sessionData.samples?.length || 0
+    };
+    
+    console.log('Using V2 tables for session:', enhancedSession);
+    return await createSessionV2(enhancedSession);
+  } else {
+    console.log('Using V1 tables for session:', sessionData);
+    return await createSession(sessionData);
+  }
+}
+
+export async function updateSessionSmart(sessionId: string, updates: any, sessionData?: any) {
+  const useV2 = shouldUseV2Tables(sessionData || { session_id: sessionId });
+  
+  if (useV2) {
+    return await updateSessionV2(sessionId, updates);
+  } else {
+    return await updateSession(sessionId, updates);
+  }
+}
+
+// Helper function to parse sample_id and extract metadata
+function parseSimpleSampleId(sampleId: string) {
+  // Expected format: {voice}_{emotion}_{text_type}_scale_{scale}
+  const parts = sampleId.split('_');
+  
+  if (parts.length >= 5) {
+    const voice_id = parts[0]; // v001, v002
+    const emotion_value = parts[1]; // angry, sad, etc.
+    const text_type = parts[2]; // match, neutral, opposite
+    const scale_part = parts[3]; // "scale"
+    const emotion_scale = parts[4] ? parseFloat(parts[4]) : 1.0;
+    
+    // Determine emotion_type based on known patterns
+    const emotion_labels = ['angry', 'sad', 'happy', 'whisper', 'toneup', 'tonedown'];
+    const emotion_type = emotion_labels.includes(emotion_value) ? 'emotion_label' : 'emotion_vector';
+    
+    return {
+      voice_id,
+      emotion_value,
+      text_type,
+      emotion_scale,
+      emotion_type
+    };
+  }
+  
+  return {};
+}
+
 // ===== VOICES_2 EXPERIMENT FUNCTIONS =====
 
 export async function saveEvaluationV2(evaluation: SampleEvaluationV2) {

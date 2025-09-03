@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { EvaluationScores, QASession, EvaluationResult } from '@/lib/types';
 import { getRandomSamples, getSampleMetadata } from '@/lib/sampleData';
-import { saveEvaluation, createSession, supabase } from '@/lib/supabase';
+import { saveEvaluationSmart, createSessionSmart, supabase } from '@/lib/supabase';
 import AudioPlayer from '@/components/AudioPlayer';
 import EvaluationForm from '@/components/EvaluationForm';
 import DatabaseConnectionError from '@/components/DatabaseConnectionError';
@@ -63,7 +63,7 @@ export default function TTSQAApp() {
     
     try {
       // Create session in Supabase
-      await createSession(sessionData);
+      await createSessionSmart(sessionData);
       
       setSession(newSession);
       localStorage.removeItem('tts-qa-session'); // Clear any old session
@@ -126,7 +126,7 @@ export default function TTSQAApp() {
         samples_data: session.samples
       };
       
-      await createSession(sessionData);
+      await createSessionSmart(sessionData);
       console.log('Session created in database');
 
       // Then save all evaluations to database (only non-skipped ones)
@@ -145,7 +145,7 @@ export default function TTSQAApp() {
           duration_ms: evaluation.duration_ms || 0
         };
         
-        await saveEvaluation(evaluationData);
+        await saveEvaluationSmart(evaluationData, session);
       }
       
       console.log(`Successfully submitted ${session.results.length} evaluations to database`);
@@ -206,7 +206,7 @@ export default function TTSQAApp() {
           samples_data: session.samples
         };
         
-        await createSession(sessionData);
+        await createSessionSmart(sessionData);
         console.log('Session created in database');
 
         // Then save all evaluations to database (only non-skipped ones)
@@ -226,7 +226,7 @@ export default function TTSQAApp() {
             duration_ms: evaluation.duration_ms || 0
           };
           
-          await saveEvaluation(evaluationData);
+          await saveEvaluationSmart(evaluationData, session);
           submittedCount++;
         }
         

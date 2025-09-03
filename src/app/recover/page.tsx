@@ -3,7 +3,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { saveEvaluation, createSession } from '@/lib/supabase';
+import { saveEvaluationSmart, createSessionSmart } from '@/lib/supabase';
 
 export default function RecoverPage() {
   const [sessionData, setSessionData] = useState<any>(null);
@@ -67,7 +67,7 @@ export default function RecoverPage() {
         samples_data: sessionData.samples
       };
       
-      await createSession(sessionDataForDb);
+      await createSessionSmart(sessionDataForDb);
       console.log('Session recovered to database');
 
       // Then save all evaluations (excluding skipped ones)
@@ -90,7 +90,7 @@ export default function RecoverPage() {
             duration_ms: evaluation.duration_ms || 0
           };
           
-          await saveEvaluation(evaluationData);
+          await saveEvaluationSmart(evaluationData, sessionData);
           submittedCount++;
         } catch (error) {
           console.error('Failed to save evaluation:', error);
