@@ -26,7 +26,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
       const folder = voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6';
       // Use reference file if isReference flag is true
       const filename = isReference ? sample.reference_file : sample.filename;
-      const fullUrl = `/voices/${folder}/${filename}`;
+      const fullUrl = `/voices_2/${folder}/${filename}`;
       
       console.log('AudioPlayer: Loading audio file:', filename);
       console.log('AudioPlayer: Is reference?', isReference);
@@ -133,7 +133,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
         }}
         preload="metadata"
       >
-        <source src={`/voices/${voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6'}/${isReference ? sample.reference_file : sample.filename}`} type="audio/wav" />
+        <source src={`/voices_2/${voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6'}/${isReference ? sample.reference_file : sample.filename}`} type="audio/wav" />
         Your browser does not support the audio element.
       </audio>
 
