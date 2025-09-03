@@ -192,7 +192,7 @@ export async function getSampleMetadata() {
 // ===== SMART MIGRATION FUNCTIONS =====
 
 // Helper function to detect if we should use v2 tables based on session data
-export function shouldUseV2Tables(sessionData?: any): boolean {
+export function shouldUseV2Tables(sessionData?: { voice_set?: string; session_id?: string }): boolean {
   // Check if voice_set exists and contains voices_2 experiment data
   if (sessionData?.voice_set) {
     return true; // All sessions with voice_set should use v2
@@ -208,12 +208,12 @@ export function shouldUseV2Tables(sessionData?: any): boolean {
 }
 
 // Smart wrapper functions that route to v1 or v2 based on data
-export async function saveEvaluationSmart(evaluation: any, sessionData?: any) {
+export async function saveEvaluationSmart(evaluation: SampleEvaluation, sessionData?: { voice_set?: 'expressivity_none' | 'expressivity_0.6'; session_id?: string }) {
   const useV2 = shouldUseV2Tables(sessionData);
   
   if (useV2) {
     // Enhance evaluation data for v2
-    const enhancedEvaluation = {
+    const enhancedEvaluation: SampleEvaluationV2 = {
       ...evaluation,
       experiment_version: 'voices_2',
       voice_set: sessionData?.voice_set || 'expressivity_none',
@@ -229,12 +229,12 @@ export async function saveEvaluationSmart(evaluation: any, sessionData?: any) {
   }
 }
 
-export async function createSessionSmart(sessionData: any) {
+export async function createSessionSmart(sessionData: Partial<QASession> & { voice_set?: 'expressivity_none' | 'expressivity_0.6'; samples?: unknown[] }) {
   const useV2 = shouldUseV2Tables(sessionData);
   
   if (useV2) {
     // Enhance session data for v2
-    const enhancedSession = {
+    const enhancedSession: Partial<QASessionV2> = {
       ...sessionData,
       experiment_version: 'voices_2',
       voice_set: sessionData.voice_set || 'expressivity_none',
@@ -249,7 +249,7 @@ export async function createSessionSmart(sessionData: any) {
   }
 }
 
-export async function updateSessionSmart(sessionId: string, updates: any, sessionData?: any) {
+export async function updateSessionSmart(sessionId: string, updates: Partial<QASession>, sessionData?: { voice_set?: 'expressivity_none' | 'expressivity_0.6'; session_id?: string }) {
   const useV2 = shouldUseV2Tables(sessionData || { session_id: sessionId });
   
   if (useV2) {
@@ -268,7 +268,7 @@ function parseSimpleSampleId(sampleId: string) {
     const voice_id = parts[0]; // v001, v002
     const emotion_value = parts[1]; // angry, sad, etc.
     const text_type = parts[2]; // match, neutral, opposite
-    const scale_part = parts[3]; // "scale"
+    // parts[3] is "scale" keyword, parts[4] is the actual value
     const emotion_scale = parts[4] ? parseFloat(parts[4]) : 1.0;
     
     // Determine emotion_type based on known patterns
