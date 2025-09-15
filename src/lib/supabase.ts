@@ -473,6 +473,10 @@ export async function saveEvaluationV3(evaluation: SampleEvaluationV2) {
     throw error;
   }
   
+  if (!data || data.length === 0) {
+    throw new Error('No data returned from database');
+  }
+  
   console.log('saveEvaluationV3: Success, returning:', data[0]);
   return data[0];
 }
@@ -514,6 +518,10 @@ export async function createSessionV3(sessionData: Partial<QASessionV2>) {
     throw error;
   }
   
+  if (!data || data.length === 0) {
+    throw new Error('No data returned from database');
+  }
+  
   return data[0]
 }
 
@@ -542,5 +550,10 @@ export async function updateSessionV3(sessionId: string, updates: Partial<QASess
   }
   
   if (error) throw error
+  
+  if (!data || data.length === 0) {
+    throw new Error('No data returned from database');
+  }
+  
   return data[0]
 }
