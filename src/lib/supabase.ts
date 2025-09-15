@@ -62,14 +62,14 @@ export interface SampleMetadata {
 // New voices_2 experiment types
 export interface QASessionV2 extends QASession {
   experiment_version?: string
-  voice_set?: 'expressivity_0.6'
+  voice_set?: 'expressivity_none' | 'expressivity_0.6'  // Support both V2 voice sets
   sample_count?: number
   completion_percentage?: number
 }
 
 export interface SampleEvaluationV2 extends SampleEvaluation {
   experiment_version?: string
-  voice_set?: 'expressivity_0.6'
+  voice_set?: 'expressivity_none' | 'expressivity_0.6'  // Support both V2 voice sets
   voice_id?: string           // v001, v002
   emotion_type?: string       // emotion_label, emotion_vector
   emotion_value?: string      // angry, sad, excited, etc.
