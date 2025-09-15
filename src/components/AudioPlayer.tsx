@@ -149,9 +149,9 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
                 {title}
               </h3>
             )}
-            {/* Simplified - Only Filename */}
-            <div className="text-sm text-gray-600">
-              <p><strong>File:</strong> {isReference ? sample.reference_file : sample.filename}</p>
+            {/* Simplified - Hide filename for cleaner UI */}
+            <div className="text-sm text-gray-500">
+              <p>{isReference ? 'Neutral baseline audio' : 'Target sample with emotion'}</p>
             </div>
           </>
         ) : (

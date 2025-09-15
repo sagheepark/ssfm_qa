@@ -524,7 +524,7 @@ export default function TTSQAApp() {
                 sample={currentSample} 
                 voiceSet={session.voice_set}
                 simplified={true}
-                title={`Target Sample (With ${currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: ${currentSample.emotion_value}, Scale: ${currentSample.scale})`}
+                title={`Target Sample (${currentSample.emotion_type === 'emotion_label' ? 'Emotion Label' : 'Emotion Vector'}: ${currentSample.emotion_value})`}
                 colorScheme="orange"
               />
             </div>
