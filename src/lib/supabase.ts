@@ -234,7 +234,7 @@ export async function saveEvaluationSmart(evaluation: SampleEvaluation, sessionD
     const enhancedEvaluation: SampleEvaluationV2 = {
       ...evaluation,
       experiment_version: 'voices_3',
-      voice_set: sessionData?.voice_set || 'expressivity_0.6',
+      voice_set: 'expressivity_0.6', // voices_3 only supports expressivity_0.6
       // Parse sample_id to extract metadata: {voice}_{emotion}_{text_type}_scale_{scale}
       ...parseSimpleSampleId(evaluation.sample_id)
     };
@@ -268,7 +268,7 @@ export async function createSessionSmart(sessionData: Partial<QASession> & { voi
     const enhancedSession: Partial<QASessionV2> = {
       ...sessionData,
       experiment_version: 'voices_3',
-      voice_set: sessionData.voice_set || 'expressivity_0.6',
+      voice_set: 'expressivity_0.6', // voices_3 only supports expressivity_0.6
       sample_count: sessionData.samples?.length || 0
     };
     
