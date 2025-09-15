@@ -240,7 +240,7 @@ export async function saveEvaluationSmart(evaluation: SampleEvaluation, sessionD
     };
     
     console.log('Using V3 tables for evaluation:', enhancedEvaluation);
-    return await saveEvaluationV2(enhancedEvaluation); // Will use V3 functions when available
+    return await saveEvaluationV3(enhancedEvaluation);
   } else if (useV2) {
     // Enhance evaluation data for v2
     const enhancedEvaluation: SampleEvaluationV2 = {
@@ -273,7 +273,7 @@ export async function createSessionSmart(sessionData: Partial<QASession> & { voi
     };
     
     console.log('Using V3 tables for session:', enhancedSession);
-    return await createSessionV2(enhancedSession); // Will use V3 functions when available
+    return await createSessionV3(enhancedSession);
   } else if (useV2) {
     // Enhance session data for v2
     const enhancedSession: Partial<QASessionV2> = {
@@ -438,4 +438,109 @@ export async function getAudioUrlV2(filename: string): Promise<string> {
     .getPublicUrl(`voices_2/${filename}`)
   
   return data.publicUrl
+}
+
+// ===== VOICES_3 EXPERIMENT FUNCTIONS =====
+
+export async function saveEvaluationV3(evaluation: SampleEvaluationV2) {
+  if (!supabase) {
+    throw new Error('Database connection not available. Please contact the administrator.')
+  }
+  
+  console.log('saveEvaluationV3: Attempting to save:', evaluation);
+  
+  // Try V3 table first, fallback to V2 if V3 doesn't exist yet
+  let { data, error } = await supabase
+    .from('sample_evaluations_v3')
+    .insert([evaluation])
+    .select()
+  
+  if (error && error.message.includes('relation') && error.message.includes('does not exist')) {
+    console.log('V3 table not found, falling back to V2 table');
+    // Fallback to V2 table
+    const result = await supabase
+      .from('sample_evaluations_v2')
+      .insert([evaluation])
+      .select()
+    data = result.data;
+    error = result.error;
+  }
+  
+  console.log('saveEvaluationV3: Supabase response:', { data, error });
+  
+  if (error) {
+    console.error('saveEvaluationV3: Supabase error details:', error);
+    throw error;
+  }
+  
+  console.log('saveEvaluationV3: Success, returning:', data[0]);
+  return data[0];
+}
+
+export async function createSessionV3(sessionData: Partial<QASessionV2>) {
+  if (!supabase) {
+    throw new Error('Database connection not available. Please contact the administrator.')
+  }
+  
+  console.log('createSessionV3: Attempting to upsert:', sessionData);
+  
+  // Try V3 table first, fallback to V2 if V3 doesn't exist yet
+  let { data, error } = await supabase
+    .from('qa_sessions_v3')
+    .upsert([sessionData], { 
+      onConflict: 'session_id',
+      ignoreDuplicates: false 
+    })
+    .select()
+  
+  if (error && error.message.includes('relation') && error.message.includes('does not exist')) {
+    console.log('V3 table not found, falling back to V2 table');
+    // Fallback to V2 table
+    const result = await supabase
+      .from('qa_sessions_v2')
+      .upsert([sessionData], { 
+        onConflict: 'session_id',
+        ignoreDuplicates: false 
+      })
+      .select()
+    data = result.data;
+    error = result.error;
+  }
+  
+  console.log('createSessionV3: Supabase response:', { data, error });
+  
+  if (error) {
+    console.error('createSessionV3: Supabase error details:', error);
+    throw error;
+  }
+  
+  return data[0]
+}
+
+export async function updateSessionV3(sessionId: string, updates: Partial<QASessionV2>) {
+  if (!supabase) {
+    throw new Error('Supabase client not initialized. Check environment variables.')
+  }
+  
+  // Try V3 table first, fallback to V2 if V3 doesn't exist yet
+  let { data, error } = await supabase
+    .from('qa_sessions_v3')
+    .update(updates)
+    .eq('session_id', sessionId)
+    .select()
+  
+  if (error && error.message.includes('relation') && error.message.includes('does not exist')) {
+    console.log('V3 table not found, falling back to V2 table');
+    // Fallback to V2 table
+    const result = await supabase
+      .from('qa_sessions_v2')
+      .update(updates)
+      .eq('session_id', sessionId)
+      .select()
+    data = result.data;
+    error = result.error;
+  }
+  
+  if (error) throw error
+  return data[0]
 }

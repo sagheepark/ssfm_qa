@@ -125,7 +125,10 @@ export default function TTSQAApp() {
         session_id: session.session_id,
         started_at: session.started_at,
         completed_at: new Date().toISOString(),
-        samples_data: session.samples
+        samples_data: session.samples,
+        experiment_version: 'voices_3', // Add V3 identification
+        audio_quality: 'hd1', // Add HD1 quality indicator
+        voice_set: session.voice_set
       };
       
       await createSessionSmart(sessionData);
@@ -147,7 +150,15 @@ export default function TTSQAApp() {
           duration_ms: evaluation.duration_ms || 0
         };
         
-        await saveEvaluationSmart(evaluationData, session);
+        // Pass complete session context for V3 routing
+        const sessionContext = {
+          voice_set: session.voice_set,
+          session_id: session.session_id,
+          experiment_version: 'voices_3',
+          audio_quality: 'hd1'
+        };
+        
+        await saveEvaluationSmart(evaluationData, sessionContext);
       }
       
       console.log(`Successfully submitted ${session.results.length} evaluations to database`);
@@ -205,7 +216,10 @@ export default function TTSQAApp() {
           session_id: session.session_id,
           started_at: session.started_at,
           completed_at: new Date().toISOString(),
-          samples_data: session.samples
+          samples_data: session.samples,
+          experiment_version: 'voices_3', // Add V3 identification
+          audio_quality: 'hd1', // Add HD1 quality indicator
+          voice_set: session.voice_set
         };
         
         await createSessionSmart(sessionData);
@@ -228,7 +242,15 @@ export default function TTSQAApp() {
             duration_ms: evaluation.duration_ms || 0
           };
           
-          await saveEvaluationSmart(evaluationData, session);
+          // Pass complete session context for V3 routing
+          const sessionContext = {
+            voice_set: session.voice_set,
+            session_id: session.session_id,
+            experiment_version: 'voices_3',
+            audio_quality: 'hd1'
+          };
+          
+          await saveEvaluationSmart(evaluationData, sessionContext);
           submittedCount++;
         }
         
