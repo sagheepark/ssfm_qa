@@ -6,14 +6,14 @@ import { TTSSample } from '@/lib/types';
 interface AudioPlayerProps {
   sample: TTSSample;
   autoPlay?: boolean;
-  voiceSet?: 'expressivity_none' | 'expressivity_0.6';
+  voiceSet?: 'expressivity_0.6';
   isReference?: boolean; // Flag to indicate if this is playing a reference file
   simplified?: boolean; // Flag to show simplified UI with only filename and controls
   title?: string; // Optional title to display
   colorScheme?: 'blue' | 'orange'; // Color scheme for buttons and controls
 }
 
-export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_none', isReference = false, simplified = false, title, colorScheme = 'blue' }: AudioPlayerProps) {
+export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expressivity_0.6', isReference = false, simplified = false, title, colorScheme = 'blue' }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -23,10 +23,11 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
 
   useEffect(() => {
     if (audioRef.current) {
-      const folder = voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6';
+      // Updated for voices_3: only expressivity_0.6 available
+      const folder = 'expressivity_0.6';
       // Use reference file if isReference flag is true
       const filename = isReference ? sample.reference_file : sample.filename;
-      const fullUrl = `/voices_2/${folder}/${filename}`;
+      const fullUrl = `/voices_3/${folder}/${filename}`;
       
       console.log('AudioPlayer: Loading audio file:', filename);
       console.log('AudioPlayer: Is reference?', isReference);
@@ -133,7 +134,7 @@ export default function AudioPlayer({ sample, autoPlay = false, voiceSet = 'expr
         }}
         preload="metadata"
       >
-        <source src={`/voices_2/${voiceSet === 'expressivity_none' ? 'expressivity_none' : 'expressivity_0.6'}/${isReference ? sample.reference_file : sample.filename}`} type="audio/wav" />
+        <source src={`/voices_3/expressivity_0.6/${isReference ? sample.reference_file : sample.filename}`} type="audio/wav" />
         Your browser does not support the audio element.
       </audio>
 

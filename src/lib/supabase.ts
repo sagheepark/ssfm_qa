@@ -62,25 +62,25 @@ export interface SampleMetadata {
 // New voices_2 experiment types
 export interface QASessionV2 extends QASession {
   experiment_version?: string
-  voice_set?: 'expressivity_none' | 'expressivity_0.6'
+  voice_set?: 'expressivity_0.6'
   sample_count?: number
   completion_percentage?: number
 }
 
 export interface SampleEvaluationV2 extends SampleEvaluation {
   experiment_version?: string
-  voice_set?: 'expressivity_none' | 'expressivity_0.6'
+  voice_set?: 'expressivity_0.6'
   voice_id?: string           // v001, v002
   emotion_type?: string       // emotion_label, emotion_vector
   emotion_value?: string      // angry, sad, excited, etc.
   text_type?: string          // match, neutral, opposite
-  emotion_scale?: number      // 0.5, 1.0, 1.5, etc.
+  emotion_scale?: number      // 1.0, 1.2, 1.4, 1.6, 1.8, 2.0
 }
 
 export interface SampleMetadataV2 extends SampleMetadata {
   reference_file?: string
   experiment_version?: string
-  voice_set?: 'expressivity_none' | 'expressivity_0.6'
+  voice_set?: 'expressivity_0.6'
   created_at?: string
 }
 
@@ -191,32 +191,62 @@ export async function getSampleMetadata() {
 
 // ===== SMART MIGRATION FUNCTIONS =====
 
-// Helper function to detect if we should use v2 tables based on session data
-export function shouldUseV2Tables(sessionData?: { voice_set?: string; session_id?: string }): boolean {
-  // Check if voice_set exists and contains voices_2 experiment data
-  if (sessionData?.voice_set) {
-    return true; // All sessions with voice_set should use v2
-  }
+// Helper function to detect if we should use v3 tables based on session data
+export function shouldUseV3Tables(sessionData?: { voice_set?: string; session_id?: string; experiment_version?: string; audio_quality?: string }): boolean {
+  // Check for voices_3 indicators
+  if (sessionData?.experiment_version === 'voices_3') return true;
+  if (sessionData?.audio_quality === 'hd1') return true;
+  if (sessionData?.session_id?.includes('voices_3')) return true;
   
-  // Check if session_id contains voices_2 indicators
-  if (sessionData?.session_id?.includes('expressivity_')) {
-    return true;
-  }
-  
-  // For new sessions starting now, use v2 by default
+  // For new sessions starting now, use v3 by default
   return true;
 }
 
-// Smart wrapper functions that route to v1 or v2 based on data
-export async function saveEvaluationSmart(evaluation: SampleEvaluation, sessionData?: { voice_set?: 'expressivity_none' | 'expressivity_0.6'; session_id?: string }) {
+// Helper function to detect if we should use v2 tables based on session data
+export function shouldUseV2Tables(sessionData?: { voice_set?: string; session_id?: string; experiment_version?: string }): boolean {
+  // Explicit V2 indicators take precedence
+  if (sessionData?.experiment_version === 'voices_2') return true;
+  if (sessionData?.session_id?.includes('voices_2')) return true;
+  
+  // If it should use V3, don't use V2
+  if (shouldUseV3Tables(sessionData)) return false;
+  
+  // Check if voice_set exists and contains voices_2 experiment data
+  if (sessionData?.voice_set && !sessionData?.session_id?.includes('voices_3')) {
+    return true; // All sessions with voice_set should use v2 (unless explicitly voices_3)
+  }
+  
+  // Check if session_id contains voices_2 indicators
+  if (sessionData?.session_id?.includes('expressivity_') && !sessionData?.session_id?.includes('voices_3')) {
+    return true;
+  }
+  
+  return false; // Default to V3 now
+}
+
+// Smart wrapper functions that route to v1, v2, or v3 based on data
+export async function saveEvaluationSmart(evaluation: SampleEvaluation, sessionData?: { voice_set?: 'expressivity_none' | 'expressivity_0.6'; session_id?: string; experiment_version?: string; audio_quality?: string }) {
+  const useV3 = shouldUseV3Tables(sessionData);
   const useV2 = shouldUseV2Tables(sessionData);
   
-  if (useV2) {
+  if (useV3) {
+    // Enhance evaluation data for v3
+    const enhancedEvaluation: SampleEvaluationV2 = {
+      ...evaluation,
+      experiment_version: 'voices_3',
+      voice_set: sessionData?.voice_set || 'expressivity_0.6',
+      // Parse sample_id to extract metadata: {voice}_{emotion}_{text_type}_scale_{scale}
+      ...parseSimpleSampleId(evaluation.sample_id)
+    };
+    
+    console.log('Using V3 tables for evaluation:', enhancedEvaluation);
+    return await saveEvaluationV2(enhancedEvaluation); // Will use V3 functions when available
+  } else if (useV2) {
     // Enhance evaluation data for v2
     const enhancedEvaluation: SampleEvaluationV2 = {
       ...evaluation,
       experiment_version: 'voices_2',
-      voice_set: sessionData?.voice_set || 'expressivity_none',
+      voice_set: sessionData?.voice_set || 'expressivity_0.6',
       // Parse sample_id to extract metadata: {voice}_{emotion}_{text_type}_scale_{scale}
       ...parseSimpleSampleId(evaluation.sample_id)
     };
@@ -229,15 +259,27 @@ export async function saveEvaluationSmart(evaluation: SampleEvaluation, sessionD
   }
 }
 
-export async function createSessionSmart(sessionData: Partial<QASession> & { voice_set?: 'expressivity_none' | 'expressivity_0.6'; samples?: unknown[] }) {
+export async function createSessionSmart(sessionData: Partial<QASession> & { voice_set?: 'expressivity_none' | 'expressivity_0.6'; samples?: unknown[]; experiment_version?: string; audio_quality?: string }) {
+  const useV3 = shouldUseV3Tables(sessionData);
   const useV2 = shouldUseV2Tables(sessionData);
   
-  if (useV2) {
+  if (useV3) {
+    // Enhance session data for v3
+    const enhancedSession: Partial<QASessionV2> = {
+      ...sessionData,
+      experiment_version: 'voices_3',
+      voice_set: sessionData.voice_set || 'expressivity_0.6',
+      sample_count: sessionData.samples?.length || 0
+    };
+    
+    console.log('Using V3 tables for session:', enhancedSession);
+    return await createSessionV2(enhancedSession); // Will use V3 functions when available
+  } else if (useV2) {
     // Enhance session data for v2
     const enhancedSession: Partial<QASessionV2> = {
       ...sessionData,
       experiment_version: 'voices_2',
-      voice_set: sessionData.voice_set || 'expressivity_none',
+      voice_set: sessionData.voice_set || 'expressivity_0.6',
       sample_count: sessionData.samples?.length || 0
     };
     
@@ -249,10 +291,13 @@ export async function createSessionSmart(sessionData: Partial<QASession> & { voi
   }
 }
 
-export async function updateSessionSmart(sessionId: string, updates: Partial<QASession>, sessionData?: { voice_set?: 'expressivity_none' | 'expressivity_0.6'; session_id?: string }) {
+export async function updateSessionSmart(sessionId: string, updates: Partial<QASession>, sessionData?: { voice_set?: 'expressivity_none' | 'expressivity_0.6'; session_id?: string; experiment_version?: string; audio_quality?: string }) {
+  const useV3 = shouldUseV3Tables(sessionData || { session_id: sessionId });
   const useV2 = shouldUseV2Tables(sessionData || { session_id: sessionId });
   
-  if (useV2) {
+  if (useV3) {
+    return await updateSessionV2(sessionId, updates); // Will use V3 functions when available
+  } else if (useV2) {
     return await updateSessionV2(sessionId, updates);
   } else {
     return await updateSession(sessionId, updates);

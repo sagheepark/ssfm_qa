@@ -43,6 +43,10 @@ next-env.d.ts
 # audio files backup (original location)
 public/voices-backup/
 
+# Old voice directories (replaced by voices_3)
+public/voices/
+public/voices_2/
+
 # Private API scripts and tokens
 tts-qa-system/scripts/
 dev_ssfm30.ipynb

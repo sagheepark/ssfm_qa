@@ -1,0 +1,59 @@
+sample_id,session_type,emotion,text_category,scale,reference_audio_file,target_audio_file,user_comment,timestamp,evaluation_duration_ms
+v002_fear_match_scale_1.0,expressivity_none,fear,match,1.0,v002_fear_match_scale_ref.wav,v002_fear_match_scale_scale_1.0.wav,target sample 목소리가 좀 리버브가 들어간듯한느낌,2025-08-26 17:32:51.526+00,73815
+v002_angry_match_scale_2.0,expressivity_none,angry,match,2.0,v002_angry_match_scale_ref.wav,v002_angry_match_scale_scale_2.0.wav,"reference audio 재생 처음에 소리 튐 현상. 
+Target's emotion: 높낮이만 심하고 화가난 느낌이 안사는듯",2025-08-26 17:34:07.313+00,149602
+v002_surprise_neutral_scale_2.0,expressivity_none,surprise,neutral,2.0,v002_surprise_neutral_scale_ref.wav,v002_surprise_neutral_scale_scale_2.0.wav,Reference audio quality 심각 | Target sample: 전혀 감정 안담김,2025-08-26 17:34:56.927+00,199216
+v002_happy_match_scale_2.0,expressivity_none,happy,match,2.0,v002_happy_match_scale_ref.wav,v002_happy_match_scale_scale_2.0.wav,Reference audio가 더 해피하다,2025-08-26 17:36:11.029+00,273318
+v002_happy_neutral_scale_1.5,expressivity_none,happy,neutral,1.5,v002_happy_neutral_scale_ref.wav,v002_happy_neutral_scale_scale_1.5.wav,레퍼런스 오디오가 단어 스킵했음 ('to' between remember and turn) 리서치에 리포트해야할듯,2025-08-26 17:40:37.244+00,539533
+v002_sad_match_scale_1.0,expressivity_none,sad,match,1.0,v002_sad_match_scale_ref.wav,v002_sad_match_scale_scale_1.0.wav,레퍼런스 오디오: 음성 처음이 짤림 (리서치 공유 필요),2025-08-26 17:42:39.479+00,661768
+v001_excitement_match_scale_0.5,expressivity_none,excitement,match,0.5,v001_excitement_match_scale_ref.wav,v001_excitement_match_scale_scale_0.5.wav,타겟샘플: 발화가 너무 빨라서 부자연스러움,2025-08-26 17:45:23.51+00,825799
+v002_happy_match_scale_0.5,expressivity_none,happy,match,0.5,v002_happy_match_scale_ref.wav,v002_happy_match_scale_scale_0.5.wav,레퍼런스가 더 해피함,2025-08-26 17:47:00.801+00,923090
+v002_tonedown_match_scale_0.5,expressivity_none,tonedown,match,0.5,v002_tonedown_match_scale_ref.wav,v002_tonedown_match_scale_scale_0.5.wav,레퍼런스 오디오 재생이 안됨,2025-08-26 17:47:50.632+00,972921
+v001_toneup_match_scale_2.0,expressivity_0.6,toneup,match,2.0,v001_toneup_match_scale_ref.wav,v001_toneup_match_scale_scale_2.0.wav,레퍼런스 음성 퀄리티 문제,2025-08-26 23:27:54.558+00,28797
+v002_whisper_neutral_scale_1.0,expressivity_0.6,whisper,neutral,1.0,v002_whisper_neutral_scale_ref.wav,v002_whisper_neutral_scale_scale_1.0.wav,"레퍼런스 오디오 마지막에 음성 품질
+타겟 샘플 로봇음성되어버림",2025-08-26 23:29:16.327+00,110566
+v002_excitement_opposite_scale_2.0,expressivity_0.6,excitement,opposite,2.0,v002_excitement_opposite_scale_ref.wav,v002_excitement_opposite_scale_scale_2.0.wav,"스크립트가 감정이랑 너무 상반되어서 좀 어렵네요.
+타겟 샘플 끊어읽는 것이 좀 부자연스러움. 음질의 퀄리티는 문제없음",2025-08-26 23:30:11.401+00,165640
+v001_excited_match_scale_1.5,expressivity_0.6,excited,match,1.5,v001_excited_match_scale_ref.wav,v001_excited_match_scale_scale_1.5.wav,타겟샘플 앞부분 음성 끊김,2025-08-26 23:30:34.765+00,189004
+v001_fear_neutral_scale_2.0,expressivity_0.6,fear,neutral,2.0,v001_fear_neutral_scale_ref.wav,v001_fear_neutral_scale_scale_2.0.wav,"레퍼런스 음성 맨 끝에 음성 갈라짐
+타겟샘플 문제 많음",2025-08-26 23:31:59.856+00,274095
+v001_excited_opposite_scale_2.0,expressivity_0.6,excited,opposite,2.0,v001_excited_opposite_scale_ref.wav,v001_excited_opposite_scale_scale_2.0.wav,타겟음성 중간에 음성 튕김,2025-08-26 23:32:30.04+00,304279
+v002_toneup_match_scale_2.0,expressivity_0.6,toneup,match,2.0,v002_toneup_match_scale_ref.wav,v002_toneup_match_scale_scale_2.0.wav,오히려 레퍼런스보다 낮은 톤,2025-08-26 23:32:54.576+00,328815
+v001_fear_match_scale_2.0,expressivity_0.6,fear,match,2.0,v001_fear_match_scale_ref.wav,v001_fear_match_scale_scale_2.0.wav,"레퍼런스 오디오 첫부분 음성 깨짐
+타겟샘플 앞부분에 대본 씹음(?)",2025-08-26 23:33:38.051+00,372291
+v002_whisper_opposite_scale_1.0,expressivity_0.6,whisper,opposite,1.0,v002_whisper_opposite_scale_ref.wav,v002_whisper_opposite_scale_scale_1.0.wav,레퍼런스 음성 목소리 갈라짐,2025-08-26 23:34:09.41+00,403649
+v001_tonedown_opposite_scale_1.5,expressivity_0.6,tonedown,opposite,1.5,v001_tonedown_opposite_scale_ref.wav,v001_tonedown_opposite_scale_scale_1.5.wav,"레퍼런스 오디오가 자동감정인가요..? 좋기는 한데 음성이 아~주 작게 시작했다가 점점 커지네요. 
+타겟샘플: 전반적으로 음질이 안좋음, 다른 문제없음",2025-08-26 23:44:44.491+00,1038730
+v001_whisper_neutral_scale_1.5,expressivity_0.6,whisper,neutral,1.5,v001_whisper_neutral_scale_ref.wav,v001_whisper_neutral_scale_scale_1.5.wav,타겟샘플: 아주 약간의 기계음,2025-08-26 23:45:12.222+00,1066461
+v001_toneup_match_scale_2.0,expressivity_0.6,toneup,match,2.0,v001_toneup_match_scale_ref.wav,v001_toneup_match_scale_scale_2.0.wav,레퍼런스 음성 퀄리티 문제,2025-08-26 23:27:54.558+00,28797
+v002_whisper_neutral_scale_1.0,expressivity_0.6,whisper,neutral,1.0,v002_whisper_neutral_scale_ref.wav,v002_whisper_neutral_scale_scale_1.0.wav,"레퍼런스 오디오 마지막에 음성 품질
+타겟 샘플 로봇음성되어버림",2025-08-26 23:29:16.327+00,110566
+v002_excitement_opposite_scale_2.0,expressivity_0.6,excitement,opposite,2.0,v002_excitement_opposite_scale_ref.wav,v002_excitement_opposite_scale_scale_2.0.wav,"스크립트가 감정이랑 너무 상반되어서 좀 어렵네요.
+타겟 샘플 끊어읽는 것이 좀 부자연스러움. 음질의 퀄리티는 문제없음",2025-08-26 23:30:11.401+00,165640
+v001_excited_match_scale_1.5,expressivity_0.6,excited,match,1.5,v001_excited_match_scale_ref.wav,v001_excited_match_scale_scale_1.5.wav,타겟샘플 앞부분 음성 끊김,2025-08-26 23:30:34.765+00,189004
+v001_fear_neutral_scale_2.0,expressivity_0.6,fear,neutral,2.0,v001_fear_neutral_scale_ref.wav,v001_fear_neutral_scale_scale_2.0.wav,"레퍼런스 음성 맨 끝에 음성 갈라짐
+타겟샘플 문제 많음",2025-08-26 23:31:59.856+00,274095
+v001_excited_opposite_scale_2.0,expressivity_0.6,excited,opposite,2.0,v001_excited_opposite_scale_ref.wav,v001_excited_opposite_scale_scale_2.0.wav,타겟음성 중간에 음성 튕김,2025-08-26 23:32:30.04+00,304279
+v002_toneup_match_scale_2.0,expressivity_0.6,toneup,match,2.0,v002_toneup_match_scale_ref.wav,v002_toneup_match_scale_scale_2.0.wav,오히려 레퍼런스보다 낮은 톤,2025-08-26 23:32:54.576+00,328815
+v001_fear_match_scale_2.0,expressivity_0.6,fear,match,2.0,v001_fear_match_scale_ref.wav,v001_fear_match_scale_scale_2.0.wav,"레퍼런스 오디오 첫부분 음성 깨짐
+타겟샘플 앞부분에 대본 씹음(?)",2025-08-26 23:33:38.051+00,372291
+v002_whisper_opposite_scale_1.0,expressivity_0.6,whisper,opposite,1.0,v002_whisper_opposite_scale_ref.wav,v002_whisper_opposite_scale_scale_1.0.wav,레퍼런스 음성 목소리 갈라짐,2025-08-26 23:34:09.41+00,403649
+v001_tonedown_opposite_scale_1.5,expressivity_0.6,tonedown,opposite,1.5,v001_tonedown_opposite_scale_ref.wav,v001_tonedown_opposite_scale_scale_1.5.wav,"레퍼런스 오디오가 자동감정인가요..? 좋기는 한데 음성이 아~주 작게 시작했다가 점점 커지네요. 
+타겟샘플: 전반적으로 음질이 안좋음, 다른 문제없음",2025-08-26 23:44:44.491+00,1038730
+v001_whisper_neutral_scale_1.5,expressivity_0.6,whisper,neutral,1.5,v001_whisper_neutral_scale_ref.wav,v001_whisper_neutral_scale_scale_1.5.wav,타겟샘플: 아주 약간의 기계음,2025-08-26 23:45:12.222+00,1066461
+v001_excitement_opposite_scale_0.5,expressivity_0.6,excitement,opposite,0.5,v001_excitement_opposite_scale_ref.wav,v001_excitement_opposite_scale_scale_0.5.wav,"억양이 american, british 달라집니다 ",2025-08-27 08:23:27.851+00,239135
+v001_surprise_neutral_scale_2.5,expressivity_0.6,surprise,neutral,2.5,v001_surprise_neutral_scale_ref.wav,v001_surprise_neutral_scale_scale_2.5.wav,surprise 감정이 전반적으로 표현이 안되는 것 같은데요. 제가 surprise 감정에 대해 이해를 못하고 있는건가... 싶네요,2025-08-27 08:32:01.386+00,752670
+v002_whisper_match_scale_3.0,expressivity_none,whisper,match,3.0,v002_whisper_match_scale_ref.wav,v002_whisper_match_scale_scale_3.0.wav,소리가 좀 웅웅 거리는데 Quality Issue로 작성했습니다. 그리고 여성 목소리인데 속삭이니까 좀 흉성이 과도하게 들어가서 남성적인 느낌도 있습니다.,2025-08-27 11:48:39.831+00,120090
+v002_furious_opposite_scale_2.0,expressivity_none,furious,opposite,2.0,v002_furious_opposite_scale_ref.wav,v002_furious_opposite_scale_scale_2.0.wav,더 화난 느낌은 없고 소리가 조금 작아진 느낌만 있습니다.,2025-08-27 11:50:13.475+00,213734
+v001_whisper_opposite_scale_2.5,expressivity_none,whisper,opposite,2.5,v001_whisper_opposite_scale_ref.wav,v001_whisper_opposite_scale_scale_2.5.wav,이건 웅웅소리도 안나고 좋은데 약간 다른 사람 느낌입니다.,2025-08-27 11:51:06.093+00,266352
+v002_excitement_neutral_scale_1.0,expressivity_none,excitement,neutral,1.0,v002_excitement_neutral_scale_ref.wav,v002_excitement_neutral_scale_scale_1.0.wav,"사람도 좀 다르게 느껴지고, 더 Excited된 느낌은 없습니다.",2025-08-27 11:53:08.491+00,388750
+v001_excited_match_scale_3.0,expressivity_none,excited,match,3.0,v001_excited_match_scale_ref.wav,v001_excited_match_scale_scale_3.0.wav,"괜찮은데, 남자가 더 Excited 되었을때 목소리의 높낮이가 약간 여자가 높낮이를 바꾸듯이 해서 남자지만 동성애자인가? 느낌도 듭니다. Excited 될때 목소리가 어떻게 바뀌는지를 여자 목소리의 변화를 써서 학습했나? 싶은 생각이 듭니다.",2025-08-27 11:55:13.82+00,514079
+v001_fear_neutral_scale_0.5,expressivity_none,fear,neutral,0.5,v001_fear_neutral_scale_ref.wav,v001_fear_neutral_scale_scale_0.5.wav,Fear는 느껴지지 않네요.,2025-08-27 11:55:57.87+00,558129
+v001_angry_opposite_scale_3.0,expressivity_none,angry,opposite,3.0,v001_angry_opposite_scale_ref.wav,v001_angry_opposite_scale_scale_3.0.wav,오리지널은 남자목소리 타겟은 여자목소리 같습니다. 더 화가난 것처럼 느껴지지도 않습니다.,2025-08-27 11:56:58.672+00,618931
+v002_terrified_match_scale_0.5,expressivity_none,terrified,match,0.5,v002_terrified_match_scale_ref.wav,v002_terrified_match_scale_scale_0.5.wav,좋은데 가멍 표현이 뒷부분에 치중되 느낌,2025-08-27 12:12:30.916+00,1551175
+v002_tonedown_neutral_scale_1.0,expressivity_none,tonedown,neutral,1.0,v002_tonedown_neutral_scale_ref.wav,v002_tonedown_neutral_scale_scale_1.0.wav,톤다운인데 그냥 약간 느려진 느낌입니다.,2025-08-27 12:15:19.964+00,1720223
+v002_toneup_match_scale_3.0,expressivity_none,toneup,match,3.0,v002_toneup_match_scale_ref.wav,v002_toneup_match_scale_scale_3.0.wav,기계음이 들리는데 톤업은 잘 표현 된 것 같습니다.,2025-08-27 12:16:14.312+00,1774571
+v002_angry_opposite_scale_0.5,expressivity_none,angry,opposite,0.5,v002_angry_opposite_scale_ref.wav,v002_angry_opposite_scale_scale_0.5.wav,감정이 더 격한 느낌은 드는데 이게 더 Angry 한건지는 모르겠습니다.,2025-08-27 12:17:53.933+00,1874192
+v001_angry_match_scale_3.0,expressivity_none,angry,match,3.0,v001_angry_match_scale_ref.wav,v001_angry_match_scale_scale_3.0.wav,처음에 약간 속사임 느낌 그리고 뒤에는 화는느낌이네요.,2025-08-27 12:20:54.8+00,2055059
+v001_sad_opposite_scale_2.5,expressivity_none,sad,opposite,2.5,v001_sad_opposite_scale_ref.wav,v001_sad_opposite_scale_scale_2.5.wav,하나는 여자 다른건 남자 목소리 같습니다.,2025-08-27 12:21:57.178+00,2117437
+v001_angry_neutral_scale_3.0,expressivity_0.6,angry,neutral,3.0,v001_angry_neutral_scale_ref.wav,v001_angry_neutral_scale_scale_3.0.wav,이거 target 샘플이 아예 언어를 말하고 있지 않는 것 같습니다~ 이상한 효과음?처럼 들려요..! ,2025-08-28 05:34:47.676+00,255643

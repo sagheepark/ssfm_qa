@@ -1,0 +1,503 @@
+id,session_id,sample_id,scores,comment,timestamp,duration_ms
+45,session_1756229497710_expressivity_none,v002_fear_match_scale_1.0,"{""emotion"":4,""quality"":5,""similarity"":6}",target sample 목소리가 좀 리버브가 들어간듯한느낌,2025-08-26 17:32:51.526+00,73815
+46,session_1756229497710_expressivity_none,v002_angry_match_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":6}","reference audio 재생 처음에 소리 튐 현상. 
+Target's emotion: 높낮이만 심하고 화가난 느낌이 안사는듯",2025-08-26 17:34:07.313+00,149602
+47,session_1756229497710_expressivity_none,v002_surprise_neutral_scale_2.0,"{""emotion"":1,""quality"":6,""similarity"":7}",Reference audio quality 심각 | Target sample: 전혀 감정 안담김,2025-08-26 17:34:56.927+00,199216
+48,session_1756229497710_expressivity_none,v002_happy_match_scale_2.0,"{""emotion"":5,""quality"":5,""similarity"":6}",Reference audio가 더 해피하다,2025-08-26 17:36:11.029+00,273318
+49,session_1756229497710_expressivity_none,v002_furious_neutral_scale_3.0,"{""emotion"":2,""quality"":2,""similarity"":1}",,2025-08-26 17:39:21.483+00,463772
+50,session_1756229497710_expressivity_none,v002_happy_neutral_scale_1.5,"{""emotion"":3,""quality"":6,""similarity"":6}",레퍼런스 오디오가 단어 스킵했음 ('to' between remember and turn) 리서치에 리포트해야할듯,2025-08-26 17:40:37.244+00,539533
+51,session_1756229497710_expressivity_none,v002_sad_opposite_scale_3.0,"{""emotion"":5,""quality"":7,""similarity"":6}",,2025-08-26 17:41:16.455+00,578744
+52,session_1756229497710_expressivity_none,v002_toneup_match_scale_0.5,"{""emotion"":6,""quality"":7,""similarity"":7}",,2025-08-26 17:41:40.527+00,602816
+53,session_1756229497710_expressivity_none,v002_sad_match_scale_1.0,"{""emotion"":5,""quality"":6,""similarity"":5}",레퍼런스 오디오: 음성 처음이 짤림 (리서치 공유 필요),2025-08-26 17:42:39.479+00,661768
+54,session_1756229497710_expressivity_none,v001_surprise_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":7}",,2025-08-26 17:43:06.579+00,688868
+55,session_1756229497710_expressivity_none,v001_excitement_match_scale_0.5,"{""emotion"":5,""quality"":5,""similarity"":5}",타겟샘플: 발화가 너무 빨라서 부자연스러움,2025-08-26 17:45:23.51+00,825799
+56,session_1756229497710_expressivity_none,v002_sad_match_scale_3.0,"{""emotion"":5,""quality"":4,""similarity"":4}",,2025-08-26 17:45:49.339+00,851628
+57,session_1756229497710_expressivity_none,v002_furious_opposite_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-26 17:46:07.601+00,869890
+58,session_1756229497710_expressivity_none,v002_happy_match_scale_0.5,"{""emotion"":3,""quality"":5,""similarity"":5}",레퍼런스가 더 해피함,2025-08-26 17:47:00.801+00,923090
+59,session_1756229497710_expressivity_none,v002_tonedown_match_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":6}",레퍼런스 오디오 재생이 안됨,2025-08-26 17:47:50.632+00,972921
+60,session_1756250845761_expressivity_0.6,v001_toneup_match_scale_2.0,"{""emotion"":7,""quality"":4,""similarity"":6}",레퍼런스 음성 퀄리티 문제,2025-08-26 23:27:54.558+00,28797
+61,session_1756250845761_expressivity_0.6,v002_happy_neutral_scale_1.0,"{""emotion"":4,""quality"":4,""similarity"":7}",,2025-08-26 23:28:24.671+00,58910
+62,session_1756250845761_expressivity_0.6,v002_whisper_neutral_scale_1.0,"{""emotion"":7,""quality"":1,""similarity"":4}","레퍼런스 오디오 마지막에 음성 품질
+타겟 샘플 로봇음성되어버림",2025-08-26 23:29:16.327+00,110566
+63,session_1756250845761_expressivity_0.6,v002_excitement_opposite_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":6}","스크립트가 감정이랑 너무 상반되어서 좀 어렵네요.
+타겟 샘플 끊어읽는 것이 좀 부자연스러움. 음질의 퀄리티는 문제없음",2025-08-26 23:30:11.401+00,165640
+64,session_1756250845761_expressivity_0.6,v001_excited_match_scale_1.5,"{""emotion"":3,""quality"":3,""similarity"":6}",타겟샘플 앞부분 음성 끊김,2025-08-26 23:30:34.765+00,189004
+65,session_1756250845761_expressivity_0.6,v001_terrified_opposite_scale_2.0,"{""emotion"":5,""quality"":6,""similarity"":6}",,2025-08-26 23:30:55.625+00,209864
+66,session_1756250845761_expressivity_0.6,v001_surprise_neutral_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-26 23:31:14.003+00,228242
+67,session_1756250845761_expressivity_0.6,v001_fear_neutral_scale_2.0,"{""emotion"":5,""quality"":1,""similarity"":4}","레퍼런스 음성 맨 끝에 음성 갈라짐
+타겟샘플 문제 많음",2025-08-26 23:31:59.856+00,274095
+68,session_1756250845761_expressivity_0.6,v001_excited_opposite_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":6}",타겟음성 중간에 음성 튕김,2025-08-26 23:32:30.04+00,304279
+69,session_1756250845761_expressivity_0.6,v002_toneup_match_scale_2.0,"{""emotion"":3,""quality"":6,""similarity"":5}",오히려 레퍼런스보다 낮은 톤,2025-08-26 23:32:54.576+00,328815
+70,session_1756250845761_expressivity_0.6,v001_fear_match_scale_2.0,"{""emotion"":4,""quality"":4,""similarity"":5}","레퍼런스 오디오 첫부분 음성 깨짐
+타겟샘플 앞부분에 대본 씹음(?)",2025-08-26 23:33:38.051+00,372291
+71,session_1756250845761_expressivity_0.6,v002_whisper_opposite_scale_1.0,"{""emotion"":7,""quality"":5,""similarity"":5}",레퍼런스 음성 목소리 갈라짐,2025-08-26 23:34:09.41+00,403649
+72,session_1756250845761_expressivity_0.6,v001_excited_opposite_scale_3.0,"{""emotion"":7,""quality"":7,""similarity"":6}",,2025-08-26 23:43:21.36+00,955599
+73,session_1756250845761_expressivity_0.6,v001_tonedown_opposite_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":7}","레퍼런스 오디오가 자동감정인가요..? 좋기는 한데 음성이 아~주 작게 시작했다가 점점 커지네요. 
+타겟샘플: 전반적으로 음질이 안좋음, 다른 문제없음",2025-08-26 23:44:44.491+00,1038730
+74,session_1756250845761_expressivity_0.6,v001_whisper_neutral_scale_1.5,"{""emotion"":7,""quality"":4,""similarity"":6}",타겟샘플: 아주 약간의 기계음,2025-08-26 23:45:12.222+00,1066461
+75,session_1756251716061_expressivity_none,v001_sad_opposite_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":3}",,2025-08-26 23:42:35.381+00,39320
+76,session_1756251716061_expressivity_none,v002_sad_neutral_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":5}",,2025-08-26 23:43:03.965+00,67904
+77,session_1756251716061_expressivity_none,v002_angry_neutral_scale_1.0,"{""emotion"":2,""quality"":6,""similarity"":4}",,2025-08-26 23:43:48.199+00,112138
+78,session_1756251716061_expressivity_none,v002_excitement_neutral_scale_0.5,"{""emotion"":2,""quality"":6,""similarity"":5}",,2025-08-26 23:44:41.195+00,165134
+79,session_1756251716061_expressivity_none,v001_excited_opposite_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":3}",,2025-08-26 23:45:07.665+00,191604
+80,session_1756251716061_expressivity_none,v002_angry_match_scale_3.0,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-26 23:45:53.743+00,237682
+81,session_1756251716061_expressivity_none,v001_excited_match_scale_2.5,"{""emotion"":6,""quality"":5,""similarity"":2}",,2025-08-26 23:46:23.08+00,267019
+82,session_1756251716061_expressivity_none,v002_happy_match_scale_2.5,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-26 23:46:41.886+00,285825
+83,session_1756251716061_expressivity_none,v002_whisper_opposite_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-26 23:47:13.201+00,317140
+84,session_1756251716061_expressivity_none,v001_angry_match_scale_0.5,"{""emotion"":4,""quality"":6,""similarity"":4}",,2025-08-26 23:47:50.694+00,354633
+85,session_1756251716061_expressivity_none,v001_excitement_neutral_scale_2.5,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-26 23:48:20.753+00,384692
+86,session_1756251716061_expressivity_none,v002_furious_opposite_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-26 23:48:46.898+00,410837
+87,session_1756251716061_expressivity_none,v001_whisper_match_scale_3.0,"{""emotion"":7,""quality"":5,""similarity"":5}",,2025-08-26 23:49:05.236+00,429175
+88,session_1756251716061_expressivity_none,v001_excitement_opposite_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-26 23:49:31.283+00,455222
+89,session_1756251716061_expressivity_none,v002_whisper_match_scale_3.0,"{""emotion"":6,""quality"":2,""similarity"":2}",,2025-08-26 23:49:50.25+00,474189
+90,session_1756251716061_expressivity_none,v002_toneup_neutral_scale_2.5,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-26 23:50:11.676+00,495615
+91,session_1756251716061_expressivity_none,v002_tonedown_match_scale_2.5,"{""emotion"":6,""quality"":3,""similarity"":2}",,2025-08-26 23:50:29.522+00,513461
+92,session_1756251716061_expressivity_none,v001_fear_match_scale_1.0,"{""emotion"":4,""quality"":6,""similarity"":5}",,2025-08-26 23:50:57.071+00,541010
+93,session_1756266384281_expressivity_none,v002_excited_match_scale_3.0,"{""emotion"":7,""quality"":6,""similarity"":3}",,2025-08-27 03:46:59.769+00,35488
+94,session_1756266468362_expressivity_none,v002_happy_neutral_scale_1.0,"{""emotion"":6,""quality"":7,""similarity"":7}",,2025-08-27 03:48:03.467+00,15105
+95,session_1756266468362_expressivity_none,v001_tonedown_opposite_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":5}",,2025-08-27 03:48:22.671+00,34309
+96,session_1756266468362_expressivity_none,v001_tonedown_match_scale_2.5,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-27 03:48:35.225+00,46863
+97,session_1756266468362_expressivity_none,v002_toneup_match_scale_1.0,"{""emotion"":5,""quality"":4,""similarity"":7}",,2025-08-27 03:48:56.928+00,68566
+98,session_1756266468362_expressivity_none,v001_whisper_match_scale_2.5,"{""emotion"":6,""quality"":3,""similarity"":5}",,2025-08-27 03:49:19.357+00,90995
+99,session_1756266468362_expressivity_none,v002_toneup_neutral_scale_3.0,"{""emotion"":4,""quality"":7,""similarity"":7}",,2025-08-27 03:49:33.966+00,105604
+100,session_1756266468362_expressivity_none,v001_terrified_opposite_scale_3.0,"{""emotion"":7,""quality"":6,""similarity"":2}",,2025-08-27 03:49:46.701+00,118339
+101,session_1756266468362_expressivity_none,v002_fear_neutral_scale_1.5,"{""emotion"":4,""quality"":5,""similarity"":7}",,2025-08-27 03:49:58.985+00,130623
+102,session_1756266468362_expressivity_none,v002_excited_match_scale_1.5,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-27 03:50:11.211+00,142849
+103,session_1756266468362_expressivity_none,v002_surprise_match_scale_0.5,"{""emotion"":7,""quality"":5,""similarity"":7}",,2025-08-27 03:50:23.988+00,155626
+104,session_1756266468362_expressivity_none,v002_excitement_opposite_scale_3.0,"{""emotion"":4,""quality"":4,""similarity"":7}",,2025-08-27 03:50:42.832+00,174470
+105,session_1756266468362_expressivity_none,v001_sad_match_scale_2.5,"{""emotion"":7,""quality"":7,""similarity"":6}",,2025-08-27 03:50:54.785+00,186423
+106,session_1756283618929_expressivity_none,v001_angry_match_scale_0.5,"{""emotion"":3,""quality"":6,""similarity"":6}",,2025-08-27 08:35:30.859+00,111930
+107,session_1756283618929_expressivity_none,v002_angry_match_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-27 08:35:59.375+00,140446
+108,session_1756283618929_expressivity_none,v002_whisper_match_scale_2.5,"{""emotion"":5,""quality"":5,""similarity"":4}",,2025-08-27 08:36:28.011+00,169082
+109,session_1756283618929_expressivity_none,v002_angry_opposite_scale_2.0,"{""emotion"":7,""quality"":6,""similarity"":5}",,2025-08-27 08:36:58.774+00,199845
+110,session_1756283618929_expressivity_none,v001_happy_match_scale_2.5,"{""emotion"":5,""quality"":4,""similarity"":1}",,2025-08-27 08:37:26.873+00,227944
+111,session_1756283618929_expressivity_none,v002_excitement_opposite_scale_2.0,"{""emotion"":4,""quality"":5,""similarity"":2}",,2025-08-27 08:37:53.723+00,254794
+112,session_1756283618929_expressivity_none,v002_furious_match_scale_1.0,"{""emotion"":7,""quality"":5,""similarity"":6}",,2025-08-27 08:38:38.589+00,299660
+113,session_1756283618929_expressivity_none,v002_excitement_match_scale_1.0,"{""emotion"":2,""quality"":4,""similarity"":6}",,2025-08-27 08:39:05.305+00,326376
+114,session_1756283618929_expressivity_none,v001_angry_match_scale_1.0,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-27 08:39:29.888+00,350959
+115,session_1756283618929_expressivity_none,v001_sad_match_scale_3.0,"{""emotion"":6,""quality"":5,""similarity"":1}",,2025-08-27 08:39:52.638+00,373709
+116,session_1756283618929_expressivity_none,v002_furious_neutral_scale_2.5,"{""emotion"":1,""quality"":4,""similarity"":2}",,2025-08-27 08:40:11.17+00,392241
+117,session_1756283618929_expressivity_none,v002_toneup_neutral_scale_1.5,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-27 08:40:40.354+00,421425
+118,session_1756283618929_expressivity_none,v002_whisper_opposite_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":5}",,2025-08-27 08:40:57.253+00,438324
+119,session_1756283618929_expressivity_none,v002_surprise_neutral_scale_1.5,"{""emotion"":5,""quality"":6,""similarity"":5}",,2025-08-27 08:41:13.636+00,454707
+120,session_1756283618929_expressivity_none,v001_tonedown_match_scale_2.5,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-27 08:41:31.169+00,472240
+121,session_1756283618929_expressivity_none,v002_terrified_neutral_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-27 08:41:53.819+00,494890
+122,session_1756283618929_expressivity_none,v001_toneup_match_scale_3.0,"{""emotion"":5,""quality"":6,""similarity"":2}",,2025-08-27 08:42:15.767+00,516838
+123,session_1756283618929_expressivity_none,v001_toneup_match_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-27 08:42:49.101+00,550172
+124,session_1756284196386_expressivity_0.6,v001_angry_neutral_scale_1.5,"{""emotion"":5,""quality"":5,""similarity"":3}",,2025-08-27 08:43:41.318+00,24932
+125,session_1756284196386_expressivity_0.6,v001_whisper_neutral_scale_2.5,"{""emotion"":6,""quality"":6,""similarity"":5}",,2025-08-27 08:44:03.6+00,47214
+126,session_1756284196386_expressivity_0.6,v001_happy_match_scale_2.0,"{""emotion"":5,""quality"":5,""similarity"":1}",,2025-08-27 08:44:25.167+00,68781
+127,session_1756267623537_expressivity_none,v002_angry_match_scale_3.0,"{""emotion"":1,""quality"":1,""similarity"":7}",,2025-08-27 04:11:24.813+00,261276
+128,session_1756267623537_expressivity_none,v002_excited_opposite_scale_2.5,"{""emotion"":1,""quality"":6,""similarity"":7}",,2025-08-27 04:12:14.815+00,311278
+129,session_1756267623537_expressivity_none,v001_surprise_neutral_scale_2.0,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-27 09:30:11.415+00,19387878
+130,session_1756267623537_expressivity_none,v002_sad_match_scale_3.0,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-27 09:30:53.869+00,19430332
+131,session_1756287098296_expressivity_none,v001_excitement_match_scale_0.5,"{""emotion"":4,""quality"":1,""similarity"":2}",,2025-08-27 09:32:05.406+00,27110
+132,session_1756287098296_expressivity_none,v001_excited_neutral_scale_1.0,"{""emotion"":6,""quality"":1,""similarity"":4}",,2025-08-27 09:32:25.071+00,46776
+133,session_1756287098296_expressivity_none,v002_surprise_opposite_scale_2.5,"{""emotion"":1,""quality"":1,""similarity"":6}",,2025-08-27 09:32:45.423+00,67127
+134,session_1756250845761_expressivity_0.6,v001_toneup_match_scale_2.0,"{""emotion"":7,""quality"":4,""similarity"":6}",레퍼런스 음성 퀄리티 문제,2025-08-26 23:27:54.558+00,28797
+135,session_1756250845761_expressivity_0.6,v002_happy_neutral_scale_1.0,"{""emotion"":4,""quality"":4,""similarity"":7}",,2025-08-26 23:28:24.671+00,58910
+136,session_1756250845761_expressivity_0.6,v002_whisper_neutral_scale_1.0,"{""emotion"":7,""quality"":1,""similarity"":4}","레퍼런스 오디오 마지막에 음성 품질
+타겟 샘플 로봇음성되어버림",2025-08-26 23:29:16.327+00,110566
+137,session_1756250845761_expressivity_0.6,v002_excitement_opposite_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":6}","스크립트가 감정이랑 너무 상반되어서 좀 어렵네요.
+타겟 샘플 끊어읽는 것이 좀 부자연스러움. 음질의 퀄리티는 문제없음",2025-08-26 23:30:11.401+00,165640
+138,session_1756250845761_expressivity_0.6,v001_excited_match_scale_1.5,"{""emotion"":3,""quality"":3,""similarity"":6}",타겟샘플 앞부분 음성 끊김,2025-08-26 23:30:34.765+00,189004
+139,session_1756250845761_expressivity_0.6,v001_terrified_opposite_scale_2.0,"{""emotion"":5,""quality"":6,""similarity"":6}",,2025-08-26 23:30:55.625+00,209864
+140,session_1756250845761_expressivity_0.6,v001_surprise_neutral_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-26 23:31:14.003+00,228242
+141,session_1756250845761_expressivity_0.6,v001_fear_neutral_scale_2.0,"{""emotion"":5,""quality"":1,""similarity"":4}","레퍼런스 음성 맨 끝에 음성 갈라짐
+타겟샘플 문제 많음",2025-08-26 23:31:59.856+00,274095
+142,session_1756250845761_expressivity_0.6,v001_excited_opposite_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":6}",타겟음성 중간에 음성 튕김,2025-08-26 23:32:30.04+00,304279
+143,session_1756250845761_expressivity_0.6,v002_toneup_match_scale_2.0,"{""emotion"":3,""quality"":6,""similarity"":5}",오히려 레퍼런스보다 낮은 톤,2025-08-26 23:32:54.576+00,328815
+144,session_1756250845761_expressivity_0.6,v001_fear_match_scale_2.0,"{""emotion"":4,""quality"":4,""similarity"":5}","레퍼런스 오디오 첫부분 음성 깨짐
+타겟샘플 앞부분에 대본 씹음(?)",2025-08-26 23:33:38.051+00,372291
+145,session_1756250845761_expressivity_0.6,v002_whisper_opposite_scale_1.0,"{""emotion"":7,""quality"":5,""similarity"":5}",레퍼런스 음성 목소리 갈라짐,2025-08-26 23:34:09.41+00,403649
+146,session_1756250845761_expressivity_0.6,v001_excited_opposite_scale_3.0,"{""emotion"":7,""quality"":7,""similarity"":6}",,2025-08-26 23:43:21.36+00,955599
+147,session_1756250845761_expressivity_0.6,v001_tonedown_opposite_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":7}","레퍼런스 오디오가 자동감정인가요..? 좋기는 한데 음성이 아~주 작게 시작했다가 점점 커지네요. 
+타겟샘플: 전반적으로 음질이 안좋음, 다른 문제없음",2025-08-26 23:44:44.491+00,1038730
+148,session_1756250845761_expressivity_0.6,v001_whisper_neutral_scale_1.5,"{""emotion"":7,""quality"":4,""similarity"":6}",타겟샘플: 아주 약간의 기계음,2025-08-26 23:45:12.222+00,1066461
+149,session_1756282768716_expressivity_0.6,v001_whisper_neutral_scale_2.0,"{""emotion"":6,""quality"":2,""similarity"":5}",,2025-08-27 08:21:03.637+00,94921
+150,session_1756282768716_expressivity_0.6,v001_angry_match_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":5}",,2025-08-27 08:21:37.237+00,128521
+151,session_1756282768716_expressivity_0.6,v002_excited_match_scale_2.0,"{""emotion"":7,""quality"":7,""similarity"":5}",,2025-08-27 08:22:07.76+00,159044
+152,session_1756282768716_expressivity_0.6,v001_excitement_opposite_scale_0.5,"{""emotion"":2,""quality"":6,""similarity"":1}","억양이 american, british 달라집니다 ",2025-08-27 08:23:27.851+00,239135
+153,session_1756282768716_expressivity_0.6,v001_fear_match_scale_2.0,"{""emotion"":2,""quality"":5,""similarity"":5}",,2025-08-27 08:24:07.988+00,279272
+154,session_1756282768716_expressivity_0.6,v001_excitement_neutral_scale_2.0,"{""emotion"":1,""quality"":5,""similarity"":2}",,2025-08-27 08:24:33.923+00,305207
+155,session_1756282768716_expressivity_0.6,v001_excitement_opposite_scale_2.5,"{""emotion"":2,""quality"":6,""similarity"":4}",,2025-08-27 08:26:11.053+00,402338
+156,session_1756282768716_expressivity_0.6,v001_fear_neutral_scale_1.5,"{""emotion"":2,""quality"":2,""similarity"":6}",,2025-08-27 08:26:37.358+00,428642
+157,session_1756282768716_expressivity_0.6,v001_excitement_opposite_scale_1.0,"{""emotion"":1,""quality"":2,""similarity"":6}",,2025-08-27 08:26:57.85+00,449134
+158,session_1756282768716_expressivity_0.6,v001_surprise_opposite_scale_2.5,"{""emotion"":3,""quality"":5,""similarity"":2}",,2025-08-27 08:27:57.474+00,508758
+159,session_1756282768716_expressivity_0.6,v002_furious_neutral_scale_2.0,"{""emotion"":5,""quality"":6,""similarity"":3}",,2025-08-27 08:28:43.691+00,554975
+160,session_1756282768716_expressivity_0.6,v001_excitement_match_scale_0.5,"{""emotion"":2,""quality"":3,""similarity"":3}",,2025-08-27 08:29:15.925+00,587209
+161,session_1756282768716_expressivity_0.6,v002_surprise_neutral_scale_1.0,"{""emotion"":2,""quality"":6,""similarity"":3}",,2025-08-27 08:30:13.738+00,645022
+162,session_1756282768716_expressivity_0.6,v001_surprise_neutral_scale_2.5,"{""emotion"":2,""quality"":4,""similarity"":4}",surprise 감정이 전반적으로 표현이 안되는 것 같은데요. 제가 surprise 감정에 대해 이해를 못하고 있는건가... 싶네요,2025-08-27 08:32:01.386+00,752670
+163,session_1756282768716_expressivity_0.6,v002_terrified_neutral_scale_1.0,"{""emotion"":1,""quality"":5,""similarity"":4}",,2025-08-27 08:32:29.006+00,780290
+164,session_1756282768716_expressivity_0.6,v002_excited_neutral_scale_0.5,"{""emotion"":5,""quality"":6,""similarity"":5}",,2025-08-27 08:33:01.244+00,812528
+165,session_1756282768716_expressivity_0.6,v001_happy_match_scale_2.5,"{""emotion"":3,""quality"":3,""similarity"":6}",,2025-08-27 08:33:34.196+00,845480
+166,session_1756282768716_expressivity_0.6,v001_excitement_neutral_scale_2.5,"{""emotion"":2,""quality"":5,""similarity"":2}",,2025-08-27 08:33:55.137+00,866421
+167,session_1756282768716_expressivity_0.6,v001_angry_neutral_scale_0.5,"{""emotion"":4,""quality"":5,""similarity"":2}",,2025-08-27 08:34:23.502+00,894787
+168,session_1756282768716_expressivity_0.6,v002_fear_match_scale_1.0,"{""emotion"":5,""quality"":5,""similarity"":6}",,2025-08-27 08:34:54.486+00,925770
+169,session_1756282768716_expressivity_0.6,v002_happy_opposite_scale_3.0,"{""emotion"":1,""quality"":4,""similarity"":5}",,2025-08-27 08:35:26.416+00,957700
+170,session_1756282768716_expressivity_0.6,v001_excited_opposite_scale_0.5,"{""emotion"":4,""quality"":6,""similarity"":6}",,2025-08-27 08:36:08.383+00,999667
+171,session_1756282768716_expressivity_0.6,v001_terrified_match_scale_0.5,"{""emotion"":6,""quality"":7,""similarity"":2}",,2025-08-27 08:36:32.536+00,1023820
+172,session_1756282768716_expressivity_0.6,v001_happy_match_scale_2.0,"{""emotion"":4,""quality"":3,""similarity"":1}",,2025-08-27 08:37:12.749+00,1064033
+173,session_1756282768716_expressivity_0.6,v002_tonedown_opposite_scale_2.5,"{""emotion"":4,""quality"":2,""similarity"":3}",,2025-08-27 08:37:52.86+00,1104144
+174,session_1756287251169_expressivity_0.6,v001_surprise_neutral_scale_1.0,"{""emotion"":5,""quality"":4,""similarity"":7}",,2025-08-27 09:35:42.64+00,91471
+175,session_1756287251169_expressivity_0.6,v001_excited_match_scale_3.0,"{""emotion"":7,""quality"":5,""similarity"":7}",,2025-08-27 09:35:51.14+00,99971
+176,session_1756287251169_expressivity_0.6,v001_excited_neutral_scale_3.0,"{""emotion"":7,""quality"":4,""similarity"":7}",,2025-08-27 09:36:00.429+00,109260
+177,session_1756287251169_expressivity_0.6,v001_surprise_match_scale_1.5,"{""emotion"":7,""quality"":6,""similarity"":7}",,2025-08-27 09:36:05.762+00,114593
+178,session_1756287251169_expressivity_0.6,v001_surprise_match_scale_2.0,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-27 09:36:20.382+00,129213
+179,session_1756287251169_expressivity_0.6,v001_excited_neutral_scale_2.0,"{""emotion"":7,""quality"":6,""similarity"":7}",,2025-08-27 09:36:33.426+00,142257
+180,session_1756287251169_expressivity_0.6,v001_terrified_match_scale_1.0,"{""emotion"":5,""quality"":2,""similarity"":1}",,2025-08-27 09:36:57.398+00,166229
+181,session_1756287251169_expressivity_0.6,v002_happy_neutral_scale_2.0,"{""emotion"":3,""quality"":4,""similarity"":7}",,2025-08-27 09:37:16.531+00,185363
+182,session_1756287251169_expressivity_0.6,v001_sad_neutral_scale_0.5,"{""emotion"":1,""quality"":3,""similarity"":7}",,2025-08-27 09:37:27.746+00,196577
+183,session_1756287251169_expressivity_0.6,v002_fear_neutral_scale_3.0,"{""emotion"":1,""quality"":3,""similarity"":7}",,2025-08-27 09:37:49.852+00,218683
+184,session_1756287251169_expressivity_0.6,v001_terrified_neutral_scale_1.5,"{""emotion"":5,""quality"":3,""similarity"":2}",,2025-08-27 09:38:08.318+00,237149
+185,session_1756287251169_expressivity_0.6,v002_furious_match_scale_2.0,"{""emotion"":7,""quality"":3,""similarity"":6}",,2025-08-27 09:38:23.336+00,252167
+186,session_1756287251169_expressivity_0.6,v001_whisper_neutral_scale_2.0,"{""emotion"":7,""quality"":1,""similarity"":1}",,2025-08-27 09:38:39.851+00,268682
+187,session_1756287251169_expressivity_0.6,v001_excited_match_scale_1.5,"{""emotion"":1,""quality"":4,""similarity"":7}",,2025-08-27 09:39:01.791+00,290622
+188,session_1756287251169_expressivity_0.6,v002_terrified_neutral_scale_1.0,"{""emotion"":4,""quality"":4,""similarity"":6}",,2025-08-27 09:39:29.456+00,318287
+189,session_1756287251169_expressivity_0.6,v001_excitement_match_scale_0.5,"{""emotion"":4,""quality"":3,""similarity"":6}",,2025-08-27 09:39:52.124+00,340955
+190,session_1756287251169_expressivity_0.6,v002_surprise_match_scale_2.0,"{""emotion"":5,""quality"":1,""similarity"":5}",,2025-08-27 09:40:07.089+00,355920
+191,session_1756287251169_expressivity_0.6,v001_sad_match_scale_0.5,"{""emotion"":3,""quality"":3,""similarity"":6}",,2025-08-27 09:40:26.233+00,375064
+192,session_1756287251169_expressivity_0.6,v001_sad_neutral_scale_3.0,"{""emotion"":6,""quality"":3,""similarity"":1}",,2025-08-27 09:40:40.235+00,389066
+193,session_1756287251169_expressivity_0.6,v002_excitement_match_scale_0.5,"{""emotion"":4,""quality"":4,""similarity"":7}",,2025-08-27 09:40:53.918+00,402749
+194,session_1756287251169_expressivity_0.6,v001_happy_match_scale_2.0,"{""emotion"":6,""quality"":1,""similarity"":2}",,2025-08-27 09:41:11.257+00,420088
+195,session_1756287251169_expressivity_0.6,v001_happy_match_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":5}",,2025-08-27 09:41:27.638+00,436469
+196,session_1756287251169_expressivity_0.6,v002_happy_opposite_scale_0.5,"{""emotion"":4,""quality"":3,""similarity"":7}",,2025-08-27 09:41:45.123+00,453954
+197,session_1756287251169_expressivity_0.6,v001_happy_opposite_scale_2.5,"{""emotion"":1,""quality"":2,""similarity"":1}",,2025-08-27 09:41:58.061+00,466892
+198,session_1756287251169_expressivity_0.6,v002_furious_neutral_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":7}",,2025-08-27 09:42:10.06+00,478891
+199,session_1756353496876_expressivity_none,v002_excited_match_scale_1.5,"{""emotion"":4,""quality"":2,""similarity"":3}",,2025-08-28 03:58:29.847+00,12971
+200,session_1756353496876_expressivity_none,v002_surprise_neutral_scale_3.0,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-28 03:58:42.143+00,25267
+201,session_1756353496876_expressivity_none,v002_terrified_neutral_scale_1.5,"{""emotion"":2,""quality"":3,""similarity"":2}",,2025-08-28 03:58:55.822+00,38946
+202,session_1756353496876_expressivity_none,v001_happy_neutral_scale_2.5,"{""emotion"":2,""quality"":3,""similarity"":2}",,2025-08-28 03:59:12.04+00,55164
+203,session_1756353496876_expressivity_none,v002_happy_opposite_scale_0.5,"{""emotion"":2,""quality"":2,""similarity"":3}",,2025-08-28 03:59:25.179+00,68303
+204,session_1756353496876_expressivity_none,v002_angry_neutral_scale_3.0,"{""emotion"":2,""quality"":1,""similarity"":2}",,2025-08-28 03:59:40.902+00,84026
+205,session_1756353496876_expressivity_none,v002_surprise_neutral_scale_1.5,"{""emotion"":2,""quality"":1,""similarity"":3}",,2025-08-28 03:59:53.186+00,96310
+206,session_1756353496876_expressivity_none,v002_surprise_match_scale_3.0,"{""emotion"":1,""quality"":1,""similarity"":2}",,2025-08-28 04:00:03.644+00,106768
+207,session_1756353496876_expressivity_none,v002_fear_opposite_scale_3.0,"{""emotion"":2,""quality"":2,""similarity"":3}",,2025-08-28 04:00:40.898+00,144022
+208,session_1756353496876_expressivity_none,v001_excitement_neutral_scale_2.0,"{""emotion"":2,""quality"":2,""similarity"":1}",,2025-08-28 04:00:59.462+00,162586
+209,session_1756353496876_expressivity_none,v002_whisper_neutral_scale_0.5,"{""emotion"":1,""quality"":2,""similarity"":4}",,2025-08-28 04:01:13.503+00,176627
+210,session_1756353496876_expressivity_none,v002_excited_neutral_scale_3.0,"{""emotion"":5,""quality"":2,""similarity"":3}",,2025-08-28 04:01:24.034+00,187158
+211,session_1756353496876_expressivity_none,v001_surprise_match_scale_1.0,"{""emotion"":5,""quality"":3,""similarity"":3}",,2025-08-28 04:01:35.631+00,198755
+212,session_1756353496876_expressivity_none,v001_excited_match_scale_1.5,"{""emotion"":4,""quality"":2,""similarity"":2}",,2025-08-28 04:01:50.862+00,213986
+213,session_1756353496876_expressivity_none,v002_fear_neutral_scale_0.5,"{""emotion"":1,""quality"":3,""similarity"":2}",,2025-08-28 04:02:05.42+00,228544
+214,session_1756353496876_expressivity_none,v001_toneup_neutral_scale_1.0,"{""emotion"":1,""quality"":1,""similarity"":4}",,2025-08-28 04:02:18.798+00,241922
+215,session_1756353496876_expressivity_none,v002_angry_opposite_scale_2.5,"{""emotion"":6,""quality"":4,""similarity"":4}",,2025-08-28 04:02:34.087+00,257211
+216,session_1756353496876_expressivity_none,v002_terrified_match_scale_1.0,"{""emotion"":3,""quality"":2,""similarity"":1}",,2025-08-28 04:02:53.857+00,276981
+217,session_1756353496876_expressivity_none,v001_excitement_match_scale_2.5,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-28 04:03:07.129+00,290253
+218,session_1756353496876_expressivity_none,v002_tonedown_opposite_scale_1.5,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 04:03:24.577+00,307701
+219,session_1756353496876_expressivity_none,v001_tonedown_neutral_scale_3.0,"{""emotion"":6,""quality"":2,""similarity"":3}",,2025-08-28 04:03:38.495+00,321619
+220,session_1756353496876_expressivity_none,v001_furious_match_scale_1.5,"{""emotion"":6,""quality"":2,""similarity"":2}",,2025-08-28 04:03:49.767+00,332891
+221,session_1756353496876_expressivity_none,v001_toneup_opposite_scale_1.5,"{""emotion"":2,""quality"":1,""similarity"":1}",,2025-08-28 04:04:06.642+00,349766
+222,session_1756353496876_expressivity_none,v001_fear_match_scale_0.5,"{""emotion"":4,""quality"":3,""similarity"":5}",,2025-08-28 04:04:20.339+00,363463
+223,session_1756353496876_expressivity_none,v001_excited_neutral_scale_2.0,"{""emotion"":3,""quality"":2,""similarity"":2}",,2025-08-28 04:04:41.744+00,384868
+224,session_1756348942369_expressivity_none,v002_surprise_neutral_scale_2.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 02:42:51.212+00,28843
+225,session_1756348942369_expressivity_none,v001_happy_neutral_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-28 02:43:07.976+00,45607
+226,session_1756348942369_expressivity_none,v001_whisper_neutral_scale_3.0,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 02:43:20.133+00,57764
+227,session_1756348942369_expressivity_none,v002_toneup_opposite_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":5}",,2025-08-28 02:43:51.6+00,89232
+228,session_1756348942369_expressivity_none,v001_excited_match_scale_2.0,"{""emotion"":2,""quality"":3,""similarity"":3}",,2025-08-28 02:44:13.309+00,110940
+229,session_1756348942369_expressivity_none,v001_fear_match_scale_2.5,"{""emotion"":4,""quality"":5,""similarity"":4}",,2025-08-28 02:44:36.42+00,134051
+230,session_1756348942369_expressivity_none,v001_furious_opposite_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":3}",,2025-08-28 02:44:54.859+00,152490
+231,session_1756348942369_expressivity_none,v001_furious_neutral_scale_2.0,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 02:45:10.944+00,168575
+232,session_1756348942369_expressivity_none,v002_happy_opposite_scale_1.0,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-28 02:45:28.664+00,186295
+233,session_1756348942369_expressivity_none,v001_excited_opposite_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 02:45:39.459+00,197090
+234,session_1756348942369_expressivity_none,v002_toneup_match_scale_1.5,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 02:45:55.392+00,213023
+235,session_1756348942369_expressivity_none,v002_happy_match_scale_1.5,"{""emotion"":3,""quality"":5,""similarity"":4}",,2025-08-28 02:46:22.311+00,239942
+236,session_1756348942369_expressivity_none,v001_furious_match_scale_2.0,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-28 04:16:58.118+00,5675749
+237,session_1756348942369_expressivity_none,v002_toneup_neutral_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:17:08.764+00,5686395
+238,session_1756348942369_expressivity_none,v002_toneup_opposite_scale_0.5,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-28 04:17:22.659+00,5700290
+239,session_1756348942369_expressivity_none,v002_tonedown_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:17:34.945+00,5712576
+240,session_1756348942369_expressivity_none,v001_terrified_match_scale_1.0,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 04:17:49.504+00,5727135
+241,session_1756348942369_expressivity_none,v001_excited_neutral_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:18:06.026+00,5743657
+242,session_1756348942369_expressivity_none,v001_excited_match_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 04:18:18.712+00,5756343
+243,session_1756348942369_expressivity_none,v002_sad_opposite_scale_3.0,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-28 04:18:34.567+00,5772198
+244,session_1756348942369_expressivity_none,v002_happy_neutral_scale_0.5,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-28 04:18:46.863+00,5784494
+245,session_1756348942369_expressivity_none,v001_surprise_opposite_scale_2.0,"{""emotion"":2,""quality"":2,""similarity"":4}",,2025-08-28 04:18:59.826+00,5797457
+246,session_1756348942369_expressivity_none,v001_surprise_opposite_scale_2.5,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 04:19:13.09+00,5810721
+247,session_1756348942369_expressivity_none,v001_fear_match_scale_3.0,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 04:19:31.078+00,5828709
+248,session_1756348942369_expressivity_none,v002_sad_neutral_scale_1.0,"{""emotion"":4,""quality"":4,""similarity"":5}",,2025-08-28 04:19:49.62+00,5847251
+249,session_1756348942369_expressivity_none,v002_surprise_neutral_scale_2.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 02:42:51.212+00,28843
+250,session_1756348942369_expressivity_none,v001_happy_neutral_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-28 02:43:07.976+00,45607
+251,session_1756348942369_expressivity_none,v001_whisper_neutral_scale_3.0,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 02:43:20.133+00,57764
+252,session_1756348942369_expressivity_none,v002_toneup_opposite_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":5}",,2025-08-28 02:43:51.6+00,89232
+253,session_1756348942369_expressivity_none,v001_excited_match_scale_2.0,"{""emotion"":2,""quality"":3,""similarity"":3}",,2025-08-28 02:44:13.309+00,110940
+254,session_1756348942369_expressivity_none,v001_fear_match_scale_2.5,"{""emotion"":4,""quality"":5,""similarity"":4}",,2025-08-28 02:44:36.42+00,134051
+255,session_1756348942369_expressivity_none,v001_furious_opposite_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":3}",,2025-08-28 02:44:54.859+00,152490
+256,session_1756348942369_expressivity_none,v001_furious_neutral_scale_2.0,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 02:45:10.944+00,168575
+257,session_1756348942369_expressivity_none,v002_happy_opposite_scale_1.0,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-28 02:45:28.664+00,186295
+258,session_1756348942369_expressivity_none,v001_excited_opposite_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 02:45:39.459+00,197090
+259,session_1756348942369_expressivity_none,v002_toneup_match_scale_1.5,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 02:45:55.392+00,213023
+260,session_1756348942369_expressivity_none,v002_happy_match_scale_1.5,"{""emotion"":3,""quality"":5,""similarity"":4}",,2025-08-28 02:46:22.311+00,239942
+261,session_1756348942369_expressivity_none,v001_furious_match_scale_2.0,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-28 04:16:58.118+00,5675749
+262,session_1756348942369_expressivity_none,v002_toneup_neutral_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:17:08.764+00,5686395
+263,session_1756348942369_expressivity_none,v002_toneup_opposite_scale_0.5,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-28 04:17:22.659+00,5700290
+264,session_1756348942369_expressivity_none,v002_tonedown_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:17:34.945+00,5712576
+265,session_1756348942369_expressivity_none,v001_terrified_match_scale_1.0,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 04:17:49.504+00,5727135
+266,session_1756348942369_expressivity_none,v001_excited_neutral_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:18:06.026+00,5743657
+267,session_1756348942369_expressivity_none,v001_excited_match_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 04:18:18.712+00,5756343
+268,session_1756348942369_expressivity_none,v002_sad_opposite_scale_3.0,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-28 04:18:34.567+00,5772198
+269,session_1756348942369_expressivity_none,v002_happy_neutral_scale_0.5,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-28 04:18:46.863+00,5784494
+270,session_1756348942369_expressivity_none,v001_surprise_opposite_scale_2.0,"{""emotion"":2,""quality"":2,""similarity"":4}",,2025-08-28 04:18:59.826+00,5797457
+271,session_1756348942369_expressivity_none,v001_surprise_opposite_scale_2.5,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 04:19:13.09+00,5810721
+272,session_1756348942369_expressivity_none,v001_fear_match_scale_3.0,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 04:19:31.078+00,5828709
+273,session_1756348942369_expressivity_none,v002_sad_neutral_scale_1.0,"{""emotion"":4,""quality"":4,""similarity"":5}",,2025-08-28 04:19:49.62+00,5847251
+274,session_1756295199741_expressivity_none,v002_whisper_match_scale_3.0,"{""emotion"":6,""quality"":4,""similarity"":6}",소리가 좀 웅웅 거리는데 Quality Issue로 작성했습니다. 그리고 여성 목소리인데 속삭이니까 좀 흉성이 과도하게 들어가서 남성적인 느낌도 있습니다.,2025-08-27 11:48:39.831+00,120090
+275,session_1756295199741_expressivity_none,v002_furious_opposite_scale_2.0,"{""emotion"":1,""quality"":2,""similarity"":4}",더 화난 느낌은 없고 소리가 조금 작아진 느낌만 있습니다.,2025-08-27 11:50:13.475+00,213734
+276,session_1756295199741_expressivity_none,v001_whisper_opposite_scale_2.5,"{""emotion"":7,""quality"":7,""similarity"":4}",이건 웅웅소리도 안나고 좋은데 약간 다른 사람 느낌입니다.,2025-08-27 11:51:06.093+00,266352
+277,session_1756295199741_expressivity_none,v002_excitement_neutral_scale_1.0,"{""emotion"":2,""quality"":5,""similarity"":4}","사람도 좀 다르게 느껴지고, 더 Excited된 느낌은 없습니다.",2025-08-27 11:53:08.491+00,388750
+278,session_1756295199741_expressivity_none,v001_excited_match_scale_3.0,"{""emotion"":4,""quality"":6,""similarity"":6}","괜찮은데, 남자가 더 Excited 되었을때 목소리의 높낮이가 약간 여자가 높낮이를 바꾸듯이 해서 남자지만 동성애자인가? 느낌도 듭니다. Excited 될때 목소리가 어떻게 바뀌는지를 여자 목소리의 변화를 써서 학습했나? 싶은 생각이 듭니다.",2025-08-27 11:55:13.82+00,514079
+279,session_1756295199741_expressivity_none,v001_fear_neutral_scale_0.5,"{""emotion"":1,""quality"":2,""similarity"":5}",Fear는 느껴지지 않네요.,2025-08-27 11:55:57.87+00,558129
+280,session_1756295199741_expressivity_none,v001_angry_opposite_scale_3.0,"{""emotion"":1,""quality"":1,""similarity"":1}",오리지널은 남자목소리 타겟은 여자목소리 같습니다. 더 화가난 것처럼 느껴지지도 않습니다.,2025-08-27 11:56:58.672+00,618931
+281,session_1756295199741_expressivity_none,v002_fear_opposite_scale_3.0,"{""emotion"":1,""quality"":2,""similarity"":1}",,2025-08-27 12:10:32.53+00,1432789
+282,session_1756295199741_expressivity_none,v002_angry_neutral_scale_3.0,"{""emotion"":1,""quality"":3,""similarity"":4}",,2025-08-27 12:11:37.35+00,1497609
+283,session_1756295199741_expressivity_none,v002_terrified_match_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":6}",좋은데 가멍 표현이 뒷부분에 치중되 느낌,2025-08-27 12:12:30.916+00,1551175
+284,session_1756295199741_expressivity_none,v002_furious_neutral_scale_3.0,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-27 12:14:20.146+00,1660405
+285,session_1756295199741_expressivity_none,v002_fear_opposite_scale_1.0,"{""emotion"":1,""quality"":4,""similarity"":5}",,2025-08-27 12:14:40.002+00,1680261
+286,session_1756295199741_expressivity_none,v002_tonedown_neutral_scale_1.0,"{""emotion"":4,""quality"":3,""similarity"":6}",톤다운인데 그냥 약간 느려진 느낌입니다.,2025-08-27 12:15:19.964+00,1720223
+287,session_1756295199741_expressivity_none,v002_toneup_match_scale_3.0,"{""emotion"":6,""quality"":4,""similarity"":6}",기계음이 들리는데 톤업은 잘 표현 된 것 같습니다.,2025-08-27 12:16:14.312+00,1774571
+288,session_1756295199741_expressivity_none,v002_surprise_neutral_scale_2.5,"{""emotion"":1,""quality"":6,""similarity"":3}",,2025-08-27 12:16:54.379+00,1814638
+289,session_1756295199741_expressivity_none,v002_angry_opposite_scale_0.5,"{""emotion"":5,""quality"":4,""similarity"":6}",감정이 더 격한 느낌은 드는데 이게 더 Angry 한건지는 모르겠습니다.,2025-08-27 12:17:53.933+00,1874192
+290,session_1756295199741_expressivity_none,v002_angry_neutral_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":5}",,2025-08-27 12:19:19.994+00,1960253
+291,session_1756295199741_expressivity_none,v001_tonedown_neutral_scale_0.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-27 12:19:54.995+00,1995254
+292,session_1756295199741_expressivity_none,v002_whisper_opposite_scale_0.5,"{""emotion"":1,""quality"":5,""similarity"":5}",,2025-08-27 12:20:13.868+00,2014127
+293,session_1756295199741_expressivity_none,v001_angry_match_scale_3.0,"{""emotion"":4,""quality"":5,""similarity"":5}",처음에 약간 속사임 느낌 그리고 뒤에는 화는느낌이네요.,2025-08-27 12:20:54.8+00,2055059
+294,session_1756295199741_expressivity_none,v001_tonedown_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-27 12:21:14.235+00,2074494
+295,session_1756295199741_expressivity_none,v001_sad_opposite_scale_2.5,"{""emotion"":1,""quality"":4,""similarity"":1}",하나는 여자 다른건 남자 목소리 같습니다.,2025-08-27 12:21:57.178+00,2117437
+296,session_1756295199741_expressivity_none,v002_sad_opposite_scale_3.0,"{""emotion"":3,""quality"":5,""similarity"":3}",,2025-08-27 12:22:25.461+00,2145720
+297,session_1756295199741_expressivity_none,v001_excited_match_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-27 12:22:51.734+00,2171993
+298,session_1756295199741_expressivity_none,v002_fear_opposite_scale_2.0,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-27 12:23:21.588+00,2201847
+299,session_1756356133558_expressivity_none,v002_excitement_match_scale_1.0,"{""emotion"":7,""quality"":4,""similarity"":7}",,2025-08-28 04:42:58.612+00,45054
+300,session_1756356133558_expressivity_none,v002_toneup_match_scale_1.5,"{""emotion"":7,""quality"":3,""similarity"":7}",,2025-08-28 04:44:26.131+00,132573
+301,session_1756356133558_expressivity_none,v001_whisper_opposite_scale_3.0,"{""emotion"":7,""quality"":4,""similarity"":7}",,2025-08-28 04:44:42.444+00,148886
+302,session_1756356133558_expressivity_none,v001_happy_match_scale_3.0,"{""emotion"":5,""quality"":2,""similarity"":2}",,2025-08-28 04:45:04.327+00,170769
+303,session_1756356133558_expressivity_none,v001_tonedown_neutral_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-28 04:45:26.243+00,192685
+304,session_1756356133558_expressivity_none,v001_happy_match_scale_2.5,"{""emotion"":5,""quality"":3,""similarity"":2}",,2025-08-28 04:45:45.377+00,211819
+305,session_1756356133558_expressivity_none,v001_happy_opposite_scale_3.0,"{""emotion"":5,""quality"":4,""similarity"":2}",,2025-08-28 04:45:58.793+00,225235
+306,session_1756356133558_expressivity_none,v001_toneup_neutral_scale_3.0,"{""emotion"":1,""quality"":4,""similarity"":1}",,2025-08-28 04:46:27.28+00,253722
+307,session_1756356133558_expressivity_none,v001_sad_match_scale_1.0,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-28 04:46:55.293+00,281735
+308,session_1756356133558_expressivity_none,v001_whisper_neutral_scale_0.5,"{""emotion"":1,""quality"":4,""similarity"":4}",,2025-08-28 04:47:12.892+00,299334
+309,session_1756356133558_expressivity_none,v001_happy_opposite_scale_2.0,"{""emotion"":6,""quality"":4,""similarity"":3}",,2025-08-28 04:47:32.231+00,318673
+310,session_1756356133558_expressivity_none,v001_happy_neutral_scale_1.5,"{""emotion"":4,""quality"":5,""similarity"":4}",,2025-08-28 04:48:03.24+00,349682
+311,session_1756356133558_expressivity_none,v001_toneup_neutral_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":4}",,2025-08-28 04:48:20.459+00,366901
+312,session_1756356133558_expressivity_none,v001_whisper_match_scale_2.5,"{""emotion"":7,""quality"":5,""similarity"":5}",,2025-08-28 04:48:34.008+00,380450
+313,session_1756356133558_expressivity_none,v001_whisper_neutral_scale_1.0,"{""emotion"":7,""quality"":6,""similarity"":6}",,2025-08-28 04:49:08.695+00,415137
+314,session_1756356133558_expressivity_none,v001_happy_opposite_scale_1.5,"{""emotion"":5,""quality"":5,""similarity"":4}",,2025-08-28 04:49:29.59+00,436032
+315,session_1756356133558_expressivity_none,v001_sad_match_scale_0.5,"{""emotion"":2,""quality"":5,""similarity"":5}",,2025-08-28 04:49:56.673+00,463115
+316,session_1756356133558_expressivity_none,v001_tonedown_match_scale_3.0,"{""emotion"":2,""quality"":5,""similarity"":5}",,2025-08-28 04:50:31.623+00,498065
+317,session_1756356133558_expressivity_none,v001_happy_opposite_scale_0.5,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-28 04:50:55.706+00,522148
+318,session_1756356133558_expressivity_none,v001_tonedown_neutral_scale_0.5,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-28 04:51:13.11+00,539552
+319,session_1756356133558_expressivity_none,v001_sad_opposite_scale_2.5,"{""emotion"":4,""quality"":5,""similarity"":1}",,2025-08-28 04:51:46.621+00,573063
+320,session_1756356133558_expressivity_none,v001_angry_match_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":3}",,2025-08-28 04:52:15.509+00,601951
+321,session_1756356133558_expressivity_none,v001_sad_opposite_scale_3.0,"{""emotion"":2,""quality"":6,""similarity"":2}",,2025-08-28 04:52:40.954+00,627396
+322,session_1756356133558_expressivity_none,v001_happy_opposite_scale_1.0,"{""emotion"":2,""quality"":3,""similarity"":4}",,2025-08-28 04:53:06.287+00,652729
+323,session_1756356133558_expressivity_none,v001_sad_opposite_scale_2.0,"{""emotion"":1,""quality"":1,""similarity"":4}",,2025-08-28 04:53:18.454+00,664896
+324,session_1756356815556_expressivity_0.6,v001_toneup_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":7}",,2025-08-28 04:53:50.871+00,15315
+325,session_1756356815556_expressivity_0.6,v001_fear_match_scale_2.5,"{""emotion"":6,""quality"":5,""similarity"":4}",,2025-08-28 04:54:13.674+00,38118
+326,session_1756356815556_expressivity_0.6,v001_surprise_match_scale_1.5,"{""emotion"":5,""quality"":6,""similarity"":6}",,2025-08-28 04:54:39.387+00,63831
+327,session_1756356815556_expressivity_0.6,v002_whisper_opposite_scale_3.0,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 04:54:55.986+00,80430
+328,session_1756356815556_expressivity_0.6,v002_sad_opposite_scale_1.5,"{""emotion"":7,""quality"":6,""similarity"":7}",,2025-08-28 04:55:13.986+00,98430
+329,session_1756356815556_expressivity_0.6,v001_tonedown_opposite_scale_0.5,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-28 04:55:35.669+00,120113
+330,session_1756356815556_expressivity_0.6,v002_terrified_opposite_scale_0.5,"{""emotion"":1,""quality"":5,""similarity"":3}",,2025-08-28 04:56:33.547+00,177991
+331,session_1756356815556_expressivity_0.6,v001_excited_neutral_scale_2.0,"{""emotion"":5,""quality"":5,""similarity"":4}",,2025-08-28 04:56:50.063+00,194507
+332,session_1756356815556_expressivity_0.6,v002_happy_opposite_scale_2.0,"{""emotion"":4,""quality"":4,""similarity"":4}",,2025-08-28 04:57:06.896+00,211340
+333,session_1756356815556_expressivity_0.6,v001_terrified_neutral_scale_3.0,"{""emotion"":6,""quality"":6,""similarity"":5}",,2025-08-28 04:57:28.313+00,232757
+334,session_1756356815556_expressivity_0.6,v001_excitement_match_scale_0.5,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-28 04:57:59.212+00,263656
+335,session_1756356815556_expressivity_0.6,v001_excitement_match_scale_1.0,"{""emotion"":6,""quality"":1,""similarity"":4}",,2025-08-28 04:58:23.428+00,287872
+336,session_1756356815556_expressivity_0.6,v001_tonedown_match_scale_1.0,"{""emotion"":7,""quality"":5,""similarity"":5}",,2025-08-28 04:58:43.267+00,307711
+337,session_1756356815556_expressivity_0.6,v001_whisper_match_scale_0.5,"{""emotion"":7,""quality"":7,""similarity"":3}",,2025-08-28 04:59:03.195+00,327639
+338,session_1756356815556_expressivity_0.6,v001_angry_match_scale_2.0,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-28 04:59:20.845+00,345289
+339,session_1756356815556_expressivity_0.6,v001_excited_match_scale_2.5,"{""emotion"":6,""quality"":6,""similarity"":7}",,2025-08-28 04:59:45.11+00,369554
+340,session_1756356815556_expressivity_0.6,v002_surprise_opposite_scale_2.5,"{""emotion"":1,""quality"":4,""similarity"":7}",,2025-08-28 05:00:12.278+00,396722
+341,session_1756356815556_expressivity_0.6,v001_fear_match_scale_3.0,"{""emotion"":1,""quality"":5,""similarity"":4}",,2025-08-28 05:00:31.878+00,416322
+342,session_1756356815556_expressivity_0.6,v002_happy_neutral_scale_3.0,"{""emotion"":1,""quality"":3,""similarity"":6}",,2025-08-28 05:00:46.711+00,431155
+343,session_1756356815556_expressivity_0.6,v002_whisper_opposite_scale_1.0,"{""emotion"":7,""quality"":3,""similarity"":7}",,2025-08-28 05:01:01.844+00,446288
+344,session_1756356815556_expressivity_0.6,v002_surprise_neutral_scale_0.5,"{""emotion"":2,""quality"":6,""similarity"":6}",,2025-08-28 05:01:33.089+00,477533
+345,session_1756356815556_expressivity_0.6,v001_excited_neutral_scale_0.5,"{""emotion"":7,""quality"":7,""similarity"":6}",,2025-08-28 05:01:47.294+00,491738
+346,session_1756356815556_expressivity_0.6,v001_terrified_match_scale_1.0,"{""emotion"":7,""quality"":3,""similarity"":4}",,2025-08-28 05:02:03.18+00,507624
+347,session_1756356815556_expressivity_0.6,v001_sad_match_scale_2.0,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 05:02:19.209+00,523653
+348,session_1756356815556_expressivity_0.6,v002_terrified_opposite_scale_1.5,"{""emotion"":5,""quality"":6,""similarity"":6}",,2025-08-28 05:02:37.609+00,542053
+349,session_1756354811896_expressivity_0.6,v001_fear_match_scale_3.0,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 04:20:27.284+00,15388
+350,session_1756354811896_expressivity_0.6,v001_excitement_neutral_scale_1.0,"{""emotion"":5,""quality"":4,""similarity"":5}",,2025-08-28 04:20:39.183+00,27287
+351,session_1756354811896_expressivity_0.6,v001_angry_opposite_scale_1.5,"{""emotion"":2,""quality"":2,""similarity"":3}",,2025-08-28 04:20:51.796+00,39900
+352,session_1756354811896_expressivity_0.6,v002_toneup_opposite_scale_2.5,"{""emotion"":2,""quality"":2,""similarity"":3}",,2025-08-28 04:21:05.085+00,53189
+353,session_1756354811896_expressivity_0.6,v001_excited_neutral_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 04:21:14.777+00,62882
+354,session_1756354811896_expressivity_0.6,v001_toneup_neutral_scale_3.0,"{""emotion"":4,""quality"":2,""similarity"":4}",,2025-08-28 04:21:27.553+00,75657
+355,session_1756354811896_expressivity_0.6,v002_excited_match_scale_0.5,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 04:21:43.31+00,91414
+356,session_1756354811896_expressivity_0.6,v002_surprise_match_scale_1.5,"{""emotion"":3,""quality"":2,""similarity"":3}",,2025-08-28 04:22:01.191+00,109295
+357,session_1756354811896_expressivity_0.6,v001_tonedown_match_scale_1.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:01:03.234+00,2451338
+358,session_1756354811896_expressivity_0.6,v001_excited_match_scale_1.5,"{""emotion"":3,""quality"":5,""similarity"":5}",,2025-08-28 05:01:23.384+00,2471488
+359,session_1756354811896_expressivity_0.6,v002_excited_match_scale_2.5,"{""emotion"":3,""quality"":5,""similarity"":5}",,2025-08-28 05:01:40.005+00,2488109
+360,session_1756354811896_expressivity_0.6,v001_sad_match_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:01:52.834+00,2500938
+361,session_1756354811896_expressivity_0.6,v001_angry_opposite_scale_0.5,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 05:02:04.737+00,2512841
+362,session_1756354811896_expressivity_0.6,v001_surprise_match_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:02:19.171+00,2527275
+363,session_1756354811896_expressivity_0.6,v001_sad_opposite_scale_1.5,"{""emotion"":2,""quality"":2,""similarity"":2}",,2025-08-28 05:02:32.586+00,2540690
+364,session_1756354811896_expressivity_0.6,v001_terrified_match_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":5}",,2025-08-28 05:02:51.471+00,2559575
+365,session_1756354811896_expressivity_0.6,v001_sad_match_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:03:11.502+00,2579606
+366,session_1756354811896_expressivity_0.6,v001_surprise_match_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:03:22.017+00,2590121
+367,session_1756354811896_expressivity_0.6,v002_excited_neutral_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:03:46.151+00,2614255
+368,session_1756354811896_expressivity_0.6,v001_happy_opposite_scale_1.0,"{""emotion"":3,""quality"":2,""similarity"":3}",,2025-08-28 05:04:27.984+00,2656088
+369,session_1756354811896_expressivity_0.6,v001_excitement_match_scale_1.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:04:39.325+00,2667429
+370,session_1756354811896_expressivity_0.6,v002_excitement_match_scale_2.5,"{""emotion"":2,""quality"":3,""similarity"":4}",,2025-08-28 05:04:57.808+00,2685912
+371,session_1756354811896_expressivity_0.6,v001_excited_neutral_scale_2.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:05:08.027+00,2696131
+372,session_1756354811896_expressivity_0.6,v002_happy_match_scale_1.0,"{""emotion"":2,""quality"":4,""similarity"":5}",,2025-08-28 05:05:21.19+00,2709294
+373,session_1756354811896_expressivity_0.6,v002_sad_opposite_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:05:31.318+00,2719422
+374,session_1756357722500_expressivity_none,v001_happy_match_scale_1.0,"{""emotion"":2,""quality"":1,""similarity"":6}",,2025-08-28 05:09:51.331+00,68831
+375,session_1756357722500_expressivity_none,v001_tonedown_match_scale_0.5,"{""emotion"":5,""quality"":2,""similarity"":6}",,2025-08-28 05:10:33.076+00,110576
+376,session_1756357722500_expressivity_none,v002_surprise_match_scale_2.0,"{""emotion"":3,""quality"":2,""similarity"":6}",,2025-08-28 05:11:13.173+00,150673
+377,session_1756357722500_expressivity_none,v002_terrified_opposite_scale_0.5,"{""emotion"":2,""quality"":2,""similarity"":7}",,2025-08-28 05:11:44.677+00,182177
+378,session_1756357722500_expressivity_none,v001_tonedown_neutral_scale_3.0,"{""emotion"":2,""quality"":4,""similarity"":3}",,2025-08-28 05:12:11.91+00,209410
+379,session_1756357722500_expressivity_none,v001_tonedown_neutral_scale_0.5,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-28 05:12:44.889+00,242389
+380,session_1756357722500_expressivity_none,v001_angry_match_scale_1.5,"{""emotion"":3,""quality"":4,""similarity"":5}",,2025-08-28 05:13:25.842+00,283342
+381,session_1756357722500_expressivity_none,v002_excitement_neutral_scale_1.0,"{""emotion"":2,""quality"":4,""similarity"":6}",,2025-08-28 05:13:46.105+00,303605
+382,session_1756357722500_expressivity_none,v002_furious_neutral_scale_2.5,"{""emotion"":4,""quality"":2,""similarity"":5}",,2025-08-28 05:14:27.227+00,344727
+383,session_1756357722500_expressivity_none,v001_tonedown_match_scale_2.5,"{""emotion"":2,""quality"":1,""similarity"":2}",,2025-08-28 05:14:52.069+00,369569
+384,session_1756357722500_expressivity_none,v001_whisper_neutral_scale_1.0,"{""emotion"":6,""quality"":4,""similarity"":5}",,2025-08-28 05:15:20.482+00,397982
+385,session_1756357722500_expressivity_none,v001_whisper_neutral_scale_2.0,"{""emotion"":5,""quality"":2,""similarity"":4}",,2025-08-28 05:15:47.249+00,424749
+386,session_1756357722500_expressivity_none,v001_whisper_match_scale_3.0,"{""emotion"":7,""quality"":5,""similarity"":4}",,2025-08-28 05:16:06.444+00,443944
+387,session_1756357722500_expressivity_none,v001_terrified_opposite_scale_1.0,"{""emotion"":5,""quality"":5,""similarity"":3}",,2025-08-28 05:16:33.879+00,471379
+388,session_1756357722500_expressivity_none,v001_excitement_neutral_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":5}",,2025-08-28 05:16:55.7+00,493200
+389,session_1756357722500_expressivity_none,v001_angry_match_scale_1.0,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 05:17:11.323+00,508823
+390,session_1756357722500_expressivity_none,v001_excitement_opposite_scale_2.5,"{""emotion"":2,""quality"":1,""similarity"":5}",,2025-08-28 05:17:26.555+00,524055
+391,session_1756357722500_expressivity_none,v002_happy_match_scale_1.5,"{""emotion"":2,""quality"":5,""similarity"":5}",,2025-08-28 05:17:42.842+00,540342
+392,session_1756357722500_expressivity_none,v002_whisper_match_scale_2.5,"{""emotion"":2,""quality"":1,""similarity"":4}",,2025-08-28 05:17:56.085+00,553585
+393,session_1756357722500_expressivity_none,v001_whisper_neutral_scale_3.0,"{""emotion"":5,""quality"":4,""similarity"":4}",,2025-08-28 05:18:07.797+00,565297
+394,session_1756357722500_expressivity_none,v001_fear_neutral_scale_3.0,"{""emotion"":3,""quality"":4,""similarity"":1}",,2025-08-28 05:18:24.564+00,582064
+395,session_1756357722500_expressivity_none,v001_toneup_opposite_scale_3.0,"{""emotion"":3,""quality"":4,""similarity"":2}",,2025-08-28 05:18:50.298+00,607798
+396,session_1756357722500_expressivity_none,v002_surprise_opposite_scale_3.0,"{""emotion"":2,""quality"":5,""similarity"":5}",,2025-08-28 05:19:10.481+00,627981
+397,session_1756357722500_expressivity_none,v002_angry_match_scale_2.5,"{""emotion"":3,""quality"":2,""similarity"":4}",,2025-08-28 05:19:28.203+00,645703
+398,session_1756357722500_expressivity_none,v001_happy_opposite_scale_2.5,"{""emotion"":1,""quality"":4,""similarity"":5}",,2025-08-28 05:19:42.742+00,660242
+399,session_1756348912185_expressivity_0.6,v002_sad_match_scale_1.5,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 02:42:07.813+00,15628
+400,session_1756348912185_expressivity_0.6,v002_fear_opposite_scale_2.0,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 02:42:24.601+00,32416
+401,session_1756348912185_expressivity_0.6,v001_toneup_match_scale_3.0,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:42:36.779+00,44594
+402,session_1756348912185_expressivity_0.6,v002_fear_neutral_scale_2.5,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:42:50.286+00,58101
+403,session_1756348912185_expressivity_0.6,v001_whisper_neutral_scale_2.0,"{""emotion"":6,""quality"":3,""similarity"":6}",,2025-08-28 02:43:05.547+00,73362
+404,session_1756348912185_expressivity_0.6,v001_tonedown_match_scale_1.0,"{""emotion"":5,""quality"":3,""similarity"":3}",,2025-08-28 02:43:33.14+00,100955
+405,session_1756348912185_expressivity_0.6,v002_excitement_match_scale_1.5,"{""emotion"":6,""quality"":3,""similarity"":6}",,2025-08-28 02:43:50.486+00,118301
+406,session_1756348912185_expressivity_0.6,v002_terrified_neutral_scale_2.5,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:44:00.013+00,127828
+407,session_1756348912185_expressivity_0.6,v002_surprise_match_scale_2.5,"{""emotion"":4,""quality"":2,""similarity"":6}",,2025-08-28 02:44:19.649+00,147464
+408,session_1756348912185_expressivity_0.6,v002_furious_match_scale_2.0,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:44:35.778+00,163593
+409,session_1756348912185_expressivity_0.6,v001_whisper_match_scale_1.5,"{""emotion"":6,""quality"":3,""similarity"":6}",,2025-08-28 02:44:47.731+00,175546
+410,session_1756348912185_expressivity_0.6,v001_angry_neutral_scale_2.0,"{""emotion"":4,""quality"":3,""similarity"":3}",,2025-08-28 02:45:01.03+00,188845
+411,session_1756348912185_expressivity_0.6,v002_surprise_match_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 02:45:23.378+00,211193
+412,session_1756348912185_expressivity_0.6,v001_tonedown_match_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-28 02:45:38.042+00,225857
+413,session_1756348912185_expressivity_0.6,v002_fear_match_scale_2.0,"{""emotion"":4,""quality"":3,""similarity"":6}",,2025-08-28 02:45:59.424+00,247239
+414,session_1756348912185_expressivity_0.6,v001_whisper_opposite_scale_2.5,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 02:46:13.548+00,261363
+415,session_1756348912185_expressivity_0.6,v002_sad_match_scale_1.5,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 02:42:07.813+00,15628
+416,session_1756348912185_expressivity_0.6,v002_fear_opposite_scale_2.0,"{""emotion"":5,""quality"":2,""similarity"":5}",,2025-08-28 02:42:24.601+00,32416
+417,session_1756348912185_expressivity_0.6,v001_toneup_match_scale_3.0,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:42:36.779+00,44594
+418,session_1756348912185_expressivity_0.6,v002_fear_neutral_scale_2.5,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:42:50.286+00,58101
+419,session_1756348912185_expressivity_0.6,v001_whisper_neutral_scale_2.0,"{""emotion"":6,""quality"":3,""similarity"":6}",,2025-08-28 02:43:05.547+00,73362
+420,session_1756348912185_expressivity_0.6,v001_tonedown_match_scale_1.0,"{""emotion"":5,""quality"":3,""similarity"":3}",,2025-08-28 02:43:33.14+00,100955
+421,session_1756348912185_expressivity_0.6,v002_excitement_match_scale_1.5,"{""emotion"":6,""quality"":3,""similarity"":6}",,2025-08-28 02:43:50.486+00,118301
+422,session_1756348912185_expressivity_0.6,v002_terrified_neutral_scale_2.5,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:44:00.013+00,127828
+423,session_1756348912185_expressivity_0.6,v002_surprise_match_scale_2.5,"{""emotion"":4,""quality"":2,""similarity"":6}",,2025-08-28 02:44:19.649+00,147464
+424,session_1756348912185_expressivity_0.6,v002_furious_match_scale_2.0,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 02:44:35.778+00,163593
+425,session_1756348912185_expressivity_0.6,v001_whisper_match_scale_1.5,"{""emotion"":6,""quality"":3,""similarity"":6}",,2025-08-28 02:44:47.731+00,175546
+426,session_1756348912185_expressivity_0.6,v001_angry_neutral_scale_2.0,"{""emotion"":4,""quality"":3,""similarity"":3}",,2025-08-28 02:45:01.03+00,188845
+427,session_1756348912185_expressivity_0.6,v002_surprise_match_scale_1.5,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 02:45:23.378+00,211193
+428,session_1756348912185_expressivity_0.6,v001_tonedown_match_scale_1.5,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-28 02:45:38.042+00,225857
+429,session_1756348912185_expressivity_0.6,v002_fear_match_scale_2.0,"{""emotion"":4,""quality"":3,""similarity"":6}",,2025-08-28 02:45:59.424+00,247239
+430,session_1756348912185_expressivity_0.6,v001_whisper_opposite_scale_2.5,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 02:46:13.548+00,261363
+431,session_1756348912185_expressivity_0.6,v001_angry_match_scale_2.5,"{""emotion"":4,""quality"":4,""similarity"":2}",,2025-08-28 02:46:27.039+00,274854
+432,session_1756348912185_expressivity_0.6,v002_fear_neutral_scale_0.5,"{""emotion"":4,""quality"":2,""similarity"":6}",,2025-08-28 02:46:38.111+00,285926
+433,session_1756348912185_expressivity_0.6,v001_happy_match_scale_3.0,"{""emotion"":5,""quality"":5,""similarity"":3}",,2025-08-28 02:46:48.46+00,296275
+434,session_1756348912185_expressivity_0.6,v001_sad_neutral_scale_1.5,"{""emotion"":1,""quality"":1,""similarity"":1}",,2025-08-28 02:47:06.014+00,313829
+435,session_1756348912185_expressivity_0.6,v001_tonedown_match_scale_3.0,"{""emotion"":5,""quality"":2,""similarity"":3}",,2025-08-28 02:47:25.635+00,333450
+436,session_1756348912185_expressivity_0.6,v002_excitement_opposite_scale_0.5,"{""emotion"":4,""quality"":2,""similarity"":4}",,2025-08-28 02:47:36.955+00,344770
+437,session_1756348912185_expressivity_0.6,v001_whisper_neutral_scale_0.5,"{""emotion"":4,""quality"":4,""similarity"":2}",,2025-08-28 02:48:10.827+00,378642
+438,session_1756348912185_expressivity_0.6,v002_furious_opposite_scale_2.5,"{""emotion"":3,""quality"":2,""similarity"":4}",,2025-08-28 02:48:26.675+00,394490
+439,session_1756348912185_expressivity_0.6,v001_angry_match_scale_0.5,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 05:25:33.841+00,9821656
+440,session_1756358600974_expressivity_none,v002_excited_match_scale_3.0,"{""emotion"":5,""quality"":6,""similarity"":2}",,2025-08-28 05:24:34.262+00,73288
+441,session_1756358600974_expressivity_none,v001_fear_match_scale_3.0,"{""emotion"":5,""quality"":4,""similarity"":1}",,2025-08-28 05:25:22.54+00,121566
+442,session_1756358600974_expressivity_none,v001_fear_neutral_scale_2.5,"{""emotion"":0,""quality"":0,""similarity"":1}",,2025-08-28 05:25:44.304+00,143330
+443,session_1756358171985_expressivity_none,v001_fear_neutral_scale_0.5,"{""emotion"":2,""quality"":6,""similarity"":4}",,2025-08-28 05:17:48.792+00,96807
+444,session_1756358171985_expressivity_none,v001_excited_match_scale_1.5,"{""emotion"":7,""quality"":5,""similarity"":3}",,2025-08-28 05:19:19.829+00,187844
+445,session_1756358171985_expressivity_none,v002_angry_match_scale_1.5,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 05:19:42.435+00,210450
+446,session_1756358171985_expressivity_none,v002_fear_opposite_scale_1.5,"{""emotion"":2,""quality"":6,""similarity"":6}",,2025-08-28 05:20:08.205+00,236220
+447,session_1756358171985_expressivity_none,v001_surprise_match_scale_3.0,"{""emotion"":5,""quality"":1,""similarity"":1}",,2025-08-28 05:21:14.535+00,302550
+448,session_1756358171985_expressivity_none,v001_surprise_match_scale_1.5,"{""emotion"":2,""quality"":1,""similarity"":2}",,2025-08-28 05:21:36.794+00,324809
+449,session_1756358171985_expressivity_none,v002_tonedown_neutral_scale_2.5,"{""emotion"":2,""quality"":1,""similarity"":2}",,2025-08-28 05:22:18.241+00,366256
+450,session_1756358171985_expressivity_none,v002_tonedown_opposite_scale_1.0,"{""emotion"":3,""quality"":3,""similarity"":3}",,2025-08-28 05:23:12.008+00,420023
+451,session_1756358171985_expressivity_none,v002_sad_opposite_scale_1.0,"{""emotion"":2,""quality"":6,""similarity"":3}",,2025-08-28 05:24:22.215+00,490230
+452,session_1756358171985_expressivity_none,v002_angry_opposite_scale_0.5,"{""emotion"":2,""quality"":1,""similarity"":1}",,2025-08-28 05:24:45.008+00,513023
+453,session_1756358171985_expressivity_none,v001_fear_match_scale_1.0,"{""emotion"":1,""quality"":6,""similarity"":5}",,2025-08-28 05:25:36.752+00,564767
+454,session_1756358171985_expressivity_none,v002_angry_match_scale_2.0,"{""emotion"":7,""quality"":5,""similarity"":7}",,2025-08-28 05:25:50.408+00,578423
+455,session_1756358171985_expressivity_none,v002_excitement_match_scale_0.5,"{""emotion"":2,""quality"":6,""similarity"":7}",,2025-08-28 05:26:04.325+00,592341
+456,session_1756358171985_expressivity_none,v001_excited_neutral_scale_1.5,"{""emotion"":1,""quality"":6,""similarity"":1}",,2025-08-28 05:26:17.253+00,605268
+457,session_1756358171985_expressivity_none,v002_happy_neutral_scale_0.5,"{""emotion"":5,""quality"":7,""similarity"":6}",,2025-08-28 05:26:32.809+00,620824
+458,session_1756358171985_expressivity_none,v002_fear_match_scale_2.5,"{""emotion"":4,""quality"":2,""similarity"":1}",,2025-08-28 05:26:51.726+00,639741
+459,session_1756358171985_expressivity_none,v002_excited_neutral_scale_0.5,"{""emotion"":6,""quality"":7,""similarity"":7}",,2025-08-28 05:27:14.779+00,662794
+460,session_1756358171985_expressivity_none,v002_whisper_neutral_scale_0.5,"{""emotion"":2,""quality"":5,""similarity"":6}",,2025-08-28 05:27:34.129+00,682144
+461,session_1756358171985_expressivity_none,v002_terrified_neutral_scale_2.5,"{""emotion"":2,""quality"":6,""similarity"":7}",,2025-08-28 05:27:58.25+00,706265
+462,session_1756358171985_expressivity_none,v002_sad_neutral_scale_2.0,"{""emotion"":5,""quality"":6,""similarity"":5}",,2025-08-28 05:28:17.494+00,725509
+463,session_1756358171985_expressivity_none,v002_fear_match_scale_2.0,"{""emotion"":2,""quality"":7,""similarity"":7}",,2025-08-28 05:28:31.476+00,739491
+464,session_1756358171985_expressivity_none,v002_whisper_opposite_scale_2.0,"{""emotion"":7,""quality"":5,""similarity"":3}",,2025-08-28 05:28:52.19+00,760205
+465,session_1756358171985_expressivity_none,v002_terrified_opposite_scale_1.0,"{""emotion"":7,""quality"":7,""similarity"":5}",,2025-08-28 05:29:17.27+00,785285
+466,session_1756358171985_expressivity_none,v002_excitement_neutral_scale_1.5,"{""emotion"":2,""quality"":6,""similarity"":6}",,2025-08-28 05:29:49.803+00,817818
+467,session_1756358171985_expressivity_none,v002_surprise_neutral_scale_2.0,"{""emotion"":2,""quality"":5,""similarity"":5}",,2025-08-28 05:30:21.843+00,849858
+468,session_1756358828370_expressivity_none,v002_furious_match_scale_1.0,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 05:27:34.031+00,25661
+469,session_1756358828370_expressivity_none,v002_happy_match_scale_1.0,"{""emotion"":1,""quality"":3,""similarity"":2}",,2025-08-28 05:28:08.913+00,60543
+470,session_1756358828370_expressivity_none,v001_happy_match_scale_1.5,"{""emotion"":6,""quality"":3,""similarity"":1}",,2025-08-28 05:28:44.659+00,96289
+471,session_1756358828370_expressivity_none,v001_angry_neutral_scale_0.5,"{""emotion"":2,""quality"":4,""similarity"":3}",,2025-08-28 05:29:14.069+00,125699
+472,session_1756358828370_expressivity_none,v002_happy_match_scale_2.0,"{""emotion"":5,""quality"":4,""similarity"":6}",,2025-08-28 05:29:30.965+00,142595
+473,session_1756358828370_expressivity_none,v001_sad_match_scale_1.5,"{""emotion"":5,""quality"":4,""similarity"":3}",,2025-08-28 05:29:55.033+00,166663
+474,session_1756358828370_expressivity_none,v002_whisper_neutral_scale_1.5,"{""emotion"":7,""quality"":5,""similarity"":6}",,2025-08-28 05:30:21.099+00,192729
+475,session_1756359086558_expressivity_0.6,v002_terrified_opposite_scale_2.5,"{""emotion"":6,""quality"":5,""similarity"":6}",,2025-08-28 05:32:22.821+00,56263
+476,session_1756359086558_expressivity_0.6,v002_fear_match_scale_3.0,"{""emotion"":3,""quality"":4,""similarity"":4}",,2025-08-28 05:32:38.474+00,71916
+477,session_1756359086558_expressivity_0.6,v001_terrified_match_scale_1.0,"{""emotion"":6,""quality"":5,""similarity"":1}",,2025-08-28 05:32:54.219+00,87661
+478,session_1756359086558_expressivity_0.6,v001_furious_opposite_scale_2.0,"{""emotion"":3,""quality"":3,""similarity"":1}",,2025-08-28 05:33:06.88+00,100322
+479,session_1756359086558_expressivity_0.6,v001_fear_neutral_scale_2.0,"{""emotion"":3,""quality"":3,""similarity"":5}",,2025-08-28 05:33:21.376+00,114818
+480,session_1756359086558_expressivity_0.6,v001_terrified_opposite_scale_2.5,"{""emotion"":6,""quality"":5,""similarity"":3}",,2025-08-28 05:33:33.728+00,127170
+481,session_1756359086558_expressivity_0.6,v002_terrified_opposite_scale_2.0,"{""emotion"":3,""quality"":5,""similarity"":4}",,2025-08-28 05:33:50.333+00,143775
+482,session_1756359086558_expressivity_0.6,v002_fear_neutral_scale_1.5,"{""emotion"":1,""quality"":5,""similarity"":6}",,2025-08-28 05:34:20.125+00,173567
+483,session_1756359086558_expressivity_0.6,v002_fear_opposite_scale_1.5,"{""emotion"":1,""quality"":4,""similarity"":6}",,2025-08-28 05:36:40.788+00,314230
+484,session_1756359086558_expressivity_0.6,v001_excited_match_scale_0.5,"{""emotion"":4,""quality"":5,""similarity"":5}",,2025-08-28 05:36:58.045+00,331487
+485,session_1756359086558_expressivity_0.6,v002_excitement_opposite_scale_1.0,"{""emotion"":1,""quality"":5,""similarity"":5}",,2025-08-28 05:37:26.134+00,359576
+486,session_1756359032033_expressivity_0.6,v001_surprise_match_scale_2.5,"{""emotion"":2,""quality"":6,""similarity"":5}",,2025-08-28 05:31:24.188+00,52155
+487,session_1756359032033_expressivity_0.6,v002_surprise_match_scale_2.0,"{""emotion"":2,""quality"":6,""similarity"":6}",,2025-08-28 05:31:47.406+00,75373
+488,session_1756359032033_expressivity_0.6,v001_sad_match_scale_0.5,"{""emotion"":1,""quality"":7,""similarity"":7}",,2025-08-28 05:32:00.966+00,88933
+489,session_1756359032033_expressivity_0.6,v002_fear_neutral_scale_0.5,"{""emotion"":1,""quality"":5,""similarity"":7}",,2025-08-28 05:32:13.109+00,101076
+490,session_1756359032033_expressivity_0.6,v002_fear_neutral_scale_2.0,"{""emotion"":2,""quality"":6,""similarity"":4}",,2025-08-28 05:32:34.347+00,122314
+491,session_1756359032033_expressivity_0.6,v002_whisper_opposite_scale_2.0,"{""emotion"":7,""quality"":5,""similarity"":5}",,2025-08-28 05:32:49.39+00,137357
+492,session_1756359032033_expressivity_0.6,v002_fear_neutral_scale_1.0,"{""emotion"":2,""quality"":4,""similarity"":5}",,2025-08-28 05:33:12.129+00,160096
+493,session_1756359032033_expressivity_0.6,v002_terrified_match_scale_1.5,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 05:33:24.755+00,172722
+494,session_1756359032033_expressivity_0.6,v002_excitement_match_scale_1.5,"{""emotion"":1,""quality"":7,""similarity"":7}",,2025-08-28 05:33:47.786+00,195753
+495,session_1756359032033_expressivity_0.6,v001_angry_neutral_scale_3.0,"{""emotion"":1,""quality"":1,""similarity"":1}","이거 target 샘플이 아예 언어를 말하고 있지 않는 것 같습니다~ 이상한 효과음?처럼 들려요..! ",2025-08-28 05:34:47.676+00,255643
+496,session_1756359032033_expressivity_0.6,v001_happy_match_scale_1.5,"{""emotion"":2,""quality"":4,""similarity"":6}",,2025-08-28 05:35:09.97+00,277937
+497,session_1756359032033_expressivity_0.6,v002_surprise_match_scale_1.0,"{""emotion"":3,""quality"":6,""similarity"":6}",,2025-08-28 05:35:27.188+00,295155
+498,session_1756359032033_expressivity_0.6,v002_terrified_match_scale_2.0,"{""emotion"":7,""quality"":5,""similarity"":7}",,2025-08-28 05:35:49.52+00,317487
+499,session_1756359032033_expressivity_0.6,v002_fear_neutral_scale_1.5,"{""emotion"":2,""quality"":7,""similarity"":3}",,2025-08-28 05:36:00.836+00,328803
+500,session_1756359032033_expressivity_0.6,v001_toneup_opposite_scale_1.5,"{""emotion"":1,""quality"":6,""similarity"":3}",,2025-08-28 05:36:54.953+00,382920
+501,session_1756359032033_expressivity_0.6,v001_excited_match_scale_3.0,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 05:37:07.749+00,395716
+502,session_1756359032033_expressivity_0.6,v002_toneup_neutral_scale_1.0,"{""emotion"":5,""quality"":7,""similarity"":7}",,2025-08-28 05:37:24.302+00,412269
+503,session_1756359032033_expressivity_0.6,v001_toneup_neutral_scale_2.0,"{""emotion"":1,""quality"":5,""similarity"":2}",,2025-08-28 05:37:35.991+00,423958
+504,session_1756359032033_expressivity_0.6,v002_furious_match_scale_2.5,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 05:37:49.952+00,437919
+505,session_1756359032033_expressivity_0.6,v001_terrified_match_scale_2.0,"{""emotion"":6,""quality"":6,""similarity"":1}",,2025-08-28 05:38:03.848+00,451815
+506,session_1756359032033_expressivity_0.6,v002_surprise_opposite_scale_1.5,"{""emotion"":2,""quality"":7,""similarity"":7}",,2025-08-28 05:38:17.213+00,465180
+507,session_1756359032033_expressivity_0.6,v002_angry_match_scale_3.0,"{""emotion"":1,""quality"":6,""similarity"":1}",,2025-08-28 05:38:29.783+00,477750
+508,session_1756359032033_expressivity_0.6,v001_toneup_neutral_scale_0.5,"{""emotion"":5,""quality"":5,""similarity"":1}",,2025-08-28 05:38:47.033+00,495000
+509,session_1756359032033_expressivity_0.6,v002_excited_match_scale_0.5,"{""emotion"":7,""quality"":7,""similarity"":7}",,2025-08-28 05:39:09.754+00,517721
+510,session_1756359032033_expressivity_0.6,v002_sad_match_scale_1.0,"{""emotion"":6,""quality"":7,""similarity"":6}",,2025-08-28 05:39:33.907+00,541874
+511,session_1756359377209_expressivity_0.6,v001_whisper_opposite_scale_1.5,"{""emotion"":3,""quality"":2,""similarity"":3}",,2025-08-28 05:36:39.522+00,22313
+512,session_1756359377209_expressivity_0.6,v001_furious_match_scale_2.5,"{""emotion"":4,""quality"":2,""similarity"":3}",,2025-08-28 05:36:55.232+00,38023
+513,session_1756359377209_expressivity_0.6,v002_happy_opposite_scale_2.5,"{""emotion"":5,""quality"":3,""similarity"":4}",,2025-08-28 05:37:24.486+00,67277
+514,session_1756359377209_expressivity_0.6,v002_toneup_opposite_scale_3.0,"{""emotion"":5,""quality"":4,""similarity"":6}",,2025-08-28 05:37:39.654+00,82445
+515,session_1756359377209_expressivity_0.6,v002_terrified_opposite_scale_2.0,"{""emotion"":2,""quality"":3,""similarity"":4}",,2025-08-28 05:38:02.778+00,105569
+516,session_1756359377209_expressivity_0.6,v001_happy_match_scale_1.0,"{""emotion"":5,""quality"":5,""similarity"":5}",,2025-08-28 05:38:14.836+00,117627
+517,session_1756359377209_expressivity_0.6,v002_furious_match_scale_2.5,"{""emotion"":6,""quality"":2,""similarity"":4}",,2025-08-28 05:38:29.252+00,132043
+518,session_1756359377209_expressivity_0.6,v002_terrified_match_scale_2.0,"{""emotion"":4,""quality"":3,""similarity"":4}",,2025-08-28 05:39:44.587+00,207378
+519,session_1756359377209_expressivity_0.6,v001_furious_opposite_scale_2.5,"{""emotion"":4,""quality"":4,""similarity"":1}",,2025-08-28 05:39:54.394+00,217185
+520,session_1756359377209_expressivity_0.6,v002_fear_neutral_scale_2.0,"{""emotion"":4,""quality"":4,""similarity"":3}",,2025-08-28 05:40:27.722+00,250513
+521,session_1756359377209_expressivity_0.6,v001_excitement_neutral_scale_3.0,"{""emotion"":5,""quality"":3,""similarity"":2}",,2025-08-28 05:40:42.638+00,265429
+522,session_1756359377209_expressivity_0.6,v002_tonedown_neutral_scale_0.5,"{""emotion"":6,""quality"":2,""similarity"":6}",,2025-08-28 05:40:56.788+00,279579
+523,session_1756359377209_expressivity_0.6,v001_fear_neutral_scale_1.0,"{""emotion"":1,""quality"":3,""similarity"":5}",,2025-08-28 05:41:15.276+00,298067
+524,session_1756359377209_expressivity_0.6,v001_excitement_match_scale_1.5,"{""emotion"":4,""quality"":4,""similarity"":4}",,2025-08-28 05:41:28.791+00,311582
+525,session_1756359377209_expressivity_0.6,v001_toneup_match_scale_0.5,"{""emotion"":4,""quality"":5,""similarity"":4}",,2025-08-28 05:41:50.438+00,333229
+526,session_1756359377209_expressivity_0.6,v001_excited_neutral_scale_2.0,"{""emotion"":6,""quality"":4,""similarity"":6}",,2025-08-28 05:42:03.288+00,346079
+527,session_1756359377209_expressivity_0.6,v002_excitement_opposite_scale_1.5,"{""emotion"":4,""quality"":3,""similarity"":4}",,2025-08-28 05:42:15.981+00,358772
+528,session_1756359377209_expressivity_0.6,v001_angry_match_scale_0.5,"{""emotion"":3,""quality"":4,""similarity"":6}",,2025-08-28 05:42:37.806+00,380597
+529,session_1756359377209_expressivity_0.6,v001_excited_neutral_scale_3.0,"{""emotion"":7,""quality"":5,""similarity"":5}",,2025-08-28 05:43:04.946+00,407737
+530,session_1756359377209_expressivity_0.6,v001_angry_match_scale_1.5,"{""emotion"":3,""quality"":3,""similarity"":1}",,2025-08-28 05:43:24.142+00,426933
+531,session_1756359377209_expressivity_0.6,v001_surprise_neutral_scale_2.5,"{""emotion"":1,""quality"":4,""similarity"":4}",,2025-08-28 05:43:37.125+00,439916
+532,session_1756359377209_expressivity_0.6,v002_tonedown_opposite_scale_1.0,"{""emotion"":4,""quality"":2,""similarity"":3}",,2025-08-28 05:43:55.166+00,457957
+533,session_1756359377209_expressivity_0.6,v002_happy_opposite_scale_3.0,"{""emotion"":3,""quality"":2,""similarity"":4}",,2025-08-28 05:44:09.231+00,472022
+534,session_1756359377209_expressivity_0.6,v002_furious_opposite_scale_2.5,"{""emotion"":6,""quality"":6,""similarity"":6}",,2025-08-28 05:44:21.316+00,484107
+535,session_1756359377209_expressivity_0.6,v001_terrified_neutral_scale_0.5,"{""emotion"":1,""quality"":3,""similarity"":6}",,2025-08-28 05:44:36.226+00,499017

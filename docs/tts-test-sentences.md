@@ -4,12 +4,12 @@
 ## 🎯 Expressivity 비교 테스트 (2025-08-22)
 
 ### 테스트 목적
-- **expressivity_none**: 기본 텍스트 (기존 방식)
+- **expressivity_none**: 기본 텍스트 (기존 방식) **이제 필요하지 않음**
 - **expressivity_0.6**: 모든 텍스트에 "|0.6" 접미사 추가하여 expressivity 효과 측정
 
 ### voice_id 리스트
-- **v001**: 688b031ae5aa62c50d6f3238 (male)
-- **v002**: 689c693264acbc0a5b9fb0e5 (female)
+- **v001**: 68c3cbbc39de69ffd6baad5f (male)
+- **v002**: 68c3cbc04b464b622eb32355 (female)
 
 ## 테스트 문장 구성
 각 감정당 3개 문장:
@@ -53,32 +53,32 @@
 2. **중립**: "The document contains information about the new policy changes."
 3. **반대**: "This is so incredibly exciting and I can barely contain myself!"
 
-## 7. emotion_vector_id: 68a7b5995b2b44d11cede93c (Excited)
+## 7. emotion_vector_id: 68a6b0ca2edfc11a25045538 (Excited)
 1. **일치**: "We're going on the adventure of a lifetime starting tomorrow morning!"
 2. **중립**: "The temperature today is expected to reach seventy-two degrees."
 3. **반대**: "I'm too exhausted and drained to do anything at all today."
 
-## 8. emotion_vector_id: 68a7b5a418fc7f54efec5b2f (Furious)
+## 8. emotion_vector_id: 68a6b0d9b436060efdc6bc82 (Furious)
 1. **일치**: "This is absolutely unacceptable and I demand an explanation immediately!"
 2. **중립**: "The library closes at eight o'clock on weekday evenings."
 3. **반대**: "I completely understand your position and I'm not upset at all."
 
-## 9. emotion_vector_id: 68a7b5acb4a6c41c56a161e9 (Terrified)
+## 9. emotion_vector_id: 68a6b0d2b436060efdc6bc80 (Terrified)
 1. **일치**: "Something is moving in the shadows and I don't know what it is!"
 2. **중립**: "The coffee machine is located on the third floor break room."
 3. **반대**: "I feel completely safe and protected in this wonderful place."
 
-## 10. emotion_vector_id: 68a7b5beb4a6c41c56a161ea (두려움)
+## 10. emotion_vector_id: 68a6b0f7b436060efdc6bc83 (두려움)
 1. **일치**: "I'm really scared about what might happen if this goes wrong."
 2. **중립**: "The new software update will be installed next Tuesday morning."
 3. **반대**: "I have complete confidence that everything will work out perfectly."
 
-## 11. emotion_vector_id: 68a7b5c218fc7f54efec5b31 (놀람)
+## 11. emotion_vector_id: 68a6b10255e3b2836e609969 (놀람)
 1. **일치**: "Oh my goodness, I never expected to see you here today!"
 2. **중립**: "The parking lot is located behind the main building entrance."
 3. **반대**: "This is exactly what I predicted would happen all along."
 
-## 12. emotion_vector_id: 68a7b5c5b4a6c41c56a161eb (흥분)
+## 12. emotion_vector_id: 68a6b1062edfc11a2504553b (흥분)
 1. **일치**: "I can hardly wait to share this amazing news with everyone!"
 2. **중립**: "Please fill out the form and return it to the front desk."
 3. **반대**: "This is rather boring and I'm not interested in it at all."

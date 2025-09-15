@@ -211,7 +211,7 @@ class CommentInsightsExtractor:
 
 def main():
     """Main execution"""
-    extractor = CommentInsightsExtractor('/Users/bagsanghui/ssfm30_qa/sample_evaluations_rows.csv')
+    extractor = CommentInsightsExtractor('/Users/bagsanghui/ssfm30_qa/analysis/current_evaluations.csv')
     extractor.extract_insights()
 
 if __name__ == "__main__":

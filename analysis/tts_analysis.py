@@ -273,7 +273,7 @@ def main():
     print("="*50)
     
     # Initialize analyzer
-    analyzer = TTSAnalyzer('/Users/bagsanghui/ssfm30_qa/sample_evaluations_rows.csv')
+    analyzer = TTSAnalyzer('/Users/bagsanghui/ssfm30_qa/analysis/current_evaluations.csv')
     
     # Run comprehensive analysis
     analyzer.generate_summary_report()

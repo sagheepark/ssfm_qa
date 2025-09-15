@@ -36,5 +36,5 @@ export interface QASession {
   results: EvaluationResult[];
   started_at: string;
   completed_at?: string;
-  voice_set: 'expressivity_none' | 'expressivity_0.6';
+  voice_set: 'expressivity_0.6';
 }

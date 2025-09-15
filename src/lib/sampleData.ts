@@ -14,7 +14,7 @@ export function generateSamplePool(): TTSSample[] {
   const textTypes = ['match', 'neutral', 'opposite'];
   const emotionLabels = ['angry', 'sad', 'happy', 'whisper', 'toneup', 'tonedown'];
   const emotionVectors = ['excited', 'furious', 'terrified', 'fear', 'surprise', 'excitement'];
-  const scales = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];
+  const scales = [1.0, 1.2, 1.4, 1.6, 1.8, 2.0];
   
   const emotionTexts = {
     // Emotion Labels
@@ -159,12 +159,12 @@ export function getSampleMetadata() {
     emotion_labels: ['angry', 'sad', 'happy', 'whisper', 'toneup', 'tonedown'],
     emotion_vectors: ['excited', 'furious', 'terrified', 'fear', 'surprise', 'excitement'],
     text_types: ['match', 'neutral', 'opposite'],
-    scales: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
-    voice_sets: ['expressivity_none', 'expressivity_0.6'],
+    scales: [1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+    voice_sets: ['expressivity_0.6'],
     naming_structure: {
       target: '{voice_id}_{emotion}_{text_type}_scale_{scale}.wav',
       reference: '{voice_id}_{emotion}_{text_type}_reference.wav'
     },
-    reference_description: 'Two sets: expressivity_none (original text) and expressivity_0.6 (text + "|0.6"), both use style_label: "normal-1"'
+    reference_description: 'HD1 quality audio with expressivity_0.6 (text + "|0.6") using style_label: "normal-1"'
   };
 }

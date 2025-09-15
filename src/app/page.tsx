@@ -21,7 +21,7 @@ export default function TTSQAApp() {
         const parsed = JSON.parse(savedSession);
         // Handle legacy sessions without voice_set
         if (!parsed.voice_set) {
-          parsed.voice_set = 'expressivity_none';
+          parsed.voice_set = 'expressivity_0.6';
         }
         setSession(parsed);
       } catch (error) {
@@ -43,10 +43,10 @@ export default function TTSQAApp() {
     return <DatabaseConnectionError />;
   }
 
-  const startNewSession = async (voiceSet: 'expressivity_none' | 'expressivity_0.6') => {
+  const startNewSession = async (voiceSet: 'expressivity_0.6' = 'expressivity_0.6') => {
     const samples = getRandomSamples(25);
     const newSession: QASession = {
-      session_id: `session_${Date.now()}_${voiceSet}`,
+      session_id: `session_${Date.now()}_voices_3_${voiceSet}`, // Add voices_3 identifier
       samples,
       current_index: 0,
       results: [],
@@ -58,7 +58,9 @@ export default function TTSQAApp() {
     const sessionData = {
       session_id: newSession.session_id,
       started_at: newSession.started_at,
-      samples_data: samples
+      samples_data: samples,
+      experiment_version: 'voices_3', // Add experiment version
+      audio_quality: 'hd1' // Add audio quality indicator
     };
     
     try {
@@ -328,18 +330,20 @@ export default function TTSQAApp() {
           <div className="text-center space-y-6">
             <h1 className="text-3xl font-bold text-gray-900">TTS Quality Assessment</h1>
             
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
               <h2 className="text-lg font-semibold text-blue-900 mb-4">Session Overview</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-900">
                 <div className="space-y-1">
                   <p><strong>Samples per session:</strong> 25</p>
                   <p><strong>Total sample pool:</strong> {metadata.total_samples}</p>
-                  <p><strong>Voices:</strong> {metadata.voices.join(', ')}</p>
+                  <p><strong>Voices:</strong> {metadata.voices.join(', ')} (HD1 Quality)</p>
+                  <p><strong>Audio Quality:</strong> <span className="text-green-600 font-semibold">HD1 Premium</span></p>
                 </div>
                 <div className="space-y-1">
                   <p><strong>Emotions:</strong> {metadata.emotion_labels.length + metadata.emotion_vectors.length} types</p>
                   <p><strong>Text types:</strong> {metadata.text_types.join(', ')}</p>
                   <p><strong>Estimated time:</strong> ~15 minutes</p>
+                  <p><strong>Dataset:</strong> <span className="text-purple-600 font-semibold">voices_3</span></p>
                 </div>
               </div>
             </div>
@@ -355,32 +359,24 @@ export default function TTSQAApp() {
               </ul>
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
-              <h3 className="font-semibold text-amber-900 mb-3">Choose Voice Set for Testing:</h3>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+              <h3 className="font-semibold text-amber-900 mb-3">Ready to Evaluate voices_3 Dataset:</h3>
               <p className="text-sm text-amber-800 mb-4">
-                Select which voice dataset you want to evaluate. Each set contains identical samples with different expressivity processing.
+                Start evaluating the latest HD1 premium quality voice samples with enhanced expressivity and optimized audio generation.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border border-amber-300 rounded-lg p-4 bg-white">
-                  <h4 className="font-medium text-gray-900 mb-2">Standard Voices</h4>
-                  <p className="text-sm text-gray-600 mb-3">Original TTS generation without expressivity enhancement</p>
-                  <button
-                    onClick={() => startNewSession('expressivity_none')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors"
-                  >
-                    Start with Standard Set
-                  </button>
-                </div>
-                
-                <div className="border border-amber-300 rounded-lg p-4 bg-white">
-                  <h4 className="font-medium text-gray-900 mb-2">Enhanced Voices (0.6)</h4>
-                  <p className="text-sm text-gray-600 mb-3">TTS generation with expressivity enhancement (|0.6 suffix)</p>
+              <div className="max-w-md mx-auto">
+                <div className="border border-amber-300 rounded-lg p-6 bg-white">
+                  <h4 className="font-medium text-gray-900 mb-2">🎵 HD1 Premium Quality Dataset (voices_3)</h4>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Latest generation voice samples featuring HD1 audio quality, new voice IDs (v001, v002), 
+                    and enhanced expressivity controls. All 504 samples ready for evaluation.
+                  </p>
                   <button
                     onClick={() => startNewSession('expressivity_0.6')}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition-colors"
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                   >
-                    Start with Enhanced Set
+                    Start HD1 Quality Evaluation
                   </button>
                 </div>
               </div>
@@ -411,10 +407,11 @@ export default function TTSQAApp() {
               <h2 className="text-lg font-semibold text-green-900 mb-4">Results Summary</h2>
               <div className="text-sm space-y-2">
                 <p><strong>Session ID:</strong> {session.session_id}</p>
+                <p><strong>Dataset:</strong> <span className="text-purple-600 font-semibold">voices_3 (HD1 Quality)</span></p>
                 <p><strong>Voice Set:</strong> {session.voice_set === 'expressivity_0.6' ? 'Enhanced Voices (0.6)' : 'Standard Voices'}</p>
                 <p><strong>Samples evaluated:</strong> {session.results.length}</p>
                 <p><strong>Duration:</strong> {session.completed_at ? new Date(session.completed_at).toLocaleString() : 'Unknown'}</p>
-                <p><strong>Results downloaded:</strong> {session.results.length} JSON files</p>
+                <p><strong>Audio Quality:</strong> <span className="text-green-600 font-semibold">HD1 Premium</span></p>
               </div>
             </div>
 
@@ -442,13 +439,19 @@ export default function TTSQAApp() {
                 Listen to both audio samples below. The Reference Audio is the neutral baseline. 
                 Evaluate how well the Target Audio expresses the intended emotion compared to this neutral baseline.
               </p>
-              <div className="mt-2">
+              <div className="mt-2 flex gap-2">
                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                   session.voice_set === 'expressivity_0.6' 
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-blue-100 text-blue-800'
                 }`}>
                   {session.voice_set === 'expressivity_0.6' ? 'Enhanced Voices (0.6)' : 'Standard Voices'}
+                </span>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                  voices_3 Dataset
+                </span>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                  HD1 Quality
                 </span>
               </div>
             </div>
